@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
@@ -65,8 +64,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Noto Sans TC', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        sans: ['var(--font-notoSans)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
       },
     },
   },
