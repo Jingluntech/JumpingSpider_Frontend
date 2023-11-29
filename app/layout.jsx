@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <header className='w-full border-b border-grey-600 px-4'>
           <Navbar />
         </header>
-        <main className='grow py-4'>{children}</main>
+        <main className='h-screen-minus py-4'>{children}</main>
         <footer className='flex h-16 items-center justify-center bg-grey-800'>
           <h1>This is a footer</h1>
         </footer>

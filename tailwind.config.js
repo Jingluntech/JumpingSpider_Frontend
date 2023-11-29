@@ -67,6 +67,9 @@ module.exports = {
         sans: ['var(--font-notoSans)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
       },
+      height: {
+        'screen-minus': 'calc(100vh - 128px)',
+      },
     },
   },
   plugins: [],
