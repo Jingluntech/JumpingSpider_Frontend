@@ -1,6 +1,13 @@
+'use client';
+
 import Image from 'next/image';
+import ConnectWallet from './modals/ConnectWallet';
+import ModalBackground from './modals/ModalBackground';
+import { useState } from 'react';
 
 export default function Navbar() {
+  const [openWallet, setOpenWallet] = useState(false);
+
   return (
     <nav className='flex h-16 items-center justify-between'>
       <div className='flex items-center gap-5 md:flex-row-reverse'>
@@ -26,9 +33,18 @@ export default function Navbar() {
           priority={true}
         />
       </div>
-      <button className='h-fit w-fit rounded-md bg-primary-blue-500 px-4 py-2'>
+      <button
+        className='h-fit w-fit rounded-md bg-primary-blue-500 px-4 py-2'
+        onClick={() => setOpenWallet(true)}
+      >
         連結錢包
       </button>
+      {openWallet && (
+        <>
+          <ConnectWallet onClick={() => setOpenWallet(false)} />
+          <ModalBackground onClick={() => setOpenWallet(false)} />
+        </>
+      )}
     </nav>
   );
 }
