@@ -1,4 +1,10 @@
+'use client';
+
+import { useWeb3Modal } from '@web3modal/wagmi/react'
+
 export default function ConnectWallet({ onClick }) {
+  const { open } = useWeb3Modal();
+
   return (
     <div className='absolute left-1/2 top-1/2 z-20 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-2'>
       <div className='flex h-fit w-full min-w-[359px] max-w-[516px] flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
@@ -11,7 +17,8 @@ export default function ConnectWallet({ onClick }) {
           <div className='flex items-center gap-4'>Trust Wallet</div>
         </button>
 
-        <button className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'>
+        <button className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
+          onClick={() => open()}>
           <div className='flex items-center gap-4'>WalletConnect</div>
         </button>
 
