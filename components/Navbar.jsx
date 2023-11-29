@@ -6,45 +6,13 @@ import ModalBackground from './modals/ModalBackground';
 import { useState } from 'react';
 
 export default function Navbar() {
-  const [openWallet, setOpenWallet] = useState(false);
-
   return (
-    <nav className='flex h-16 items-center justify-between'>
-      <div className='flex items-center gap-5 md:flex-row-reverse'>
-        <div className='md:hidden'>
-          <Image
-            src='/hamburger.svg'
-            alt='menu'
-            width={30}
-            height={30}
-            priority={true}
-          />
-        </div>
-        <ul className='hidden gap-4 md:flex'>
-          <li>link1</li>
-          <li>link2</li>
-          <li>link3</li>
-        </ul>
-        <Image
-          src='/Logo.svg'
-          alt='logo'
-          width={100}
-          height={50}
-          priority={true}
-        />
-      </div>
-      <button
-        className='h-fit w-fit rounded-md bg-primary-blue-500 px-4 py-2'
-        onClick={() => setOpenWallet(true)}
-      >
-        連結錢包
-      </button>
-      {openWallet && (
-        <>
-          <ConnectWallet onClick={() => setOpenWallet(false)} />
-          <ModalBackground onClick={() => setOpenWallet(false)} />
-        </>
-      )}
+    <nav className='absolute bottom-0 left-0 top-0 z-20 flex w-3/5 min-w-[220px] flex-col items-center bg-grey-900'>
+      <ul className='mt-14 flex w-full flex-col gap-4 px-4'>
+        <li className='h-fit p-2'>link1</li>
+        <li className='h-fit p-2'>link2</li>
+        <li className='h-fit p-2'>link3</li>
+      </ul>
     </nav>
   );
 }
