@@ -1,0 +1,15 @@
+{
+  "header": {
+    "home": "首頁",
+    "miner": "Miner資訊",
+    "sdn": "SDN資訊",
+    "faq": "幫助中心",
+    "connect": "連結錢包",
+    "offline": "中斷連線",
+    "back": "返回",
+    "lang": "語系",
+    "enUS": "英文",
+    "zhTW": "繁體中文",
+    "zhCN": "簡體中文"
+  }
+}

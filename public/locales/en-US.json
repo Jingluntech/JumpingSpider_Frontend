@@ -1,0 +1,15 @@
+{
+  "header": {
+    "home": "Home",
+    "miner": "Miner",
+    "sdn": "SDN",
+    "faq": "FAQ",
+    "connect": "Connect wallet",
+    "offline": "Offline wallet",
+    "back": "Back",
+    "lang": "Lang",
+    "enUS": "English",
+    "zhTW": "Traditional Chinese",
+    "zhCN": "Simplified Chinese"
+  }
+}
