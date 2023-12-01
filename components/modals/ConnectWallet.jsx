@@ -13,6 +13,7 @@ import {
 
 export default function ConnectWallet({ onClick }) {
   const web3Provider = useRef();
+  const signer = useRef();
 
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
@@ -32,79 +33,85 @@ export default function ConnectWallet({ onClick }) {
           }
         }
         // TODO: fetch uuid API
-        const signer = web3Provider.getSigner(address);
         // console.log(signer);
-        const signCode = await signer.signMessage('uuid');
+        const signCode = await signer.current.signMessage('uuid');
         // TODO: fetch JWT API
-        onClick(address);
+        onClick();
       } else {
-        // if (
-        //   web3Provider.current.network.name !==
-        //     process.env.NEXT_PUBLIC_NETWORKNAME ||
-        //   web3Provider.current.network.chainId !==
-        //     process.env.NEXT_PUBLIC_NCHAINID
-        // ) {
-        //   try {
-        //     let chainId =
-        //       '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
-        //     await web3Provider.current.send('wallet_switchEthereumChain', [
-        //       { chainId: chainId },
-        //     ]);
-        //   } catch (error) {
-        //     if (error.code === 4902) {
-        //       const customChain = {
-        //         chainId:
-        //           '0x' +
-        //           parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16),
-        //         chainName: process.env.NEXT_PUBLIC_CHAINNAME,
-        //         nativeCurrency: {
-        //           decimals: parseInt(
-        //             process.env.NEXT_PUBLIC_NATIVECURRENCYDECIMALS
-        //           ),
-        //           name: process.env.NEXT_PUBLIC_NATIVECURRENCYNAME,
-        //           symbol: process.env.NEXT_PUBLIC_NATIVECURRENCYSYMBOL,
-        //         },
-        //         rpcUrls: [`${process.env.NEXT_PUBLIC_RPCURL}`],
-        //         blockExplorerUrls: [
-        //           `${process.env.NEXT_PUBLIC_BLOCKEXPLORERURL}`,
-        //         ],
-        //       };
-        //       await web3Provider.current.send('wallet_addEthereumChain', [
-        //         customChain,
-        //       ]);
-        //       let chainId =
-        //         '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
-        //       await web3Provider.current.send('wallet_switchEthereumChain', [
-        //         { chainId: chainId },
-        //       ]);
-        //     }
-        //   }
-        // }
-        // let account = await web3Provider.current.send(
-        //   'eth_requestAccounts',
-        //   []
-        // );
-        // // TODO: fetch UUID API
-        // const signer = web3Provider.current.getSigner(account[0]);
-        // // TODO: fetch JWT API
-        // const signCode = await signer.signMessage('uuid');
-        // props.onClick();
+        if (
+          web3Provider.current._network.name !==
+            process.env.NEXT_PUBLIC_NETWORKNAME ||
+          web3Provider.current._network.chainId !==
+            process.env.NEXT_PUBLIC_NCHAINID
+        ) {
+          try {
+            let chainId =
+              '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
+            await web3Provider.current.send('wallet_switchEthereumChain', [
+              { chainId: chainId },
+            ]);
+          } catch (error) {
+            if (error.code === 4902) {
+              const customChain = {
+                chainId:
+                  '0x' +
+                  parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16),
+                chainName: process.env.NEXT_PUBLIC_CHAINNAME,
+                nativeCurrency: {
+                  decimals: parseInt(
+                    process.env.NEXT_PUBLIC_NATIVECURRENCYDECIMALS
+                  ),
+                  name: process.env.NEXT_PUBLIC_NATIVECURRENCYNAME,
+                  symbol: process.env.NEXT_PUBLIC_NATIVECURRENCYSYMBOL,
+                },
+                rpcUrls: [`${process.env.NEXT_PUBLIC_RPCURL}`],
+                blockExplorerUrls: [
+                  `${process.env.NEXT_PUBLIC_BLOCKEXPLORERURL}`,
+                ],
+              };
+              await web3Provider.current.send('wallet_addEthereumChain', [
+                customChain,
+              ]);
+              let chainId =
+                '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
+              await web3Provider.current.send('wallet_switchEthereumChain', [
+                { chainId: chainId },
+              ]);
+            }
+          }
+        }
+        const addr = await signer.current.getAddress();
+        // console.log(addr);
+        // TODO: fetch UUID API
+        // TODO: fetch JWT API
+        const signCode = await signer.current.signMessage('uuid');
+        // console.log(signCode);
+        onClick();
       }
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
       onClick();
+    }
+  };
+
+  const ethereumConnect = async () => {
+    try {
+      if (window.ethereum == null) {
+        console.log('MetaMask not installed; using read-only defaults');
+        web3Provider.current = ethers.getDefaultProvider();
+      } else {
+        web3Provider.current = new ethers.BrowserProvider(window.ethereum);
+        signer.current = await web3Provider.current.getSigner();
+        // console.log(web3Provider.current._network);
+      }
+    } catch (error) {
+      console.log('error', error);
     }
   };
 
   useEffect(() => {
     try {
-      if (window.ethereum === null) {
-        console.log('MetaMask not installed; using read-only defaults');
-        web3Provider.current = ethers.getDefaultProvider();
-      } else {
-        web3Provider.current = new ethers.BrowserProvider(window.ethereum);
-        console.log(web3Provider.current);
-      }
+      ethereumConnect();
     } catch (error) {
       console.log('error', error);
     }
