@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       <body className='flex min-h-screen min-w-[350px] flex-col bg-grey-900 text-grey-100'>
         <Web3Modal>
           <Header />
-            <main className='h-screen-minus py-4'>{children}</main>
+          <main className='h-fit'>{children}</main>
           <Footer />
         </Web3Modal>
       </body>
