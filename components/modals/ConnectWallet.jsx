@@ -1,25 +1,37 @@
 'use client';
-import { useEffect, useRef } from 'react';
 
-import { ethers } from 'ethers';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import {
   Chain,
   useAccount,
+  useBalance,
   useNetwork,
   useSwitchNetwork,
   useSignMessage,
 } from 'wagmi';
 
-export default function ConnectWallet({ onClick }) {
-  const web3Provider = useRef();
-  const signer = useRef();
+import ethersClient from '@/utils/eth/ethersClient';
+import { use } from 'i18next';
 
+export default function ConnectWallet({ onClick }) {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
+  const { data, isError } = useBalance({
+    address: address,
+    watch: true,
+  });
   const { chain } = useNetwork();
   const { pendingChainId, switchNetwork } = useSwitchNetwork();
   const { isLoading } = useSignMessage();
+
+  const {
+    ethereumConnect,
+    getAddress,
+    getDecimals,
+    getBalance,
+    signMessage,
+    transfer,
+  } = ethersClient();
 
   const walletConnectHandler = async (walletType) => {
     try {
@@ -33,21 +45,20 @@ export default function ConnectWallet({ onClick }) {
           }
         }
         // TODO: fetch uuid API
-        // console.log(signer);
-        const signCode = await signer.current.signMessage('uuid');
+        const signCode = await signMessage('uuid');
         // TODO: fetch JWT API
         onClick();
       } else {
+        let { provider, signer, contract, contractSigner } =
+          await ethereumConnect();
         if (
-          web3Provider.current._network.name !==
-            process.env.NEXT_PUBLIC_NETWORKNAME ||
-          web3Provider.current._network.chainId !==
-            process.env.NEXT_PUBLIC_NCHAINID
+          provider._network.name !== process.env.NEXT_PUBLIC_NETWORKNAME ||
+          provider._network.chainId !== process.env.NEXT_PUBLIC_NCHAINID
         ) {
           try {
             let chainId =
               '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
-            await web3Provider.current.send('wallet_switchEthereumChain', [
+            await provider.send('wallet_switchEthereumChain', [
               { chainId: chainId },
             ]);
           } catch (error) {
@@ -69,22 +80,24 @@ export default function ConnectWallet({ onClick }) {
                   `${process.env.NEXT_PUBLIC_BLOCKEXPLORERURL}`,
                 ],
               };
-              await web3Provider.current.send('wallet_addEthereumChain', [
-                customChain,
-              ]);
+              await provider.send('wallet_addEthereumChain', [customChain]);
               let chainId =
                 '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
-              await web3Provider.current.send('wallet_switchEthereumChain', [
+              await provider.send('wallet_switchEthereumChain', [
                 { chainId: chainId },
               ]);
             }
           }
         }
-        const addr = await signer.current.getAddress();
-        // console.log(addr);
+        const tempAddress = getAddress();
+        const decimals = await getDecimals();
+        const balance = await getBalance(tempAddress, decimals);
+        console.log(balance);
+        // let re = await transfer(12, decimals, 20);
+        // console.log(re);
         // TODO: fetch UUID API
         // TODO: fetch JWT API
-        const signCode = await signer.current.signMessage('uuid');
+        const signCode = await signMessage('uuid');
         // console.log(signCode);
         onClick();
       }
@@ -93,29 +106,6 @@ export default function ConnectWallet({ onClick }) {
       onClick();
     }
   };
-
-  const ethereumConnect = async () => {
-    try {
-      if (window.ethereum == null) {
-        console.log('MetaMask not installed; using read-only defaults');
-        web3Provider.current = ethers.getDefaultProvider();
-      } else {
-        web3Provider.current = new ethers.BrowserProvider(window.ethereum);
-        signer.current = await web3Provider.current.getSigner();
-        // console.log(web3Provider.current._network);
-      }
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
-
-  useEffect(() => {
-    try {
-      ethereumConnect();
-    } catch (error) {
-      console.log('error', error);
-    }
-  }, []);
 
   return (
     <div className='absolute left-1/2 top-1/2 z-20 flex h-fit w-full min-w-[359px] max-w-[516px] -translate-x-1/2 -translate-y-1/2 flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
