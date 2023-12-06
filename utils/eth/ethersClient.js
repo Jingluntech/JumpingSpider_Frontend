@@ -31,6 +31,45 @@ export default function ethersClient() {
           signer
         );
       }
+
+      if (
+        provider._network.name !== process.env.NEXT_PUBLIC_NETWORKNAME ||
+        provider._network.chainId !== process.env.NEXT_PUBLIC_NCHAINID
+      ) {
+        try {
+          let chainId =
+            '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
+          await provider.send('wallet_switchEthereumChain', [
+            { chainId: chainId },
+          ]);
+        } catch (error) {
+          if (error.code === 4902) {
+            const customChain = {
+              chainId:
+                '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16),
+              chainName: process.env.NEXT_PUBLIC_CHAINNAME,
+              nativeCurrency: {
+                decimals: parseInt(
+                  process.env.NEXT_PUBLIC_NATIVECURRENCYDECIMALS
+                ),
+                name: process.env.NEXT_PUBLIC_NATIVECURRENCYNAME,
+                symbol: process.env.NEXT_PUBLIC_NATIVECURRENCYSYMBOL,
+              },
+              rpcUrls: [`${process.env.NEXT_PUBLIC_RPCURL}`],
+              blockExplorerUrls: [
+                `${process.env.NEXT_PUBLIC_BLOCKEXPLORERURL}`,
+              ],
+            };
+            await provider.send('wallet_addEthereumChain', [customChain]);
+            let chainId =
+              '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
+            await provider.send('wallet_switchEthereumChain', [
+              { chainId: chainId },
+            ]);
+          }
+        }
+      }
+
       return {
         provider,
         signer,
@@ -42,6 +81,7 @@ export default function ethersClient() {
       return Promise.reject(error);
     }
   };
+
   /**
    * 取得帳戶地址
    * @returns address
@@ -64,7 +104,7 @@ export default function ethersClient() {
 
   const getSymbol = async () => {
     try {
-      const symbol = await await contract.symbol();
+      const symbol = await contract.symbol();
       return symbol;
     } catch (error) {
       console.error('error: ', error);
@@ -125,10 +165,10 @@ export default function ethersClient() {
 
   const transfer = async (amount, decimals = 6, limit = 1) => {
     try {
-      if (amount < limit) {
-        console.log('Insufficient balance');
-        return;
-      }
+      // if (amount < limit) {
+      //   console.log('Insufficient balance');
+      //   return;
+      // }
       const temp = amount.toString();
       amount = ethers.parseUnits(temp, decimals);
       const tempAddress = process.env.NEXT_PUBLIC_RECEIVE_ADDRESS;

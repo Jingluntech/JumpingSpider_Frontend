@@ -51,49 +51,12 @@ export default function ConnectWallet({ onClick }) {
       } else {
         let { provider, signer, contract, contractSigner } =
           await ethereumConnect();
-        if (
-          provider._network.name !== process.env.NEXT_PUBLIC_NETWORKNAME ||
-          provider._network.chainId !== process.env.NEXT_PUBLIC_NCHAINID
-        ) {
-          try {
-            let chainId =
-              '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
-            await provider.send('wallet_switchEthereumChain', [
-              { chainId: chainId },
-            ]);
-          } catch (error) {
-            if (error.code === 4902) {
-              const customChain = {
-                chainId:
-                  '0x' +
-                  parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16),
-                chainName: process.env.NEXT_PUBLIC_CHAINNAME,
-                nativeCurrency: {
-                  decimals: parseInt(
-                    process.env.NEXT_PUBLIC_NATIVECURRENCYDECIMALS
-                  ),
-                  name: process.env.NEXT_PUBLIC_NATIVECURRENCYNAME,
-                  symbol: process.env.NEXT_PUBLIC_NATIVECURRENCYSYMBOL,
-                },
-                rpcUrls: [`${process.env.NEXT_PUBLIC_RPCURL}`],
-                blockExplorerUrls: [
-                  `${process.env.NEXT_PUBLIC_BLOCKEXPLORERURL}`,
-                ],
-              };
-              await provider.send('wallet_addEthereumChain', [customChain]);
-              let chainId =
-                '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16);
-              await provider.send('wallet_switchEthereumChain', [
-                { chainId: chainId },
-              ]);
-            }
-          }
-        }
-        const tempAddress = getAddress();
+
+        // const tempAddress = getAddress();
         const decimals = await getDecimals();
-        const balance = await getBalance(tempAddress, decimals);
-        console.log(balance);
-        // let re = await transfer(12, decimals, 20);
+        const balance = await getBalance(address, decimals);
+        // console.log(balance);
+        // let re = await transfer(1, decimals);
         // console.log(re);
         // TODO: fetch UUID API
         // TODO: fetch JWT API
@@ -106,6 +69,14 @@ export default function ConnectWallet({ onClick }) {
       onClick();
     }
   };
+
+  window.ethereum.on('chainChanged', () => {
+    console.log('chainChanged');
+  });
+
+  window.ethereum.on('accountsChanged', () => {
+    console.log('accountsChanged');
+  });
 
   return (
     <div className='absolute left-1/2 top-1/2 z-20 flex h-fit w-full min-w-[359px] max-w-[516px] -translate-x-1/2 -translate-y-1/2 flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
