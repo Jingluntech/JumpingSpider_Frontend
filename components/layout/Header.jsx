@@ -38,7 +38,6 @@ export default function Header() {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
   const [selectedLang, setSelectedLang] = useState('zhTW');
-  console.log(pathname);
 
   const handleOpenLang = (lang) => {
     setSelectedLang(lang);
@@ -46,8 +45,8 @@ export default function Header() {
   };
 
   return (
-    <header className='h-20 w-full border-b border-grey-600 px-4 py-5'>
-      <div className='flex  h-full w-full items-center justify-between'>
+    <header className='mx-auto h-20 w-full min-w-[350px] max-w-[1216px] px-4'>
+      <div className='flex h-full w-full items-center justify-between'>
         <div className='flex h-full w-full items-center gap-4'>
           <div
             className='relative cursor-pointer lg:hidden'
@@ -79,17 +78,17 @@ export default function Header() {
           <nav className='h-full w-fit min-w-fit justify-between'>
             <ul className='hidden h-full items-center gap-10 lg:flex'>
               {navLinks.map((el) => (
-                <Link key={el.id} href={el.url} className='relative'>
+                <Link key={el.id} href={el.url} className='relative h-full'>
                   <li
                     className={
                       pathname === el.url
-                        ? ' text-primary-yellow-500'
-                        : 'text-grey-300'
+                        ? 'flex h-full items-center text-primary-yellow-500'
+                        : 'flex h-full items-center text-grey-300'
                     }
                   >
                     {el.title}
                     {pathname === el.url && (
-                      <div className='absolute left-1/2 top-12 h-1 w-10 -translate-x-1/2 rounded bg-primary-yellow-500'></div>
+                      <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
                     )}
                   </li>
                 </Link>
@@ -97,15 +96,25 @@ export default function Header() {
             </ul>
           </nav>
         </div>
-        <div className='flex flex-shrink-0 items-center gap-5'>
+        <div className='flex h-full flex-shrink-0 items-center gap-5'>
           <Language
             selectedLang={selectedLang}
             openLang={openLang}
             setOpenLang={setOpenLang}
             onLangClick={(lang) => handleOpenLang(lang)}
           />
-          <Link href='/member' className='text-grey-300'>
+          <Link
+            href='/member/info'
+            className={
+              pathname.includes('member')
+                ? 'relative flex h-full items-center text-primary-yellow-500'
+                : 'flex h-full items-center text-grey-300'
+            }
+          >
             會員中心
+            {pathname.includes('member') && (
+              <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+            )}
           </Link>
           <button
             className='h-fit w-[104px] rounded-md bg-primary-blue-500 px-5 py-[11px]'

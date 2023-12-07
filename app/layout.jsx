@@ -26,9 +26,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en' className={`${notoSans.variable} ${inter.variable} `}>
-      <body className='flex min-h-screen min-w-[350px] flex-col bg-grey-900 text-grey-100'>
+      <body className='flex flex-col bg-grey-900 text-grey-100'>
         <Web3Modal>
           <Header />
+          <hr className='w-full border-b border-grey-600' />
           <main className='h-fit'>{children}</main>
           <Footer />
         </Web3Modal>
