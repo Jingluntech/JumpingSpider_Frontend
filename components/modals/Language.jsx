@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const languages = [
   {
     id: 'zhTW',
@@ -27,10 +29,17 @@ export default function Language({
   return (
     <div>
       <div
-        className='relative cursor-pointer'
+        className='relative flex cursor-pointer items-center gap-1 text-grey-300'
         onClick={() => setOpenLang(!openLang)}
       >
         {ShowLanguage()}
+        <Image
+          src='/chevron-down.svg'
+          alt='chevrondown-icon'
+          width={24}
+          height={24}
+          className={openLang ? '' : 'rotate-180'}
+        />
         {openLang && (
           <ul className='absolute right-1/2 top-7 flex w-fit translate-x-1/2 flex-col whitespace-nowrap bg-grey-800'>
             {languages.map((el) => (

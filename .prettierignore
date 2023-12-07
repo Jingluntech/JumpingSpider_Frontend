@@ -1,3 +1,4 @@
 package-lock.json
 .next
+next.config.js
 prettier --ignore-path .gitignore
