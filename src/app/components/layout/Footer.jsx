@@ -1,46 +1,45 @@
-'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import '@/plugins/i18n';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 
 const footerLinks = [
   {
     id: 'footer-0',
-    title: 'footer.home',
+    title: 'home',
     url: '/',
   },
   {
     id: 'footer-1',
-    title: 'footer.price',
+    title: 'price',
     url: '/price',
   },
   {
     id: 'footer-2',
-    title: 'footer.faq',
+    title: 'faq',
     url: '/faq',
   },
   {
     id: 'footer-3',
-    title: 'footer.instruction',
+    title: 'instruction',
     url: '/instruction',
   },
   {
     id: 'footer-4',
-    title: 'footer.policy',
+    title: 'policy',
     url: '/policy',
     icon: '/external-link.svg',
   },
   {
     id: 'footer-5',
-    title: 'footer.spiderweb',
+    title: 'spiderweb',
     url: '/',
     icon: '/external-link.svg',
   },
 ];
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const t = useTranslations('footer');
+
   return (
     <footer className='flex h-[142px] w-full flex-col items-center justify-center gap-8 bg-grey-800 py-14 md:gap-10 lg:flex-row xl:justify-between xl:px-28'>
       <ul className='flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10'>

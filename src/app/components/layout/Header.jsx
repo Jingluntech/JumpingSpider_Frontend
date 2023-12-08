@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import ConnectWallet from '@/components/modals/ConnectWallet';
-import ModalBackground from '@/components/modals/ModalBackground';
-import Navbar from '@/components/navbar/Navbar';
-import Language from '@/components/modals/Language';
+import ConnectWallet from '@/src/app/components/modals/ConnectWallet';
+import ModalBackground from '@/src/app/components/modals/ModalBackground';
+import Navbar from '@/src/app/components/navbar/Navbar';
+import Language from '@/src/app/components/modals/Language';
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

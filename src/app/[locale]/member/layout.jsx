@@ -1,4 +1,4 @@
-import MemebrNavbar from '@/components/navbar/MemberNavbar';
+import MemebrNavbar from '@/src/app/components/navbar/MemberNavbar';
 
 export default function MemberLayout({ children }) {
   return (
