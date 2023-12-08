@@ -11,5 +11,13 @@
     "enUS": "英文",
     "zhTW": "繁體中文",
     "zhCN": "簡體中文"
+  },
+  "footer": {
+    "home": "首頁",
+    "price": "價格",
+    "faq": "常見問題",
+    "instruction": "OpenVPN教學",
+    "policy": "服務政策",
+    "spiderweb": "Spiderweb官網"
   }
 }

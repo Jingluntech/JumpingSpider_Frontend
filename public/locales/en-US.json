@@ -11,5 +11,13 @@
     "enUS": "English",
     "zhTW": "Traditional Chinese",
     "zhCN": "Simplified Chinese"
+  },
+  "footer": {
+    "home": "Home",
+    "price": "Price",
+    "faq": "FAQ",
+    "instruction": "OpenVPN Instruction",
+    "policy": "Service Policy",
+    "spiderweb": "Spiderweb official website"
   }
 }

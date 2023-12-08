@@ -11,5 +11,13 @@
     "enUS": "英文",
     "zhTW": "繁体中文",
     "zhCN": "简体中文"
+  },
+  "footer": {
+    "home": "首页",
+    "price": "价格",
+    "faq": "常见问题",
+    "instruction": "OpenVPN教学",
+    "policy": "服务政策",
+    "spiderweb": "Spiderweb官网"
   }
 }
