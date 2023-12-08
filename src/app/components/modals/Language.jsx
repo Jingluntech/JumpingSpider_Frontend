@@ -41,15 +41,25 @@ export default function Language({
           className={openLang ? '' : 'rotate-180'}
         />
         {openLang && (
-          <ul className='absolute right-1/2 top-7 flex w-fit translate-x-1/2 flex-col whitespace-nowrap bg-grey-800'>
+          <ul className='shadow-custom absolute right-0 top-12 z-10 flex flex-col whitespace-nowrap rounded-md bg-grey-800'>
             {languages.map((el) => (
               <li
-                className={`cursor-pointer px-4 py-3 hover:bg-primary-yellow-100 hover:text-primary-yellow-500 ${
-                  el.id === selectedLang ? 'text-primary-yellow-500' : ''
+                className={`flex w-[154px] cursor-pointer justify-start px-[14px] py-[10px] hover:bg-grey-600 ${
+                  el.id === selectedLang
+                    ? 'font-bold text-primary-yellow-500'
+                    : ''
                 }`}
                 key={el.id}
                 onClick={() => onLangClick(el.id)}
               >
+                {el.id === selectedLang && (
+                  <Image
+                    src='/chevron-left.svg'
+                    alt='chevronleft-icon'
+                    width={24}
+                    height={24}
+                  />
+                )}
                 {el.title}
               </li>
             ))}

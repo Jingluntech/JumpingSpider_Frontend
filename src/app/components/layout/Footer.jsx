@@ -2,43 +2,43 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-const footerLinks = [
-  {
-    id: 'footer-0',
-    title: 'home',
-    url: '/',
-  },
-  {
-    id: 'footer-1',
-    title: 'price',
-    url: '/price',
-  },
-  {
-    id: 'footer-2',
-    title: 'faq',
-    url: '/faq',
-  },
-  {
-    id: 'footer-3',
-    title: 'instruction',
-    url: '/instruction',
-  },
-  {
-    id: 'footer-4',
-    title: 'policy',
-    url: '/policy',
-    icon: '/external-link.svg',
-  },
-  {
-    id: 'footer-5',
-    title: 'spiderweb',
-    url: '/',
-    icon: '/external-link.svg',
-  },
-];
-
-export default function Footer() {
+export default function Footer({ locale }) {
   const t = useTranslations('footer');
+
+  const footerLinks = [
+    {
+      id: 'footer-0',
+      title: 'home',
+      url: `/${locale}`,
+    },
+    {
+      id: 'footer-1',
+      title: 'price',
+      url: `/${locale}/price`,
+    },
+    {
+      id: 'footer-2',
+      title: 'faq',
+      url: `/${locale}/faq`,
+    },
+    {
+      id: 'footer-3',
+      title: 'instruction',
+      url: `/${locale}/instruction`,
+    },
+    {
+      id: 'footer-4',
+      title: 'policy',
+      url: '/',
+      icon: '/external-link.svg',
+    },
+    {
+      id: 'footer-5',
+      title: 'spiderweb',
+      url: '/',
+      icon: '/external-link.svg',
+    },
+  ];
 
   return (
     <footer className='flex h-[142px] w-full flex-col items-center justify-center gap-8 bg-grey-800 py-14 md:gap-10 lg:flex-row xl:justify-between xl:px-28'>

@@ -2,26 +2,26 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const memberNavLink = [
-  {
-    id: '1',
-    title: '會員資料',
-    url: '/member/info',
-  },
-  {
-    id: '2',
-    title: '分享器管理',
-    url: '/member/management',
-  },
-  {
-    id: '3',
-    title: '訂閱方案',
-    url: '/member/plan',
-  },
-];
-
-export default function MemebrNavbar() {
+export default function MemebrNavbar({ locale }) {
   const pathname = usePathname();
+
+  const memberNavLink = [
+    {
+      id: '1',
+      title: '會員資料',
+      url: `/${locale}/member/info`,
+    },
+    {
+      id: '2',
+      title: '分享器管理',
+      url: `/${locale}/member/management`,
+    },
+    {
+      id: '3',
+      title: '訂閱方案',
+      url: `/${locale}/member/plan`,
+    },
+  ];
 
   return (
     <nav className='h-full w-fit min-w-fit justify-between px-4 lg:pl-[180px]'>

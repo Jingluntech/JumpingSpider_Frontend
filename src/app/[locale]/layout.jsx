@@ -34,10 +34,10 @@ export default function RootLayout({ children, params: { locale } }) {
     <html lang={locale} className={`${notoSans.variable} ${inter.variable} `}>
       <body className='flex flex-col bg-grey-900 text-grey-100'>
         <Web3Modal>
-          <Header />
+          <Header locale={locale} />
           <hr className='w-full border-b border-grey-600' />
           <main className='h-fit'>{children}</main>
-          <Footer />
+          <Footer locale={locale} />
         </Web3Modal>
       </body>
     </html>

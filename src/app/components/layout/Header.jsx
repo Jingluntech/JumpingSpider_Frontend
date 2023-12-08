@@ -9,35 +9,35 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const navLinks = [
-  {
-    id: '1',
-    title: '首頁',
-    url: '/',
-  },
-  {
-    id: '2',
-    title: '價格',
-    url: '/price',
-  },
-  {
-    id: '3',
-    title: '常見問題',
-    url: '/faq',
-  },
-  {
-    id: '4',
-    title: 'OpenVPN教學',
-    url: '/instruction',
-  },
-];
-
-export default function Header() {
+export default function Header({ locale }) {
   const pathname = usePathname();
   const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
   const [selectedLang, setSelectedLang] = useState('zhTW');
+
+  const navLinks = [
+    {
+      id: '1',
+      title: '首頁',
+      url: `/${locale}`,
+    },
+    {
+      id: '2',
+      title: '價格',
+      url: `/${locale}/price`,
+    },
+    {
+      id: '3',
+      title: '常見問題',
+      url: `/${locale}/faq`,
+    },
+    {
+      id: '4',
+      title: 'OpenVPN教學',
+      url: `/${locale}/instruction`,
+    },
+  ];
 
   const handleOpenLang = (lang) => {
     setSelectedLang(lang);
@@ -104,7 +104,7 @@ export default function Header() {
             onLangClick={(lang) => handleOpenLang(lang)}
           />
           <Link
-            href='/member/info'
+            href={`/${locale}/member/info`}
             className={
               pathname.includes('member')
                 ? 'relative flex h-full items-center text-primary-yellow-500'
