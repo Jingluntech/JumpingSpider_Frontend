@@ -24,12 +24,12 @@ export default function Header({ locale }) {
     {
       id: '2',
       title: '價格',
-      url: `/${locale}/price`,
+      url: '#price',
     },
     {
       id: '3',
       title: '常見問題',
-      url: `/${locale}/faq`,
+      url: '#faq',
     },
     {
       id: '4',
