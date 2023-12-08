@@ -14,7 +14,6 @@ export default function Header({ locale }) {
   const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
-  const [selectedLang, setSelectedLang] = useState('zhTW');
 
   const navLinks = [
     {
@@ -38,11 +37,6 @@ export default function Header({ locale }) {
       url: `/${locale}/instruction`,
     },
   ];
-
-  const handleOpenLang = (lang) => {
-    setSelectedLang(lang);
-    setOpenLang(false);
-  };
 
   return (
     <header className='mx-auto h-20 w-full min-w-[350px] max-w-[1216px] px-4'>
@@ -98,10 +92,9 @@ export default function Header({ locale }) {
         </div>
         <div className='flex h-full flex-shrink-0 items-center gap-5'>
           <Language
-            selectedLang={selectedLang}
             openLang={openLang}
             setOpenLang={setOpenLang}
-            onLangClick={(lang) => handleOpenLang(lang)}
+            locale={locale}
           />
           <Link
             href={`/${locale}/member/info`}
