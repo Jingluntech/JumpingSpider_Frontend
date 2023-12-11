@@ -36,7 +36,7 @@ export default function RootLayout({ children, params: { locale } }) {
         <Web3Modal>
           <Header locale={locale} />
           <hr className='fixed top-20 w-full border-b border-grey-600' />
-          <main className='h-fit'>{children}</main>
+          <main className='h-fit pt-20'>{children}</main>
           <Footer locale={locale} />
         </Web3Modal>
       </body>
