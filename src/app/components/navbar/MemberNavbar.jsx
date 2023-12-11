@@ -24,7 +24,7 @@ export default function MemebrNavbar({ locale }) {
   ];
 
   return (
-    <nav className='fixed top-[82px] h-[67px] w-full min-w-[350px] max-w-[1216px] justify-between bg-grey-900 px-10 lg:px-[174px]'>
+    <nav className='fixed top-[82px] z-20 h-[67px] w-full min-w-[350px] max-w-[1216px] justify-between bg-grey-900 px-10 lg:px-[174px]'>
       <ul className='flex h-full items-center gap-10'>
         {memberNavLink.map((el) => (
           <Link key={el.id} href={el.url} className='relative h-full pt-[26px]'>

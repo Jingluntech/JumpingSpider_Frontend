@@ -32,7 +32,7 @@ const dummyData = [
 
 export default function MemberInfoPage({ params: { locale } }) {
   return (
-    <div className='h-fit w-full py-[56px]'>
+    <div className='mx-auto h-fit w-full min-w-[350px] max-w-[1216px] py-[56px]'>
       <h1 className='mb-10 text-[46px] font-bold'>會員資料</h1>
       <MemberInfo locale={locale} data={dummyData} />
       <h3 className='mb-6 mt-[56px] text-[28px] font-medium'>

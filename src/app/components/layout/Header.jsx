@@ -46,7 +46,7 @@ export default function Header({ locale }) {
   ];
 
   return (
-    <header className='fixed mx-auto flex h-20 w-full justify-center bg-grey-900 px-4'>
+    <header className='fixed z-50 mx-auto flex h-20 w-full justify-center bg-grey-900 px-4'>
       <div className='flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
         <div className='flex h-full w-full items-center gap-4'>
           <div

@@ -3,17 +3,19 @@ import Image from 'next/image';
 export default function Subscription() {
   return (
     <div className='flex h-fit w-[602px] flex-col rounded-md border-[3px] border-grey-500 bg-grey-800 px-10 py-11'>
-      <div>
-        <p className='mb-1 text-sm text-primary-yellow-500'>月費訂閱制</p>
-        <h1 className='mb-3 text-[28px] font-medium'>VPN訂閱計畫</h1>
-        <p className='flex h-16 items-center text-base text-grey-300'>
-          UTC<span className='mx-2 text-[46px] text-grey-100'>32.00</span>/月
-        </p>
-        <p className='mb-5 mt-1 text-sm text-grey-400'>
-          （可能需要另外支付增值稅）
-        </p>
+      <div className='mb-10 flex justify-between'>
+        <div>
+          <p className='mb-1 text-sm text-primary-yellow-500'>月費訂閱制</p>
+          <h1 className='mb-3 text-[28px] font-medium'>VPN訂閱計畫</h1>
+          <p className='flex h-16 items-center text-base text-grey-300'>
+            USDT<span className='mx-2 text-[46px] text-grey-100'>30.00</span>/月
+          </p>
+        </div>
+        <div className='h-[170px] w-[190px] bg-slate-600'>Image</div>
       </div>
+
       <hr className='border-t-[2px] border-grey-600' />
+
       <ul className='mt-5 flex flex-col gap-4'>
         <li className='flex gap-3 text-base font-medium text-grey-300'>
           <Image
