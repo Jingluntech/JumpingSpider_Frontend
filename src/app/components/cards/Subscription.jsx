@@ -1,6 +1,12 @@
+'use client';
 import Image from 'next/image';
+import { useState } from 'react';
+import CheckOut from '@/src/app/components/modals/CheckOut';
+import ModalBackground from '@/src/app/components/modals/ModalBackground';
 
 export default function Subscription() {
+  const [checkOutOpen, setCheckOutOpen] = useState(false);
+
   return (
     <div className='flex h-fit w-[602px] flex-col rounded-md border-[3px] border-grey-500 bg-grey-800 px-10 py-11'>
       <div className='mb-10 flex justify-between'>
@@ -72,10 +78,19 @@ export default function Subscription() {
             ＋
           </button>
         </div>
-        <button className='ml-1 h-11 w-[164px] rounded-md bg-primary-blue-500'>
+        <button
+          className='ml-1 h-11 w-[164px] rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
+          onClick={() => setCheckOutOpen(true)}
+        >
           付款
         </button>
       </div>
+      {checkOutOpen && (
+        <>
+          <CheckOut onClick={() => setCheckOutOpen(false)} />
+          <ModalBackground />
+        </>
+      )}
     </div>
   );
 }

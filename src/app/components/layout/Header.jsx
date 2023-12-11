@@ -46,96 +46,98 @@ export default function Header({ locale }) {
   ];
 
   return (
-    <header className='fixed z-50 mx-auto flex h-20 w-full justify-center bg-grey-900 px-4'>
-      <div className='flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
-        <div className='flex h-full w-full items-center gap-4'>
-          <div
-            className='relative cursor-pointer lg:hidden'
-            onClick={() => setOpenNavbar(true)}
-          >
-            <Image
-              src='/hamburger.svg'
-              alt='menu'
-              width={30}
-              height={30}
-              priority={true}
-            />
-          </div>
-          {openNavbar && (
-            <>
-              <Navbar navLinks={navLinks} />
-              <ModalBackground onClick={() => setOpenNavbar(false)} />
-            </>
-          )}
-          <div className='flex-shrink-0 lg:mr-14'>
-            <Image
-              src='/Logo.svg'
-              alt='logo'
-              width={100}
-              height={50}
-              priority={true}
-            />
-          </div>
-          <nav className='h-full w-fit min-w-fit justify-between'>
-            <ul className='hidden h-full items-center gap-10 lg:flex'>
-              {navLinks.map((el) => (
-                <Link
-                  key={el.id}
-                  href={`${el.url}${el.hash}`}
-                  className='relative h-full'
-                  onClick={() => setActiveHash(el.hash || '')}
-                >
-                  <li
-                    className={
-                      activeHash === el.hash
-                        ? 'flex h-full items-center text-primary-yellow-500'
-                        : 'flex h-full items-center text-grey-300'
-                    }
-                  >
-                    {el.title}
-                    {activeHash === el.hash && (
-                      <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
-                    )}
-                  </li>
-                </Link>
-              ))}
-            </ul>
-          </nav>
-        </div>
-        <div className='flex h-full flex-shrink-0 items-center gap-5'>
-          <Language
-            openLang={openLang}
-            setOpenLang={setOpenLang}
-            locale={locale}
-          />
-          <Link
-            href={`/${locale}/member/info`}
-            className={
-              pathname.includes('member')
-                ? 'relative flex h-full items-center text-primary-yellow-500'
-                : 'flex h-full items-center text-grey-300'
-            }
-            onClick={() => setActiveHash('')}
-          >
-            會員中心
-            {pathname.includes('member') && (
-              <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+    <>
+      <header className='fixed z-30 mx-auto flex h-20 w-full justify-center bg-grey-900 px-4'>
+        <div className='flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
+          <div className='flex h-full w-full items-center gap-4'>
+            <div
+              className='relative cursor-pointer lg:hidden'
+              onClick={() => setOpenNavbar(true)}
+            >
+              <Image
+                src='/hamburger.svg'
+                alt='menu'
+                width={30}
+                height={30}
+                priority={true}
+              />
+            </div>
+            {openNavbar && (
+              <>
+                <Navbar navLinks={navLinks} />
+                <ModalBackground onClick={() => setOpenNavbar(false)} />
+              </>
             )}
-          </Link>
-          <button
-            className='h-fit w-[104px] rounded-md bg-primary-blue-500 px-5 py-[11px]'
-            onClick={() => setOpenWallet(true)}
-          >
-            連結錢包
-          </button>
-          {openWallet && (
-            <>
-              <ConnectWallet onClick={() => setOpenWallet(false)} />
-              <ModalBackground onClick={() => setOpenWallet(false)} />
-            </>
-          )}
+            <div className='flex-shrink-0 lg:mr-14'>
+              <Image
+                src='/Logo.svg'
+                alt='logo'
+                width={100}
+                height={50}
+                priority={true}
+              />
+            </div>
+            <nav className='h-full w-fit min-w-fit justify-between'>
+              <ul className='hidden h-full items-center gap-10 lg:flex'>
+                {navLinks.map((el) => (
+                  <Link
+                    key={el.id}
+                    href={`${el.url}${el.hash}`}
+                    className='relative h-full'
+                    onClick={() => setActiveHash(el.hash || '')}
+                  >
+                    <li
+                      className={
+                        activeHash === el.hash
+                          ? 'flex h-full items-center text-primary-yellow-500'
+                          : 'flex h-full items-center text-grey-300'
+                      }
+                    >
+                      {el.title}
+                      {activeHash === el.hash && (
+                        <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+                      )}
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <div className='flex h-full flex-shrink-0 items-center gap-5'>
+            <Language
+              openLang={openLang}
+              setOpenLang={setOpenLang}
+              locale={locale}
+            />
+            <Link
+              href={`/${locale}/member/info`}
+              className={
+                pathname.includes('member')
+                  ? 'relative flex h-full items-center text-primary-yellow-500'
+                  : 'flex h-full items-center text-grey-300'
+              }
+              onClick={() => setActiveHash('')}
+            >
+              會員中心
+              {pathname.includes('member') && (
+                <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+              )}
+            </Link>
+            <button
+              className='h-fit w-[104px] rounded-md bg-primary-blue-500 px-5 py-[11px]'
+              onClick={() => setOpenWallet(true)}
+            >
+              連結錢包
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      {openWallet && (
+        <>
+          <ConnectWallet onClick={() => setOpenWallet(false)} />
+          <ModalBackground onClick={() => setOpenWallet(false)} />
+        </>
+      )}
+    </>
   );
 }
