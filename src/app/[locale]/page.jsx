@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className='flex h-fit w-full flex-col items-center'>
       <div
-        id='main'
+        id='home'
         className='flex h-[748px] w-full items-center bg-gradient-to-b from-[#08396F] to-[#0E1727]'
       >
         <div className='flex flex-1 flex-col gap-5 pl-[112px]'>

@@ -35,7 +35,7 @@ export default function RootLayout({ children, params: { locale } }) {
       <body className='flex flex-col bg-grey-900 text-grey-100'>
         <Web3Modal>
           <Header locale={locale} />
-          <hr className='w-full border-b border-grey-600' />
+          <hr className='fixed top-20 w-full border-b border-grey-600' />
           <main className='h-fit'>{children}</main>
           <Footer locale={locale} />
         </Web3Modal>

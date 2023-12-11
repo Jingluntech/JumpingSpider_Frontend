@@ -5,31 +5,38 @@ import ConnectWallet from '@/src/app/components/modals/ConnectWallet';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Navbar from '@/src/app/components/navbar/Navbar';
 import Language from '@/src/app/components/modals/Language';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Header({ locale }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const hash = typeof window !== 'undefined' ? window.location.hash : '';
   const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
+  const [activeHash, setActiveHash] = useState('');
 
   const navLinks = [
     {
       id: '1',
       title: '首頁',
       url: `/${locale}`,
+      hash: '#home',
     },
     {
       id: '2',
       title: '價格',
-      url: '#price',
+      url: `/${locale}`,
+      hash: '#price',
     },
     {
       id: '3',
       title: '常見問題',
-      url: '#faq',
+      url: `/${locale}`,
+      hash: '#faq',
     },
     {
       id: '4',
@@ -39,8 +46,8 @@ export default function Header({ locale }) {
   ];
 
   return (
-    <header className='mx-auto h-20 w-full min-w-[350px] max-w-[1216px] px-4'>
-      <div className='flex h-full w-full items-center justify-between'>
+    <header className='fixed mx-auto flex h-20 w-full justify-center bg-grey-900 px-4'>
+      <div className='flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
         <div className='flex h-full w-full items-center gap-4'>
           <div
             className='relative cursor-pointer lg:hidden'
@@ -72,16 +79,21 @@ export default function Header({ locale }) {
           <nav className='h-full w-fit min-w-fit justify-between'>
             <ul className='hidden h-full items-center gap-10 lg:flex'>
               {navLinks.map((el) => (
-                <Link key={el.id} href={el.url} className='relative h-full'>
+                <Link
+                  key={el.id}
+                  href={`${el.url}${el.hash}`}
+                  className='relative h-full'
+                  onClick={() => setActiveHash(el.hash || '')}
+                >
                   <li
                     className={
-                      pathname === el.url
+                      activeHash === el.hash
                         ? 'flex h-full items-center text-primary-yellow-500'
                         : 'flex h-full items-center text-grey-300'
                     }
                   >
                     {el.title}
-                    {pathname === el.url && (
+                    {activeHash === el.hash && (
                       <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
                     )}
                   </li>
@@ -103,6 +115,7 @@ export default function Header({ locale }) {
                 ? 'relative flex h-full items-center text-primary-yellow-500'
                 : 'flex h-full items-center text-grey-300'
             }
+            onClick={() => setActiveHash('')}
           >
             會員中心
             {pathname.includes('member') && (
