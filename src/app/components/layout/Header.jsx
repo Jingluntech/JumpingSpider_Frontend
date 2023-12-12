@@ -5,19 +5,23 @@ import ConnectWallet from '@/src/app/components/modals/ConnectWallet';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Navbar from '@/src/app/components/navbar/Navbar';
 import Language from '@/src/app/components/modals/Language';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { logoutAPI } from '@/api/login';
+import { useDisconnect } from 'wagmi';
 import { useRouter } from 'next/navigation';
 
 export default function Header({ locale }) {
   const pathname = usePathname();
   const router = useRouter();
-  const hash = typeof window !== 'undefined' ? window.location.hash : '';
   const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
-  const [activeHash, setActiveHash] = useState('');
+  const [activeHash, setActiveHash] = useState('#home');
+  const isLogin = Boolean(Cookies.get('Token'));
+  const { disconnect } = useDisconnect();
 
   const navLinks = [
     {
@@ -44,6 +48,26 @@ export default function Header({ locale }) {
       url: `/${locale}/instruction`,
     },
   ];
+
+  const handleMemberCenterClick = () => {
+    if (!isLogin) {
+      return setOpenWallet(true);
+    }
+    setActiveHash('');
+    router.push(`/${locale}/member/info`);
+  };
+
+  const handleDisconnectWallet = async () => {
+    try {
+      await logoutAPI();
+      Cookies.remove('Token');
+      disconnect();
+      setActiveHash('#home');
+      router.push(`/${locale}#home`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -109,26 +133,34 @@ export default function Header({ locale }) {
               setOpenLang={setOpenLang}
               locale={locale}
             />
-            <Link
-              href={`/${locale}/member/info`}
+            <button
               className={
                 pathname.includes('member')
                   ? 'relative flex h-full items-center text-primary-yellow-500'
                   : 'flex h-full items-center text-grey-300'
               }
-              onClick={() => setActiveHash('')}
+              onClick={() => handleMemberCenterClick()}
             >
               會員中心
               {pathname.includes('member') && (
                 <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
               )}
-            </Link>
-            <button
-              className='h-fit w-[104px] rounded-md bg-primary-blue-500 px-5 py-[11px]'
-              onClick={() => setOpenWallet(true)}
-            >
-              連結錢包
             </button>
+            {isLogin ? (
+              <button
+                className='h-fit w-[104px] rounded-md bg-grey-600 px-5 py-[11px] text-grey-25'
+                onClick={() => handleDisconnectWallet()}
+              >
+                中斷連線
+              </button>
+            ) : (
+              <button
+                className='h-fit w-[104px] rounded-md bg-primary-blue-500 px-5 py-[11px]'
+                onClick={() => setOpenWallet(true)}
+              >
+                連結錢包
+              </button>
+            )}
           </div>
         </div>
       </header>

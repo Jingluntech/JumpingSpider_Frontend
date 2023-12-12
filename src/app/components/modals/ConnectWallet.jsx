@@ -13,6 +13,8 @@ import {
 import ethersClient from '@/utils/eth/ethersClient';
 import { use } from 'i18next';
 import Image from 'next/image';
+import { loginAPI, requestLoginAPI } from '@/api/login';
+import Cookies from 'js-cookie';
 
 export default function ConnectWallet({ onClick }) {
   const { open } = useWeb3Modal();
@@ -53,15 +55,23 @@ export default function ConnectWallet({ onClick }) {
         let { provider, signer, contract, contractSigner } =
           await ethereumConnect();
 
-        // const tempAddress = getAddress();
-        const decimals = await getDecimals();
-        const balance = await getBalance(address, decimals);
+        // TODO: fetch UUID API
+        const tempAddress = await getAddress();
+        const { data: uuid } = await requestLoginAPI({ address: tempAddress });
+        // TODO: fetch JWT API
+        const signCode = await signer.signMessage(uuid);
+        const { data: jwt } = await loginAPI({
+          address: tempAddress,
+          uuid,
+          signMsg: signCode,
+        });
+
+        Cookies.set('Token', jwt);
+        // const decimals = await getDecimals();
+        // const balance = await getBalance(address, decimals);
         // console.log(balance);
         // let re = await transfer(1, decimals);
         // console.log(re);
-        // TODO: fetch UUID API
-        // TODO: fetch JWT API
-        const signCode = await signMessage('uuid');
         // console.log(signCode);
         onClick();
       }
