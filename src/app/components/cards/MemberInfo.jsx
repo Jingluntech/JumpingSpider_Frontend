@@ -21,7 +21,7 @@ export default function MemberInfo({ locale, data }) {
         >
           <div className='flex flex-col gap-3'>
             <h5 className='font-medium text-grey-300'>{el.title}</h5>
-            <p className='flex items-center gap-2'>
+            <div className='flex items-center gap-2'>
               {el.content}
               {el.sub && (
                 <>
@@ -40,7 +40,7 @@ export default function MemberInfo({ locale, data }) {
                   )}
                 </>
               )}
-            </p>
+            </div>
           </div>
           {el.showButton && (
             <Link href={`/${locale}/member/VPN_Registration`}>

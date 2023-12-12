@@ -1,27 +1,24 @@
 const baseURL = process.env.NEXT_PUBLIC_BASE_API;
 
-const fetcher = async (url) => {
+const fetcher = async (url, { payload }) => {
   const response = await fetch(url, {
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(payload),
   });
   return response.json();
 };
 
 export const requestLoginAPI = async (payload) => {
   try {
-    const response = await fetch(`${baseURL}/api/scan/requestLogin`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
+    const response = await fetcher(`${baseURL}/api/scan/requestLogin`, {
+      payload,
     });
 
-    return response.json();
+    return response;
   } catch (error) {
     console.log('[Failed to request login]: ', error);
   }
@@ -29,16 +26,11 @@ export const requestLoginAPI = async (payload) => {
 
 export const loginAPI = async (payload) => {
   try {
-    const response = await fetch(`${baseURL}/api/scan/login`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
+    const response = await fetcher(`${baseURL}/api/scan/login`, {
+      payload,
     });
 
-    return response.json();
+    return response;
   } catch (error) {
     console.log('[Failed to login]: ', error);
   }
@@ -46,16 +38,11 @@ export const loginAPI = async (payload) => {
 
 export const logoutAPI = async (payload) => {
   try {
-    const response = await fetch(`${baseURL}/api/scan/logout`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
+    const response = await fetcher(`${baseURL}/api/scan/logout`, {
+      payload,
     });
 
-    return response.json();
+    return response;
   } catch (error) {
     console.log('[Failed to login]: ', error);
   }

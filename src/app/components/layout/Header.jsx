@@ -5,7 +5,7 @@ import ConnectWallet from '@/src/app/components/modals/ConnectWallet';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Navbar from '@/src/app/components/navbar/Navbar';
 import Language from '@/src/app/components/modals/Language';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
@@ -16,10 +16,13 @@ import { useRouter } from 'next/navigation';
 export default function Header({ locale }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
   const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
-  const [activeHash, setActiveHash] = useState('#home');
+  const [activeHash, setActiveHash] = useState(
+    window.location.hash || pathname.includes('member') ? '' : '#home'
+  );
   const isLogin = Boolean(Cookies.get('Token'));
   const { disconnect } = useDisconnect();
 
@@ -68,6 +71,10 @@ export default function Header({ locale }) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <>
@@ -146,7 +153,7 @@ export default function Header({ locale }) {
                 <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
               )}
             </button>
-            {isLogin ? (
+            {isClient && isLogin ? (
               <button
                 className='h-fit w-[104px] rounded-md bg-grey-600 px-5 py-[11px] text-grey-25'
                 onClick={() => handleDisconnectWallet()}

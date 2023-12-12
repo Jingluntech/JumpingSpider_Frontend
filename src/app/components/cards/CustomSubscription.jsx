@@ -17,10 +17,10 @@ export default function CustomSubscription() {
       <div className='mt-5 flex h-fit w-full justify-between gap-9 rounded-md bg-grey-700 px-6 py-8'>
         <div className='flex flex-shrink-0 flex-col gap-2'>
           <h5 className='text-lg font-bold'>聯繫我們</h5>
-          <p className='flex items-end gap-2 underline'>
+          <div className='flex items-end gap-2 underline'>
             <Image src='/mail.svg' alt='mail-icon' width={20} height={20} />
-            andrewking@mail.spiderweb.club
-          </p>
+            <p>andrewking@mail.spiderweb.club</p>
+          </div>
         </div>
         <div className='h-[166px] w-[156px] bg-grey-600'>Image</div>
       </div>
