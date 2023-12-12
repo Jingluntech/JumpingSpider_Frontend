@@ -1,7 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function MemberInfo({ locale, data }) {
+  const [isClickedId, setIsClickedId] = useState('');
+
+  const handleClickBoard = ({ id, text }) => {
+    navigator.clipboard.writeText(text);
+    setIsClickedId(id);
+    setTimeout(() => setIsClickedId(false), 5000);
+  };
   return (
     <div className='flex h-fit w-full flex-col rounded-md border-2 border-grey-700 bg-grey-800 px-9 py-4'>
       {data.map((el) => (
@@ -14,9 +24,21 @@ export default function MemberInfo({ locale, data }) {
             <p className='flex items-center gap-2'>
               {el.content}
               {el.sub && (
-                <span className='text-sm font-medium text-grey-400'>
-                  {el.sub}
-                </span>
+                <>
+                  <div
+                    className='copy cursor-pointer text-sm font-medium text-grey-400'
+                    onClick={() =>
+                      handleClickBoard({ id: el.id, text: el.content })
+                    }
+                  >
+                    {el.sub}
+                  </div>
+                  {el.id === isClickedId && (
+                    <span className='flex h-fit w-[66px] items-center justify-center rounded-[30px] bg-grey-600 py-1 text-sm'>
+                      已複製
+                    </span>
+                  )}
+                </>
               )}
             </p>
           </div>
