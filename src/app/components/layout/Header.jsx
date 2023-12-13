@@ -50,10 +50,25 @@ export default function Header({ locale }) {
     },
   ];
 
+  const languages = [
+    {
+      id: 'tw',
+      title: '繁體中文',
+    },
+    {
+      id: 'cn',
+      title: '简体中文',
+    },
+    {
+      id: 'en',
+      title: 'English',
+    },
+  ];
+
   const handleNavigationClick = (e, hash) => {
     e.preventDefault(); // Prevent default anchor link behavior
     setActiveHash(hash);
-    if (pathname !== '/') {
+    if (pathname !== `/${locale}`) {
       return router.push(`/${locale}${hash}`);
     }
 
@@ -65,7 +80,6 @@ export default function Header({ locale }) {
 
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // router.replace(`/${locale}${hash}`, undefined, { shallow: true });
     }
   };
 
@@ -75,6 +89,16 @@ export default function Header({ locale }) {
     }
     setActiveHash('');
     router.push(`/${locale}/member/info`);
+  };
+
+  const showLanguage = () => {
+    const lang = languages.find((el) => el.id === locale);
+    return lang.title;
+  };
+
+  const RedirectURL = (lang) => {
+    const currentPath = pathname.slice(4) || '';
+    return `/${lang}/${currentPath}`;
   };
 
   const handleDisconnectWallet = async () => {
@@ -108,38 +132,25 @@ export default function Header({ locale }) {
 
   return (
     <>
-      <header className='fixed z-30 mx-auto flex h-20 w-full justify-center bg-grey-900 px-4'>
-        <div className='flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
+      <header className='fixed z-30 flex h-20 w-screen min-w-[350px] justify-center bg-grey-900 px-4'>
+        <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
           <div className='flex h-full w-full items-center gap-4'>
             <div
-              className='relative cursor-pointer lg:hidden'
+              className='relative h-[30px] w-[30px] cursor-pointer lg:hidden'
               onClick={() => setOpenNavbar(true)}
             >
               <Image
                 src='/hamburger.svg'
                 alt='menu'
-                width={30}
-                height={30}
+                fill={true}
                 priority={true}
               />
             </div>
-            {openNavbar && (
-              <>
-                <Navbar navLinks={navLinks} />
-                <ModalBackground onClick={() => setOpenNavbar(false)} />
-              </>
-            )}
-            <div className='flex-shrink-0 lg:mr-14'>
-              <Image
-                src='/Logo.svg'
-                alt='logo'
-                width={100}
-                height={50}
-                priority={true}
-              />
+            <div className='relative h-20 w-[100px] flex-shrink-0 lg:mr-14'>
+              <Image src='/Logo.svg' alt='logo' fill={true} priority={true} />
             </div>
-            <nav className='h-full w-fit min-w-fit justify-between'>
-              <ul className='hidden h-full items-center gap-10 lg:flex'>
+            <nav className='hidden h-full w-fit lg:flex'>
+              <ul className='flex h-full items-center gap-10'>
                 {navLinks.map((el) => (
                   <Link
                     key={el.id}
@@ -164,25 +175,30 @@ export default function Header({ locale }) {
               </ul>
             </nav>
           </div>
-          <div className='flex h-full flex-shrink-0 items-center gap-5'>
-            <Language
-              openLang={openLang}
-              setOpenLang={setOpenLang}
-              locale={locale}
-            />
-            <button
-              className={
-                pathname.includes('member')
-                  ? 'relative flex h-full items-center text-primary-yellow-500'
-                  : 'flex h-full items-center text-grey-300'
-              }
-              onClick={() => handleMemberCenterClick()}
-            >
-              會員中心
-              {pathname.includes('member') && (
-                <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
-              )}
-            </button>
+          <div className='flex h-full flex-shrink-0 items-center gap-10'>
+            <div className='hidden h-full items-center gap-10 lg:flex'>
+              <Language
+                languages={languages}
+                openLang={openLang}
+                setOpenLang={setOpenLang}
+                locale={locale}
+                RedirectURL={RedirectURL}
+                showLanguage={showLanguage}
+              />
+              <button
+                className={
+                  pathname.includes('member')
+                    ? 'relative flex h-full items-center text-primary-yellow-500'
+                    : 'flex h-full items-center text-grey-300'
+                }
+                onClick={() => handleMemberCenterClick()}
+              >
+                會員中心
+                {pathname.includes('member') && (
+                  <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+                )}
+              </button>
+            </div>
             {isClient && isLogin ? (
               <button
                 className='h-fit w-[104px] rounded-md bg-grey-600 px-5 py-[11px] text-grey-25'
@@ -205,6 +221,24 @@ export default function Header({ locale }) {
         <>
           <ConnectWallet onClick={() => setOpenWallet(false)} />
           <ModalBackground onClick={() => setOpenWallet(false)} />
+        </>
+      )}
+      {openNavbar && (
+        <>
+          <Navbar
+            locale={locale}
+            navLinks={navLinks}
+            languages={languages}
+            setOpenNavbar={setOpenNavbar}
+            showLanguage={showLanguage}
+            openLang={openLang}
+            setOpenLang={setOpenLang}
+            activeHash={activeHash}
+            RedirectURL={RedirectURL}
+            onNavClick={(e, hash) => handleNavigationClick(e, hash)}
+            onMemberClick={() => handleMemberCenterClick()}
+          />
+          <ModalBackground onClick={() => setOpenNavbar(false)} />
         </>
       )}
     </>

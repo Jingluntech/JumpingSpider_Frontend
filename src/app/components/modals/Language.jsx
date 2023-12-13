@@ -2,34 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const languages = [
-  {
-    id: 'tw',
-    title: '繁體中文',
-  },
-  {
-    id: 'cn',
-    title: '简体中文',
-  },
-  {
-    id: 'en',
-    title: 'English',
-  },
-];
-
-export default function Language({ openLang, setOpenLang, locale }) {
-  const pathname = usePathname();
-
-  const RedirectURL = (lang) => {
-    const currentPath = pathname.slice(4) || '';
-    return `/${lang}/${currentPath}`;
-  };
-
-  const showLanguage = () => {
-    const lang = languages.find((el) => el.id === locale);
-    return lang.title;
-  };
-
+export default function Language({
+  languages,
+  openLang,
+  setOpenLang,
+  locale,
+  showLanguage,
+  RedirectURL,
+}) {
   return (
     <div
       className='relative flex cursor-pointer items-center gap-1 text-grey-300'
@@ -44,7 +24,7 @@ export default function Language({ openLang, setOpenLang, locale }) {
         className={openLang ? '' : 'rotate-180'}
       />
       {openLang && (
-        <ul className='shadow-custom absolute right-0 top-12 z-50 flex flex-col whitespace-nowrap rounded-md bg-grey-800'>
+        <ul className='absolute right-0 top-12 z-50 flex flex-col whitespace-nowrap rounded-md bg-grey-800 shadow-custom'>
           {languages.map((el) => (
             <Link key={el.id} locale={el.id} href={RedirectURL(el.id)}>
               <li
