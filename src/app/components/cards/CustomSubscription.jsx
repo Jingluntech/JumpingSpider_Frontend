@@ -22,7 +22,13 @@ export default function CustomSubscription() {
             <p>andrewking@mail.spiderweb.club</p>
           </div>
         </div>
-        <div className='h-[166px] w-[156px] bg-grey-600'>Image</div>
+        <div className='relative h-[166px] w-[156px]'>
+          <Image
+            src='/home/Business_vpn.png'
+            alt='business-vpn-img'
+            fill='true'
+          />
+        </div>
       </div>
     </div>
   );

@@ -17,7 +17,13 @@ export default function Subscription() {
             USDT<span className='mx-2 text-[46px] text-grey-100'>30.00</span>/月
           </p>
         </div>
-        <div className='h-[170px] w-[190px] bg-slate-600'>Image</div>
+        <div className='relative h-[170px] w-[190px]'>
+          <Image
+            src='/home/monthly_vpn.png'
+            alt='monthly-vpn-img'
+            fill={true}
+          />
+        </div>
       </div>
 
       <hr className='border-t-[2px] border-grey-600' />

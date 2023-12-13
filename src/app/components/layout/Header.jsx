@@ -20,9 +20,7 @@ export default function Header({ locale }) {
   const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
-  const [activeHash, setActiveHash] = useState(
-    window.location.hash || pathname.includes('member') ? '' : '#home'
-  );
+  const [activeHash, setActiveHash] = useState('');
   const isLogin = Boolean(Cookies.get('Token'));
   const { disconnect } = useDisconnect();
 
@@ -52,6 +50,25 @@ export default function Header({ locale }) {
     },
   ];
 
+  const handleNavigationClick = (e, hash) => {
+    e.preventDefault(); // Prevent default anchor link behavior
+    setActiveHash(hash);
+    if (pathname.includes('member')) {
+      return router.push(`/${locale}${hash}`);
+    }
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `/${locale}${hash}`);
+    }
+
+    const element = document.getElementById(hash.substring(1)); // Remove '#' from hash
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // router.replace(`/${locale}${hash}`, undefined, { shallow: true });
+    }
+  };
+
   const handleMemberCenterClick = () => {
     if (!isLogin) {
       return setOpenWallet(true);
@@ -75,6 +92,19 @@ export default function Header({ locale }) {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    const getHash = () => {
+      if (pathname.includes('member')) {
+        return '';
+      } else if (window.location.hash) {
+        return window.location.hash;
+      } else {
+        return '#home';
+      }
+    };
+    setActiveHash(getHash());
+  }, [pathname]);
 
   return (
     <>
@@ -115,7 +145,7 @@ export default function Header({ locale }) {
                     key={el.id}
                     href={`${el.url}${el.hash}`}
                     className='relative h-full'
-                    onClick={() => setActiveHash(el.hash || '')}
+                    onClick={(e) => handleNavigationClick(e, el.hash)}
                   >
                     <li
                       className={
