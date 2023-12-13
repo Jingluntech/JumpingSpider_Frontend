@@ -19,5 +19,9 @@
     "instruction": "OpenVPN Instruction",
     "policy": "Service Policy",
     "spiderweb": "Spiderweb official website"
+  },
+  "notFoundPage": {
+    "title": "404 ERROR",
+    "content": "I'm sorry, but there was an error with the page you are trying to access."
   }
 }

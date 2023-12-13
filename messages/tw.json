@@ -19,5 +19,9 @@
     "instruction": "OpenVPN教學",
     "policy": "服務政策",
     "spiderweb": "Spiderweb官網"
+  },
+  "notFoundPage": {
+    "title": "404 ERROR",
+    "content": "很抱歉，您訪問的頁面發生錯誤"
   }
 }

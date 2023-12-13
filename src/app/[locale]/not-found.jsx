@@ -1,8 +1,18 @@
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+
 export default function NotFoundPage() {
+  const t = useTranslations('notFoundPage');
+
   return (
-    <div className='mx-auto flex h-screen-minus w-1/2 flex-col items-center justify-center'>
-      <h1>Not Found</h1>
-      <p>Oops, the page you requested only exists in a parallel universe.</p>
+    <div className='mx-auto flex h-screen-minus w-full min-w-[350px] flex-col items-center justify-center gap-5 px-4'>
+      <div className='relative h-[118px] w-full'>
+        <Image src='/404.svg' alt='404-img' fill='true' />
+      </div>
+      <h1 className='text-[46px] font-bold text-primary-yellow-500'>
+        {t('title')}
+      </h1>
+      <h3 className='text-center text-[28px] font-medium'>{t('content')}</h3>
     </div>
   );
 }

@@ -53,7 +53,7 @@ export default function Header({ locale }) {
   const handleNavigationClick = (e, hash) => {
     e.preventDefault(); // Prevent default anchor link behavior
     setActiveHash(hash);
-    if (pathname.includes('member')) {
+    if (pathname !== '/') {
       return router.push(`/${locale}${hash}`);
     }
 
