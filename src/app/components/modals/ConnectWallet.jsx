@@ -11,7 +11,6 @@ import {
 } from 'wagmi';
 
 import ethersClient from '@/utils/eth/ethersClient';
-import { use } from 'i18next';
 import Image from 'next/image';
 import { loginAPI, requestLoginAPI } from '@/api/login';
 import Cookies from 'js-cookie';
@@ -90,7 +89,7 @@ export default function ConnectWallet({ onClick }) {
   });
 
   return (
-    <div className='absolute left-1/2 top-1/2 z-50 flex h-fit w-full min-w-[359px] max-w-[516px] -translate-x-1/2 -translate-y-1/2 flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
+    <div className='fixed left-1/2 top-1/2 z-50 flex h-fit w-full min-w-[359px] max-w-[516px] -translate-x-1/2 -translate-y-1/2 flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
       <h4 className='text-2xl font-bold'>連接錢包</h4>
       <button
         className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'

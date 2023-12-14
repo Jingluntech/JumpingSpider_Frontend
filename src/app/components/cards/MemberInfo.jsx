@@ -23,7 +23,7 @@ export default function MemberInfo({ locale, data }) {
             <div className='flex flex-col gap-1 lg:flex-row lg:justify-between'>
               <h5 className='font-medium text-grey-300'>{el.title}</h5>
               {el.showButton && (
-                <Link href={`/${locale}/member/VPN_Registration`}>
+                <Link href={`/${locale}/member/vpn_registration`}>
                   <button className='flex items-center gap-1 font-medium text-primary-yellow-500'>
                     Open VPN登錄資料
                     <Image

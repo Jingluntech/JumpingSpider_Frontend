@@ -1,6 +1,6 @@
 export default function CheckOut({ onClick }) {
   return (
-    <div className='absolute left-1/2 top-1/2 z-50 flex h-fit min-w-[444px] max-w-fit -translate-x-1/2 -translate-y-1/2 flex-col gap-4 rounded-md bg-grey-900 p-6'>
+    <div className='fixed left-1/2 top-1/2 z-50 flex h-fit min-w-[444px] max-w-fit -translate-x-1/2 -translate-y-1/2 flex-col gap-4 rounded-md bg-grey-900 p-6'>
       <header className='flex flex-col gap-5'>
         <h4 className='text-2xl font-bold'>VPN訂閱明細</h4>
         <p className='font-medium'>購買明細</p>
