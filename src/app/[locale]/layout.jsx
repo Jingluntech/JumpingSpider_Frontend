@@ -22,6 +22,9 @@ export const metadata = {
     default: 'Jumping Spider',
     template: '%s | Jumping Spider',
   },
+  icons: {
+    icon: '/home/vpn05_logo.svg', // /public path
+  },
 };
 
 // Can be imported from a shared config
@@ -35,7 +38,6 @@ export default function RootLayout({ children, params: { locale } }) {
       <body className='flex w-screen flex-col bg-grey-900 text-grey-100'>
         <Web3Modal>
           <Header locale={locale} />
-          <hr className='fixed top-20 w-screen border-b border-grey-600' />
           <main className='mt-[82px] h-fit w-full'>{children}</main>
           <Footer locale={locale} />
         </Web3Modal>
