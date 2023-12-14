@@ -16,7 +16,7 @@ export default function Pagination() {
   };
 
   return (
-    <div className='mt-1 flex h-fit w-full items-center justify-center gap-3 px-10 py-3 md:justify-end'>
+    <div className='mt-1 flex h-fit w-full items-center justify-end gap-3 px-10 py-3'>
       <button className='text-title-m h-10 w-[58px] rounded-md border-2 border-grey-700 bg-grey-800 font-inter text-grey-100'>
         {currentPageData.currentPage}
       </button>

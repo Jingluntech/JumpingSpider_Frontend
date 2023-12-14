@@ -24,14 +24,14 @@ export default function MemebrNavbar({ locale }) {
   ];
 
   return (
-    <nav className='fixed top-[82px] z-20 h-[67px] w-full min-w-[350px] max-w-[1216px] justify-between bg-grey-900 px-10 lg:px-[174px]'>
-      <ul className='flex h-full items-center gap-10'>
+    <nav className='fixed top-[82px] z-30 w-screen px-[56px]'>
+      <ul className='mx-auto flex h-[67px] min-w-[350px] max-w-[1216px] items-center gap-10 lg:px-[120px] xl:px-[168px]'>
         {memberNavLink.map((el) => (
-          <Link key={el.id} href={el.url} className='relative h-full pt-[26px]'>
+          <Link key={el.id} href={el.url} className='relative h-full'>
             <li
-              className={
-                pathname === el.url ? 'h-full text-grey-100' : 'text-grey-400'
-              }
+              className={`flex h-full items-center ${
+                pathname === el.url ? ' text-grey-100' : 'text-grey-400'
+              }`}
             >
               {el.title}
               {pathname === el.url && (

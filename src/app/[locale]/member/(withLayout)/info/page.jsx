@@ -1,4 +1,5 @@
 import MemberInfo from '@/src/app/components/cards/MemberInfo';
+import Pagination from '@/src/app/components/pagination/Pagination';
 import RecordTable from '@/src/app/components/tables/RecordTable';
 import Image from 'next/image';
 
@@ -32,14 +33,17 @@ const dummyData = [
 
 export default function MemberInfoPage({ params: { locale } }) {
   return (
-    <div className='mx-auto h-fit w-full min-w-[350px] max-w-[1216px] py-[56px]'>
-      <h1 className='mb-10 text-[46px] font-bold'>會員資料</h1>
+    <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
+      <h1 className='mb-4 text-[46px] font-bold'>會員資料</h1>
       <MemberInfo locale={locale} data={dummyData} />
-      <h3 className='mb-6 mt-[56px] text-[28px] font-medium'>
-        VPN訂閱紀錄
-        <span className='text-base text-grey-400'>（更新紀錄僅保留兩年）</span>
-      </h3>
+      <div className='mt-4 lg:mt-8 lg:flex lg:items-center'>
+        <h3 className='text-[28px] font-medium'>VPN訂閱紀錄</h3>
+        <p className='text-base text-grey-400 lg:pt-3'>
+          （更新紀錄僅保留兩年）
+        </p>
+      </div>
       <RecordTable />
+      <Pagination />
     </div>
   );
 }

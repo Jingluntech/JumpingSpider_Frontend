@@ -13,28 +13,46 @@ export default function MemberInfo({ locale, data }) {
     setTimeout(() => setIsClickedId(false), 5000);
   };
   return (
-    <div className='flex h-fit w-full flex-col rounded-md border-2 border-grey-700 bg-grey-800 px-9 py-4'>
+    <div className='flex h-fit w-full flex-col rounded-md border-2 border-grey-700 bg-grey-800 px-9 py-10'>
       {data.map((el) => (
         <div
           key={el.id}
-          className='flex items-start justify-between border-b-2 border-grey-700 py-6 pl-2 last:border-b-0'
+          className='flex flex-col border-b-2 border-grey-700 px-2 py-6 first:pt-0 last:border-b-0 last:pb-0'
         >
-          <div className='flex flex-col gap-3'>
-            <h5 className='font-medium text-grey-300'>{el.title}</h5>
-            <div className='flex items-center gap-2'>
+          <div className='relative flex flex-col gap-3'>
+            <div className='flex flex-col gap-1 lg:flex-row lg:justify-between'>
+              <h5 className='font-medium text-grey-300'>{el.title}</h5>
+              {el.showButton && (
+                <Link href={`/${locale}/member/VPN_Registration`}>
+                  <button className='flex items-center gap-1 font-medium text-primary-yellow-500'>
+                    Open VPN登錄資料
+                    <Image
+                      src='/chevron-left.svg'
+                      alt='chevronleft-icon'
+                      width={24}
+                      height={24}
+                    />
+                  </button>
+                </Link>
+              )}
+            </div>
+            <div className='flex flex-col gap-1 break-all pr-8 lg:flex-row lg:items-end lg:gap-2'>
               {el.content}
               {el.sub && (
+                <p className='text-sm font-medium text-grey-400'>{el.sub}</p>
+              )}
+              {el.img && (
                 <>
                   <div
-                    className='copy cursor-pointer text-sm font-medium text-grey-400'
+                    className='copy absolute bottom-0 right-0 cursor-pointer text-sm font-medium text-grey-400 lg:static'
                     onClick={() =>
                       handleClickBoard({ id: el.id, text: el.content })
                     }
                   >
-                    {el.sub}
+                    {el.img}
                   </div>
                   {el.id === isClickedId && (
-                    <span className='flex h-fit w-[66px] items-center justify-center rounded-[30px] bg-grey-600 py-1 text-sm'>
+                    <span className='absolute -bottom-8 right-0 flex h-[28px] w-[66px] items-center justify-center rounded-[30px] bg-grey-600 text-sm lg:static'>
                       已複製
                     </span>
                   )}
@@ -42,53 +60,8 @@ export default function MemberInfo({ locale, data }) {
               )}
             </div>
           </div>
-          {el.showButton && (
-            <Link href={`/${locale}/member/VPN_Registration`}>
-              <button className='flex items-center gap-1 font-medium text-primary-yellow-500'>
-                Open VPN登錄資料
-                <Image
-                  src='/chevron-left.svg'
-                  alt='chevronleft-icon'
-                  width={24}
-                  height={24}
-                />
-              </button>
-            </Link>
-          )}
         </div>
       ))}
-      {/* <div className='flex flex-col gap-3 border-b-2 border-grey-700 pb-8 pl-2'>
-        <h5 className='font-medium text-grey-300'>錢包地址</h5>
-        <p>0x7566A9A20FA0C1C68FA308E8E40132474AD3DA8E</p>
-      </div>
-      <div className='flex items-start justify-between border-b-2 border-grey-700 px-2 py-8'>
-        <div className='flex flex-col gap-3'>
-          <h5 className='font-medium text-grey-300'>最新VPN訂閱狀態</h5>
-          <p>
-            訂閱 12 個月{' '}
-            <span className='text-sm font-medium text-grey-400'>
-              （訂閱到期日：2026-01-01）
-            </span>{' '}
-          </p>
-        </div>
-        <button className='flex items-center gap-1 font-medium text-primary-yellow-500'>
-          取得URL和憑證
-          <Image
-            src='/chevron-left.svg'
-            alt='chevronleft-icon'
-            width={24}
-            height={24}
-          />
-        </button>
-      </div>
-      <div className='flex flex-col gap-3 border-b-2 border-grey-700 px-2 py-8'>
-        <h5 className='font-medium text-grey-300'>IP地址</h5>
-        <p>168.1.1.11</p>
-      </div>
-      <div className='flex flex-col gap-3 pl-2 pt-8'>
-        <h5 className='font-medium text-grey-300'>位置</h5>
-        <p>Taipei , Taiwan</p>
-      </div> */}
     </div>
   );
 }
