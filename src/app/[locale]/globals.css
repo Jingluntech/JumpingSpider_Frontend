@@ -29,3 +29,7 @@ input[type='number'] {
 .copy:hover > svg > path {
   @apply stroke-grey-300;
 }
+
+img {
+  object-fit: contain;
+}
