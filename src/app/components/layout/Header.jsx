@@ -98,11 +98,6 @@ export default function Header({ locale }) {
     return lang.title;
   };
 
-  const RedirectURL = (lang) => {
-    const currentPath = pathname.slice(4) || '';
-    return `/${lang}/${currentPath}`;
-  };
-
   const handleDisconnectWallet = async () => {
     try {
       await logoutAPI();
@@ -183,7 +178,6 @@ export default function Header({ locale }) {
               openLang={openLang}
               setOpenLang={setOpenLang}
               locale={locale}
-              RedirectURL={RedirectURL}
               showLanguage={showLanguage}
             />
             <button
