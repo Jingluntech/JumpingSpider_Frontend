@@ -14,7 +14,6 @@ import ethersClient from '@/utils/eth/ethersClient';
 import Image from 'next/image';
 import { loginAPI, requestLoginAPI } from '@/api/login';
 import Cookies from 'js-cookie';
-import { useTranslations } from 'next-intl';
 
 export default function ConnectWallet({ onClick, connect, back }) {
   const { open } = useWeb3Modal();

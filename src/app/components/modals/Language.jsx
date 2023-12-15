@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/src/navigation';
 
 export default function Language({
   languages,
@@ -8,8 +7,9 @@ export default function Language({
   setOpenLang,
   locale,
   showLanguage,
-  RedirectURL,
 }) {
+  const pathname = usePathname();
+
   return (
     <div
       className='relative flex cursor-pointer items-center gap-1 text-grey-300'
@@ -26,7 +26,7 @@ export default function Language({
       {openLang && (
         <ul className='absolute right-0 top-12 z-50 flex flex-col whitespace-nowrap rounded-md bg-grey-800 shadow-custom'>
           {languages.map((el) => (
-            <Link key={el.id} locale={el.id} href={RedirectURL(el.id)}>
+            <Link key={el.id} href={pathname} locale={el.id}>
               <li
                 className={`flex w-[154px] cursor-pointer justify-start px-[14px] py-[10px] hover:bg-grey-600 ${
                   el.id === locale ? 'font-bold text-primary-yellow-500' : ''
