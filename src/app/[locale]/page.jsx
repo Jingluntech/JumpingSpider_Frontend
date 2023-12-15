@@ -2,8 +2,11 @@ import Image from 'next/image';
 import FAQ from '@/src/app/components/cards/FAQ';
 import CustomSubscription from '@/src/app/components/cards/CustomSubscription';
 import Subscription from '@/src/app/components/cards/Subscription';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+  const t = useTranslations('homePage');
+
   return (
     <div className='flex h-fit w-full flex-col items-center'>
       <div
@@ -20,18 +23,17 @@ export default function Home() {
           </div>
           <div className='flex flex-col items-center gap-5 lg:flex-1 lg:items-start lg:pr-12'>
             <h1 className='text-center text-[46px] font-bold lg:text-left'>
-              跳躍到世界
-              <br className='hidden sm:block md:hidden' />
-              每個角落
-              <br />從 Jumping Spider 開始
+              {t('sectionOneTitleA')}
+              <br />
+              {t('sectionOneTitleB')}
             </h1>
             <p className='text-center text-grey-200 lg:text-left'>
-              透過 Jumping Spider 全球的 VPN 服務保護您的隱私。
+              {t('sectionOneContentA')}
               <br />
-              快速的連接速度和遍及多個國家的伺服器，您可以隨時隨地存取任何內容。
+              {t('sectionOneContentB')}
             </p>
             <button className='mb-11 mt-5 h-14 w-[158px] rounded-md bg-primary-blue-500'>
-              立即訂閱
+              {t('sectionOneButton')}
             </button>
           </div>
         </div>
@@ -39,16 +41,18 @@ export default function Home() {
       <div id='main-2' className='h-fit w-full bg-grey-900'>
         <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center gap-8 px-4 py-14'>
           <div className='flex w-full flex-col items-center justify-center gap-4'>
-            <h1 className='text-[46px] font-bold'>簡單直覺</h1>
+            <h1 className='text-center text-[46px] font-bold'>
+              {t('sectionTwoTitle')}
+            </h1>
             <p className='text-center text-grey-300'>
-              只需輕鬆支付月費，即可擁有高品質的URL連線VPN服務。
+              {t('sectionTwoContentA')}
               <br />
-              企業用戶更享有定制服務，使用URL或憑證自由進行VPN連線，打造獨一無二的網路環境。
+              {t('sectionTwoContentB')}
             </p>
           </div>
           <div className='flex h-fit w-full flex-col items-center gap-3 lg:flex-row-reverse'>
-            <Subscription />
-            <CustomSubscription />
+            {/* <Subscription />
+            <CustomSubscription /> */}
           </div>
         </div>
       </div>
@@ -62,13 +66,12 @@ export default function Home() {
           </div>
           <div className='mb-[60px] flex flex-col gap-4 lg:flex-1'>
             <h1 className='text-center text-[46px] font-bold lg:text-left'>
-              一鍵建立
+              {t('sectionThreeTitleA')}
               <br className='md:hidden' />
-              安全通道
+              {t('sectionThreeTitleB')}
             </h1>
             <p className='text-center text-grey-300 lg:text-left'>
-              安裝OpenVPN，輸入Jumping
-              Spider提供的URL或憑證，即可在本地端打通安全連線通道，輕鬆連接至裝置，探索虛擬網路中的無盡奇蹟。
+              {t('sectionThreeContent')}
             </p>
           </div>
         </div>
@@ -80,16 +83,16 @@ export default function Home() {
           </div>
           <div className='flex flex-col gap-4 lg:flex-1 lg:pl-14'>
             <h1 className='text-center text-[46px] font-bold lg:text-left'>
-              超凡連線品質
+              {t('sectionFourTitle')}
             </h1>
             <p className='text-center text-grey-300 lg:text-left'>
-              購買Jumping Spider的URL，
+              {t('sectionFourContentA')}
               <br className='md:hidden' />
-              即刻建立穩定連線。
+              {t('sectionFourContentB')}
               <br />
-              憑證則讓你指揮VPN連線至指定的裝置，
+              {t('sectionFourContentC')}
               <br className='md:hidden' />
-              擁有更多自主權。
+              {t('sectionFourContentD')}
             </p>
           </div>
         </div>
@@ -107,27 +110,25 @@ export default function Home() {
             />
           </div>
           <h1 className='mb-6 text-center text-[46px] font-bold'>
-            開啟你的Jumping Spider 之旅
+            {t('sectionFiveTitle')}
           </h1>
           <h5 className='mb-2 text-center text-2xl font-bold text-grey-300'>
-            享受高效、安全的VPN連線
+            {t('sectionFiveSub')}
           </h5>
           <p className='mb-10 text-center text-grey-300'>
-            立即訂閱Jumping Spider
-            VPN，打造你的專屬安全通道，體驗全新的網路自由。
+            {t('sectionFiveContent')}
           </p>
           <button className='h-14 w-[158px] rounded-md bg-primary-blue-500 text-lg font-bold hover:bg-grey-100 hover:text-grey-800'>
-            立即訂閱
+            {t('sectionOneButton')}
           </button>
         </div>
       </div>
       <div id='faq' className='h-fit w-full bg-grey-900'>
         <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center px-4 py-[68px]'>
-          <h1 className='mb-10 text-[46px] font-bold'>常見問題</h1>
+          <h1 className='mb-10 text-[46px] font-bold'>
+            {t('sectionSixTitle')}
+          </h1>
           <div className='flex w-full flex-col items-center gap-5 lg:mb-[84px]'>
-            <FAQ />
-            <FAQ />
-            <FAQ />
             <FAQ />
           </div>
         </div>

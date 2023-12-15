@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar({
+  member,
   locale,
   navLinks,
   languages,
@@ -71,7 +72,7 @@ export default function Navbar({
               height={24}
             />
           )}
-          會員中心
+          {member}
         </li>
         <li
           onClick={() => setOpenLang(!openLang)}
