@@ -43,7 +43,11 @@ export default function ethersClient() {
             { chainId: chainId },
           ]);
         } catch (error) {
-          if (error.code === 4902) {
+          console.log('Error', error);
+          if (error.info.error.code === 4001) {
+            return;
+          }
+          if (error.info.error.code === 4902) {
             const customChain = {
               chainId:
                 '0x' + parseInt(process.env.NEXT_PUBLIC_NCHAINID).toString(16),
