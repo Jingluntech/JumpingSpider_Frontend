@@ -14,8 +14,9 @@ import ethersClient from '@/utils/eth/ethersClient';
 import Image from 'next/image';
 import { loginAPI, requestLoginAPI } from '@/api/login';
 import Cookies from 'js-cookie';
+import { useTranslations } from 'next-intl';
 
-export default function ConnectWallet({ onClick }) {
+export default function ConnectWallet({ onClick, connect, back }) {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
   const { data, isError } = useBalance({
@@ -90,7 +91,7 @@ export default function ConnectWallet({ onClick }) {
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex h-fit w-full min-w-[359px] max-w-[516px] -translate-x-1/2 -translate-y-1/2 flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
-      <h4 className='text-2xl font-bold'>連接錢包</h4>
+      <h4 className='text-2xl font-bold'>{connect}</h4>
       <button
         className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
         onClick={() => walletConnectHandler('metamask')}
@@ -165,7 +166,7 @@ export default function ConnectWallet({ onClick }) {
           height={24}
         />
         <h5 className='text-h5 border-gray-900 font-bold text-grey-800'>
-          返回
+          {back}
         </h5>
       </button>
     </div>

@@ -1,11 +1,17 @@
 import Image from 'next/image';
 import MemberInfo from '@/src/app/components/cards/MemberInfo';
 import Link from 'next/link';
+import pick from 'lodash.pick';
+import {
+  NextIntlClientProvider,
+  useMessages,
+  useTranslations,
+} from 'next-intl';
 
 const dummyData = [
   {
     id: '1',
-    title: 'URL',
+    title: 'url',
     content: 'https://118.163.aaaabc/0000/webvpn/openvpn_cilent.ovpn',
     img: (
       <svg
@@ -27,7 +33,7 @@ const dummyData = [
   },
   {
     id: '2',
-    title: '帳號',
+    title: 'account',
     content: 'jumpingspider8866',
     img: (
       <svg
@@ -49,7 +55,7 @@ const dummyData = [
   },
   {
     id: '3',
-    title: '密碼',
+    title: 'password',
     content: 'jumpingspider8866',
     img: (
       <svg
@@ -72,6 +78,8 @@ const dummyData = [
 ];
 
 export default function VPNResgistration({ params: { locale } }) {
+  const messages = useMessages();
+  const t = useTranslations('memberInfoPage');
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
       <Link href={`/${locale}/member/info`}>
@@ -82,14 +90,16 @@ export default function VPNResgistration({ params: { locale } }) {
             width={24}
             height={24}
           />
-          返回
+          {t('back')}
         </button>
       </Link>
       <div className='flex flex-col gap-3'>
-        <h3 className='text-[28px] font-medium'>Open VPN登錄資料</h3>
-        <p>訂閱到期日：2026-01-01</p>
+        <h3 className='text-[28px] font-medium'>{t('connectInfo')}</h3>
+        <p>{t('expiredDate')}：2026-01-01</p>
       </div>
-      <MemberInfo data={dummyData} />
+      <NextIntlClientProvider messages={pick(messages, 'memberInfoPage')}>
+        <MemberInfo data={dummyData} />
+      </NextIntlClientProvider>
     </div>
   );
 }

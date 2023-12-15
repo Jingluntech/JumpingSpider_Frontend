@@ -1,24 +1,26 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function MemebrNavbar({ locale }) {
+  const t = useTranslations('memberHeader');
   const pathname = usePathname();
 
   const memberNavLink = [
     {
       id: '1',
-      title: '會員資料',
+      title: 'info',
       url: `/${locale}/member/info`,
     },
     {
       id: '2',
-      title: '裝置管理',
+      title: 'device',
       url: `/${locale}/member/management`,
     },
     {
       id: '3',
-      title: '訂閱方案',
+      title: 'subscription',
       url: `/${locale}/member/plan`,
     },
   ];
@@ -33,7 +35,7 @@ export default function MemebrNavbar({ locale }) {
                 pathname === el.url ? ' text-grey-100' : 'text-grey-400'
               }`}
             >
-              {el.title}
+              {t(el.title)}
               {pathname === el.url && (
                 <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
               )}

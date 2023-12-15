@@ -1,14 +1,16 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export default function CustomSubscription() {
+  const t = useTranslations('pricePage');
+
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-grey-500 bg-grey-800 px-10 py-11 lg:flex-1 lg:gap-8'>
       <div>
-        <p className='mb-1 text-sm text-primary-yellow-500'>企業端</p>
-        <h1 className='mb-3 text-[28px] font-medium'>客製化VPN服務</h1>
+        <p className='mb-1 text-sm text-primary-yellow-500'>{t('business')}</p>
+        <h1 className='mb-3 text-[28px] font-medium'>{t('customized')}</h1>
         <p className='flex items-center text-base text-grey-300 lg:h-[104px]'>
-          Jumping Spider VPN提供企業端全方位客製化服務，安全、穩定
-          統一管理，無差異價格策略，最佳VPN解決方案。
+          {t('description')}
         </p>
       </div>
 
@@ -23,7 +25,7 @@ export default function CustomSubscription() {
           />
         </div>
         <div className='flex flex-col gap-2'>
-          <h5 className='text-lg font-bold'>聯繫我們</h5>
+          <h5 className='text-lg font-bold'>{t('contact')}</h5>
           <div className='flex items-center gap-2 underline'>
             <Image src='/mail.svg' alt='mail-icon' width={20} height={20} />
             <p className='break-all font-medium'>
