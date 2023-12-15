@@ -7,7 +7,7 @@ import {
   useTranslations,
 } from 'next-intl';
 
-export default function MemberManagementPage() {
+export default function DevicePage() {
   const messages = useMessages();
   const t = useTranslations('devicePage');
   return (

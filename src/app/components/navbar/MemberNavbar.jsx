@@ -16,7 +16,7 @@ export default function MemebrNavbar({ locale }) {
     {
       id: '2',
       title: 'device',
-      url: `/${locale}/member/management`,
+      url: `/${locale}/member/device`,
     },
     {
       id: '3',

@@ -1,7 +1,17 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import DeleteDevice from '../modals/DeleteDevice';
+import ModalBackground from '../modals/ModalBackground';
 
 export default function DeviceTable() {
   const t = useTranslations('devicePage');
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+  const handleDeleteClick = () => {
+    setOpenDeleteModal(!openDeleteModal);
+  };
 
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>
@@ -27,7 +37,10 @@ export default function DeviceTable() {
             <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
               {t('operate')}
             </th>
-            <td className='w-1/2 cursor-pointer p-3 text-primary-yellow-500 hover:text-grey-100'>
+            <td
+              className='w-1/2 cursor-pointer p-3 text-primary-yellow-500 hover:text-grey-100'
+              onClick={() => handleDeleteClick()}
+            >
               {t('delete')}
             </td>
           </tr>
@@ -53,7 +66,10 @@ export default function DeviceTable() {
             <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
               {t('operate')}
             </th>
-            <td className='w-1/2 cursor-pointer p-3 text-primary-yellow-500 hover:text-grey-100'>
+            <td
+              className='w-1/2 cursor-pointer p-3 text-primary-yellow-500 hover:text-grey-100'
+              onClick={() => handleDeleteClick()}
+            >
               {t('delete')}
             </td>
           </tr>
@@ -83,7 +99,10 @@ export default function DeviceTable() {
             <td className='w-5/12 px-6 py-3 text-left text-sm'>
               2023-06-01 21:00
             </td>
-            <td className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'>
+            <td
+              className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'
+              onClick={() => handleDeleteClick()}
+            >
               {t('delete')}
             </td>
           </tr>
@@ -93,12 +112,21 @@ export default function DeviceTable() {
             <td className='w-5/12 px-6 py-3 text-left text-sm'>
               2023-06-01 21:00
             </td>
-            <td className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'>
+            <td
+              className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'
+              onClick={() => handleDeleteClick()}
+            >
               {t('delete')}
             </td>
           </tr>
         </tbody>
       </table>
+      {openDeleteModal && (
+        <>
+          <DeleteDevice onClick={() => handleDeleteClick(!openDeleteModal)} />
+          <ModalBackground />
+        </>
+      )}
     </div>
   );
 }
