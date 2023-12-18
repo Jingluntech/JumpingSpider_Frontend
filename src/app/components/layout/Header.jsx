@@ -165,7 +165,7 @@ export default function Header({ locale }) {
             </button>
           ) : (
             <button
-              className='h-fit w-fit rounded-md bg-primary-blue-500 px-5 py-[11px]'
+              className='h-fit w-fit rounded-md bg-primary-blue-500 px-5 py-[11px] hover:bg-grey-100 hover:text-grey-800'
               onClick={() => setOpenWallet(true)}
             >
               {t('connect')}

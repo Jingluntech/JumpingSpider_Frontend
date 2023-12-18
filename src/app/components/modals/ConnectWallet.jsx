@@ -89,85 +89,87 @@ export default function ConnectWallet({ onClick, connect, back }) {
   });
 
   return (
-    <div className='fixed left-1/2 top-1/2 z-50 flex h-fit w-full min-w-[359px] max-w-[516px] -translate-x-1/2 -translate-y-1/2 flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
-      <h4 className='text-2xl font-bold'>{connect}</h4>
-      <button
-        className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
-        onClick={() => walletConnectHandler('metamask')}
-      >
-        <div className='flex items-center gap-4'>
+    <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
+      <div className='flex h-fit w-full max-w-[516px] flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
+        <h4 className='text-2xl font-bold'>{connect}</h4>
+        <button
+          className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
+          onClick={() => walletConnectHandler('metamask')}
+        >
+          <div className='flex items-center gap-4'>
+            <Image
+              src='/wallet/wallet_metamask.svg'
+              alt='meta-mask-icon'
+              width={50}
+              height={50}
+            />
+            <h5 className='text-h5 font-bold'>Metamask</h5>
+          </div>
           <Image
-            src='/wallet/wallet_metamask.svg'
-            alt='meta-mask-icon'
-            width={50}
-            height={50}
+            src='/wallet/wallet_icon_arrow.svg'
+            alt='arrow-icon'
+            width={24}
+            height={24}
           />
-          <h5 className='text-h5 font-bold'>Metamask</h5>
-        </div>
-        <Image
-          src='/wallet/wallet_icon_arrow.svg'
-          alt='arrow-icon'
-          width={24}
-          height={24}
-        />
-      </button>
+        </button>
 
-      <button
-        className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
-        onClick={() => walletConnectHandler('trustWallet')}
-      >
-        <div className='flex items-center gap-4'>
+        <button
+          className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
+          onClick={() => walletConnectHandler('trustWallet')}
+        >
+          <div className='flex items-center gap-4'>
+            <Image
+              src='/wallet/wallet_trustwallet.svg'
+              alt='meta-mask-icon'
+              width={50}
+              height={50}
+            />
+            <h5 className='text-h5 font-bold'>Trust Wallet</h5>
+          </div>
           <Image
-            src='/wallet/wallet_trustwallet.svg'
-            alt='meta-mask-icon'
-            width={50}
-            height={50}
+            src='/wallet/wallet_icon_arrow.svg'
+            alt='arrow-icon'
+            width={24}
+            height={24}
           />
-          <h5 className='text-h5 font-bold'>Trust Wallet</h5>
-        </div>
-        <Image
-          src='/wallet/wallet_icon_arrow.svg'
-          alt='arrow-icon'
-          width={24}
-          height={24}
-        />
-      </button>
+        </button>
 
-      <button
-        className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
-        onClick={() => walletConnectHandler('walletConnect')}
-      >
-        <div className='flex items-center gap-4'>
+        <button
+          className='flex h-[74px] w-full items-center justify-between rounded-md bg-grey-700 px-6 py-3'
+          onClick={() => walletConnectHandler('walletConnect')}
+        >
+          <div className='flex items-center gap-4'>
+            <Image
+              src='/wallet/wallet_walletconnect.svg'
+              alt='meta-mask-icon'
+              width={50}
+              height={50}
+            />
+            <h5 className='text-h5 font-bold'>WalletConnect</h5>
+          </div>
           <Image
-            src='/wallet/wallet_walletconnect.svg'
-            alt='meta-mask-icon'
-            width={50}
-            height={50}
+            src='/wallet/wallet_icon_arrow.svg'
+            alt='arrow-icon'
+            width={24}
+            height={24}
           />
-          <h5 className='text-h5 font-bold'>WalletConnect</h5>
-        </div>
-        <Image
-          src='/wallet/wallet_icon_arrow.svg'
-          alt='arrow-icon'
-          width={24}
-          height={24}
-        />
-      </button>
+        </button>
 
-      <button
-        className='flex h-14 w-full items-center justify-center gap-2 rounded-md bg-grey-100'
-        onClick={onClick}
-      >
-        <Image
-          src='/wallet/wallet_button_back.svg'
-          alt='back-icon'
-          width={24}
-          height={24}
-        />
-        <h5 className='text-h5 border-gray-900 font-bold text-grey-800'>
-          {back}
-        </h5>
-      </button>
+        <button
+          className='flex h-14 w-full items-center justify-center gap-2 rounded-md bg-grey-100'
+          onClick={onClick}
+        >
+          <Image
+            src='/wallet/wallet_button_back.svg'
+            alt='back-icon'
+            width={24}
+            height={24}
+          />
+          <h5 className='text-h5 border-gray-900 font-bold text-grey-800'>
+            {back}
+          </h5>
+        </button>
+      </div>
     </div>
   );
 }

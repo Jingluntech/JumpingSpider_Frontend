@@ -13,7 +13,8 @@ export default function Subscription() {
   const router = useRouter();
   const t = useTranslations('pricePage');
   const [checkOutOpen, setCheckOutOpen] = useState(false);
-  const { openWallet, setOpenWallet } = useContext(WalletContext);
+  const { openWallet, setOpenWallet, handleSubscribeClick } =
+    useContext(WalletContext);
 
   const handleMoreClick = () => {
     const token = Cookies.get('Token');
