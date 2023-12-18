@@ -51,8 +51,7 @@
     "sectionFourContentD": "拥有更多自主权。",
     "sectionFiveTitle": "开启你的Jumping Spider 之旅",
     "sectionFiveSub": "享受高效、安全的VPN连线",
-    "sectionFiveContent": "立即订阅Jumping Spider VPN，打造你的专属安全通道，体验全新的网路自由。",
-    "sectionSixTitle": "常见问题"
+    "sectionFiveContent": "立即订阅Jumping Spider VPN，打造你的专属安全通道，体验全新的网路自由。"
   },
   "pricePage": {
     "plans": "訂閱方案",
@@ -82,14 +81,18 @@
     "failed": "付款失败。请确认是否虚拟货币余额不足或平台技术问题。"
   },
   "faqPage": {
+    "title": "常见问题",
+    "description": "Spiderweb 团队随时准备提供快速可靠的帮助，确保您的VPN体验无忧又顺畅。",
+    "search": "搜索",
+    "placeholder": "请输入搜寻文字",
     "questionOne": "如何安装设定OpenVPN？",
-    "questionTwo": "使用Jumping Spider连线时经常断线？",
-    "questionThree": "URL和凭证有什么不同？",
-    "questionFour": "如何在不同装置上同步使用Jumping Spider VPN？",
-    "answerOne": "我们有一份详细的安装指南，您可以在 [ OpenVPN教学 ] 找到，步骤清晰明了。如果您需要更进一步的协助，请随时与我们联系，我们的客服团队将乐意协助您完成设定。 ",
-    "answerTwo": "请确保您使用的是正确的URL或凭证，并按照我们提供的连线故障排除指南进行检查。如果问题仍然存在，请立即联络我们的客服，我们将尽快协助您解决问题。",
-    "answerThree": "URL模式是初次随机连线后即建立固定连线，确保连线品质稳定。凭证模式则是对指定的资源分享器SDN进行VPN连线，提供更多控制权。如果您仍有疑问，我们的客服随时提供解释和协助。",
-    "answerFour": "Jumping Spider支援帐号同步功能，您只需使用相同的帐号登入不同装置，即可轻松实现跨装置同步使用。如果您在操作过程中遇到问题，我们的客服将随时提供协助。"
+    "questionTwo": "如何在不同装置上同步使用Jumping Spider VPN？",
+    "questionThree": "企业端的客制化服务有哪些选项？",
+    "questionFour": "付款方式仅支援虚拟货币钱包，有其他选择吗？",
+    "answerOne": "我们有一份详细的安装指南，您可以在[ <tutorial>OpenVPN教学</tutorial> ] 找到，步骤清晰明了。如果您需要更进一步的协助，请随时与我们联系，我们的客服团队将乐意协助您完成设定。 ",
+    "answerTwo": "Jumping Spider支援帐号同步功能，您只需使用相同的帐号登入不同装置，即可轻松实现跨装置同步使用。如果您在操作过程中遇到问题，我们的客服将随时提供协助。",
+    "answerThree": "我们的企业端客制化服务涵盖多方面，例如根据企业需求设定专属VPN伺服器、定制安全协议、以及整合企业内部身份验证系统。请直接联系我们的企业客服，我们将提供详尽的解说，以确保满足您企业的独特需求。",
+    "answerFour": "目前，我们仅接受虚拟货币钱包作为支付方式。我们持续努力扩展支付选项，以提供更多方便的选择。若有支付方面的问题或建议，请随时联系客服，我们将竭诚协助您。"
   },
   "memberInfoPage": {
     "profile": "会员资料",

@@ -51,8 +51,7 @@
     "sectionFourContentD": "擁有更多自主權。",
     "sectionFiveTitle": "開啟你的Jumping Spider 之旅",
     "sectionFiveSub": "享受高效、安全的VPN連線",
-    "sectionFiveContent": "立即訂閱Jumping Spider VPN，打造你的專屬安全通道，體驗全新的網路自由。",
-    "sectionSixTitle": "常見問題"
+    "sectionFiveContent": "立即訂閱Jumping Spider VPN，打造你的專屬安全通道，體驗全新的網路自由。"
   },
   "pricePage": {
     "plans": "訂閱方案",
@@ -82,14 +81,18 @@
     "failed": "付款失敗。請確認是否虛擬貨幣餘額不足或平台技術問題。"
   },
   "faqPage": {
+    "title": "常見問題",
+    "description": "Spiderweb 團隊隨時準備提供快速可靠的幫助，確保您的VPN體驗無憂又順暢。",
+    "search": "搜尋",
+    "placeholder": "請輸入搜尋文字",
     "questionOne": "如何安裝設定OpenVPN？",
-    "questionTwo": "使用Jumping Spider連線時經常斷線？",
-    "questionThree": "URL和憑證有什麼不同？",
-    "questionFour": "如何在不同裝置上同步使用Jumping Spider VPN？",
-    "answerOne": "我們有一份詳細的安裝指南，您可以在 [ OpenVPN教學 ] 找到，步驟清晰明瞭。如果您需要更進一步的協助，請隨時與我們聯繫，我們的客服團隊將樂意協助您完成設定。",
-    "answerTwo": "請確保您使用的是正確的URL或憑證，並按照我們提供的連線故障排除指南進行檢查。如果問題仍然存在，請立即聯絡我們的客服，我們將盡快協助您解決問題。",
-    "answerThree": "URL模式是初次隨機連線後即建立固定連線，確保連線品質穩定。憑證模式則是對指定的資源分享器SDN進行VPN連線，提供更多控制權。如果您仍有疑問，我們的客服隨時提供解釋和協助。",
-    "answerFour": "Jumping Spider支援帳號同步功能，您只需使用相同的帳號登入不同裝置，即可輕鬆實現跨裝置同步使用。如果您在操作過程中遇到問題，我們的客服將隨時提供協助"
+    "questionTwo": "如何在不同裝置上同步使用Jumping Spider VPN？",
+    "questionThree": "企業端的客製化服務有哪些選項？",
+    "questionFour": "付款方式僅支援虛擬貨幣錢包，有其他選擇嗎？",
+    "answerOne": "我們有一份詳細的安裝指南，您可以在[ <tutorial>OpenVPN教學</tutorial> ]找到，步驟清晰明瞭。如果您需要更進一步的協助，請隨時與我們聯繫，我們的客服團隊將樂意協助您完成設定。",
+    "answerTwo": "Jumping Spider支援帳號同步功能，您只需使用相同的帳號登入不同裝置，即可輕鬆實現跨裝置同步使用。如果您在操作過程中遇到問題，我們的客服將隨時提供協助。",
+    "answerThree": "我們的企業端客製化服務涵蓋多方面，例如根據企業需求設定專屬VPN伺服器、定制安全協議、以及整合企業內部身份驗證系統。請直接聯繫我們的企業客服，我們將提供詳盡的解說，以確保滿足您企業的獨特需求。",
+    "answerFour": "目前，我們僅接受虛擬貨幣錢包作為支付方式。我們持續努力擴展支付選項，以提供更多方便的選擇。若有支付方面的問題或建議，請隨時聯繫客服，我們將竭誠協助您。"
   },
   "memberInfoPage": {
     "profile": "會員資料",
