@@ -95,7 +95,7 @@ export default function Subscription() {
           了解更多
         </button>
       ) : (
-        <div className='mt-5 flex w-full flex-wrap items-center gap-5 lg:flex-nowrap'>
+        <div className='flex w-full flex-wrap items-center gap-5 lg:flex-nowrap'>
           <div className='text-sm text-grey-300'>{t('months')}</div>
           <div className='flex h-11 w-[180px]'>
             <button className='flex h-full flex-1 items-center rounded-l-md border border-grey-600 bg-grey-700 p-3 text-grey-400'>

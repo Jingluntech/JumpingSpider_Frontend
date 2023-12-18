@@ -9,7 +9,7 @@ export default function CustomSubscription() {
       <div>
         <p className='mb-1 text-sm text-primary-yellow-500'>{t('business')}</p>
         <h1 className='mb-3 text-[28px] font-medium'>{t('customized')}</h1>
-        <p className='flex text-base text-grey-300 lg:h-[82px]'>
+        <p className='flex text-base text-grey-300 lg:h-[100px]'>
           {t('description')}
         </p>
       </div>
@@ -17,7 +17,7 @@ export default function CustomSubscription() {
       <hr className='border-t-[2px] border-grey-600' />
 
       <div className='flex h-fit w-full flex-col gap-3 rounded-md border bg-grey-700 px-5 py-6 lg:flex-row-reverse lg:justify-between lg:px-6 lg:py-8'>
-        <div className='relative h-[166px] w-[156px] lg:flex-shrink-0'>
+        <div className='relative h-[148px] w-[158px] lg:flex-shrink-0'>
           <Image
             src='/home/Business_vpn.png'
             alt='business-vpn-img'
