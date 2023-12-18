@@ -1,10 +1,38 @@
-import { useTranslations } from 'next-intl';
+import pick from 'lodash.pick';
+import {
+  NextIntlClientProvider,
+  useMessages,
+  useTranslations,
+} from 'next-intl';
 import Image from 'next/image';
-import FAQ from '@/src/app/components/cards/FAQ';
-import SearchInput from '@/src/app/components/searchInput/SearchInput';
+import SearchFAQ from '@/src/app/components/search/SearchFAQ';
 
-export default function PricePage() {
+export default function FAQPage() {
+  const messages = useMessages();
   const t = useTranslations('faqPage');
+
+  const FAQcardData = [
+    {
+      id: 'faq-1',
+      title: 'questionOne',
+      content: 'answerOne',
+    },
+    {
+      id: 'faq-2',
+      title: 'questionTwo',
+      content: 'answerTwo',
+    },
+    {
+      id: 'faq-3',
+      title: 'questionThree',
+      content: 'answerThree',
+    },
+    {
+      id: 'faq-4',
+      title: 'questionFour',
+      content: 'answerFour',
+    },
+  ];
 
   return (
     <div className='flex h-fit w-full flex-col items-center gap-10 lg:gap-6'>
@@ -19,29 +47,9 @@ export default function PricePage() {
           </div>
         </div>
       </div>
-
-      <div className='mx-auto flex h-fit w-full min-w-[350px] max-w-[750px] flex-col items-center gap-10 px-4 pb-[84px]'>
-        <SearchInput search={t('search')} placeholder={t('placeholder')} />
-        <hr className='w-full border-b border-grey-600' />
-        <div className='flex flex-col gap-5'>
-          <FAQ
-            q={t('questionOne')}
-            a={t.rich('answerOne', {
-              tutorial: (chunks) => (
-                <a
-                  className='text-primary-yellow-500 underline'
-                  href='/tutorial'
-                >
-                  {chunks}
-                </a>
-              ),
-            })}
-          />
-          <FAQ q={t('questionTwo')} a={t('answerTwo')} />
-          <FAQ q={t('questionThree')} a={t('answerThree')} />
-          <FAQ q={t('questionFour')} a={t('answerFour')} />
-        </div>
-      </div>
+      <NextIntlClientProvider messages={pick(messages, 'faqPage')}>
+        <SearchFAQ FAQcardData={FAQcardData} />
+      </NextIntlClientProvider>
     </div>
   );
 }

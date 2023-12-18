@@ -110,12 +110,7 @@ export default function Header({ locale }) {
           <nav className='hidden h-full w-fit lg:flex'>
             <ul className='flex h-full items-center gap-10'>
               {navLinks.map((el) => (
-                <Link
-                  key={el.id}
-                  href={el.url}
-                  className='relative h-full'
-                  // onClick={(e) => handleNavigationClick(e, el.hash)}
-                >
+                <Link key={el.id} href={el.url} className='relative h-full'>
                   <li
                     className={
                       pathname === el.url
