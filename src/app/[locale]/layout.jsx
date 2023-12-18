@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import pick from 'lodash.pick';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Web3Modal } from '@/src/app/components/Web3Modal';
+import WalletProvider from '@/src/app/context/context';
 
 // 字體變數設定
 export const inter = Inter({
@@ -39,11 +40,13 @@ export default function RootLayout({ children, params: { locale } }) {
     <html lang={locale} className={`${notoSans.variable} ${inter.variable} `}>
       <body className='flex w-screen flex-col bg-grey-900 text-grey-100'>
         <Web3Modal>
-          <NextIntlClientProvider messages={pick(messages, 'header')}>
-            <Header locale={locale} />
-          </NextIntlClientProvider>
-          <main className='mt-[82px] h-fit w-full'>{children}</main>
-          <Footer locale={locale} />
+          <WalletProvider>
+            <NextIntlClientProvider messages={pick(messages, 'header')}>
+              <Header locale={locale} />
+            </NextIntlClientProvider>
+            <main className='mt-[82px] h-fit w-full'>{children}</main>
+            <Footer locale={locale} />
+          </WalletProvider>
         </Web3Modal>
       </body>
     </html>

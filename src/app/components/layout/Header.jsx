@@ -5,50 +5,45 @@ import ConnectWallet from '@/src/app/components/modals/ConnectWallet';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Navbar from '@/src/app/components/navbar/Navbar';
 import Language from '@/src/app/components/modals/Language';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
+import { Link, usePathname } from '@/src/navigation';
 import Cookies from 'js-cookie';
 import { logoutAPI } from '@/api/login';
 import { useDisconnect } from 'wagmi';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { WalletContext } from '@/src/app/context/context';
 
 export default function Header({ locale }) {
   const t = useTranslations('header');
   const pathname = usePathname();
   const router = useRouter();
+  const { openWallet, setOpenWallet } = useContext(WalletContext);
   const [isClient, setIsClient] = useState(false);
-  const [openWallet, setOpenWallet] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
-  const [activeHash, setActiveHash] = useState('');
   const isLogin = Boolean(Cookies.get('Token'));
   const { disconnect } = useDisconnect();
-
   const navLinks = [
     {
       id: '1',
       title: 'home',
-      url: `/${locale}`,
-      hash: '#home',
+      url: '/',
     },
     {
       id: '2',
       title: 'price',
-      url: `/${locale}`,
-      hash: '#price',
+      url: '/price',
     },
     {
       id: '3',
       title: 'faq',
-      url: `/${locale}`,
-      hash: '#faq',
+      url: '/faq',
     },
     {
       id: '4',
       title: 'tutorial',
-      url: `/${locale}`,
+      url: '/tutorial',
     },
   ];
 
@@ -67,29 +62,10 @@ export default function Header({ locale }) {
     },
   ];
 
-  const handleNavigationClick = (e, hash) => {
-    e.preventDefault(); // Prevent default anchor link behavior
-    setActiveHash(hash);
-    if (pathname !== `/${locale}`) {
-      return router.push(`/${locale}${hash}`);
-    }
-
-    if (typeof window !== 'undefined') {
-      window.history.replaceState(null, '', `/${locale}${hash}`);
-    }
-
-    const element = document.getElementById(hash.substring(1)); // Remove '#' from hash
-
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
   const handleMemberCenterClick = () => {
     if (!isLogin) {
       return setOpenWallet(true);
     }
-    setActiveHash('');
     router.push(`/${locale}/member/info`);
   };
 
@@ -103,7 +79,6 @@ export default function Header({ locale }) {
       await logoutAPI();
       Cookies.remove('Token');
       disconnect();
-      setActiveHash('#home');
       router.push(`/${locale}#home`);
     } catch (error) {
       console.log(error);
@@ -113,19 +88,6 @@ export default function Header({ locale }) {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  useEffect(() => {
-    const getHash = () => {
-      if (pathname.includes('member')) {
-        return '';
-      } else if (window.location.hash) {
-        return window.location.hash;
-      } else {
-        return '#home';
-      }
-    };
-    setActiveHash(getHash());
-  }, [pathname]);
 
   return (
     <header className='fixed z-30 flex h-20 w-screen min-w-[350px] justify-center border-b border-grey-600 bg-grey-900 px-4'>
@@ -150,19 +112,19 @@ export default function Header({ locale }) {
               {navLinks.map((el) => (
                 <Link
                   key={el.id}
-                  href={`${el.url}${el.hash}`}
+                  href={el.url}
                   className='relative h-full'
-                  onClick={(e) => handleNavigationClick(e, el.hash)}
+                  // onClick={(e) => handleNavigationClick(e, el.hash)}
                 >
                   <li
                     className={
-                      activeHash === el.hash
+                      pathname === el.url
                         ? 'flex h-full items-center text-primary-yellow-500'
                         : 'flex h-full items-center text-grey-300'
                     }
                   >
                     {t(el.title)}
-                    {activeHash === el.hash && (
+                    {pathname === el.url && (
                       <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
                     )}
                   </li>
@@ -232,9 +194,6 @@ export default function Header({ locale }) {
             showLanguage={showLanguage}
             openLang={openLang}
             setOpenLang={setOpenLang}
-            activeHash={activeHash}
-            RedirectURL={RedirectURL}
-            onNavClick={(e, hash) => handleNavigationClick(e, hash)}
             onMemberClick={() => handleMemberCenterClick()}
           />
           <ModalBackground onClick={() => setOpenNavbar(false)} />

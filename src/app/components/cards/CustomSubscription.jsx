@@ -9,14 +9,14 @@ export default function CustomSubscription() {
       <div>
         <p className='mb-1 text-sm text-primary-yellow-500'>{t('business')}</p>
         <h1 className='mb-3 text-[28px] font-medium'>{t('customized')}</h1>
-        <p className='flex items-center text-base text-grey-300 lg:h-[104px]'>
+        <p className='flex text-base text-grey-300 lg:h-[82px]'>
           {t('description')}
         </p>
       </div>
 
       <hr className='border-t-[2px] border-grey-600' />
 
-      <div className='flex h-fit w-full flex-col gap-3 rounded-md bg-grey-700 px-5 py-6  lg:flex-row-reverse lg:gap-9 lg:py-8 lg:pl-6 lg:pr-3'>
+      <div className='flex h-fit w-full flex-col gap-3 rounded-md border bg-grey-700 px-5 py-6 lg:flex-row-reverse lg:justify-between lg:px-6 lg:py-8'>
         <div className='relative h-[166px] w-[156px] lg:flex-shrink-0'>
           <Image
             src='/home/Business_vpn.png'
@@ -28,8 +28,8 @@ export default function CustomSubscription() {
           <h5 className='text-lg font-bold'>{t('contact')}</h5>
           <div className='flex items-center gap-2 underline'>
             <Image src='/mail.svg' alt='mail-icon' width={20} height={20} />
-            <p className='break-all font-medium'>
-              andrewking@mail.spiderweb.club
+            <p className='break-all text-sm font-medium lg:text-base'>
+              support@spiderweb.club
             </p>
           </div>
         </div>

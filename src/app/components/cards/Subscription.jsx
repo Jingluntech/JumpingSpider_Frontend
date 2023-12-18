@@ -1,13 +1,27 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import CheckOut from '@/src/app/components/modals/CheckOut';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import { useTranslations } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { WalletContext } from '@/src/app/context/context';
 
 export default function Subscription() {
+  const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations('pricePage');
   const [checkOutOpen, setCheckOutOpen] = useState(false);
+  const { openWallet, setOpenWallet } = useContext(WalletContext);
+
+  const handleMoreClick = () => {
+    const token = Cookies.get('Token');
+    if (!token) {
+      return setOpenWallet(!openWallet);
+    }
+    router.push('price');
+  };
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-primary-blue-500 bg-grey-800 px-10 py-11 lg:flex-1'>
@@ -72,31 +86,41 @@ export default function Subscription() {
           {t('featureFour')}
         </li>
       </ul>
-      <div className='mt-5 flex w-full flex-wrap items-center gap-5 lg:flex-nowrap'>
-        <div className='text-sm text-grey-300'>{t('months')}</div>
-        <div className='flex h-11 w-[180px]'>
-          <button className='flex h-full flex-1 items-center rounded-l-md border border-grey-600 bg-grey-700 p-3 text-grey-400'>
-            －
-          </button>
-          <div className='flex-2'>
-            <input
-              type='number'
-              disabled
-              className='h-full w-full border-y border-grey-600 bg-grey-900 text-center align-middle'
-              defaultValue={0}
-            />
+      {!pathname.includes('price') ? (
+        <button
+          className='h-11 w-full rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
+          onClick={() => handleMoreClick()}
+        >
+          了解更多
+        </button>
+      ) : (
+        <div className='mt-5 flex w-full flex-wrap items-center gap-5 lg:flex-nowrap'>
+          <div className='text-sm text-grey-300'>{t('months')}</div>
+          <div className='flex h-11 w-[180px]'>
+            <button className='flex h-full flex-1 items-center rounded-l-md border border-grey-600 bg-grey-700 p-3 text-grey-400'>
+              －
+            </button>
+            <div className='flex-2'>
+              <input
+                type='number'
+                disabled
+                className='h-full w-full border-y border-grey-600 bg-grey-900 text-center align-middle'
+                defaultValue={0}
+              />
+            </div>
+            <button className='flex h-full flex-1 items-center rounded-r-md border border-grey-600 bg-grey-700 p-3 text-grey-400'>
+              ＋
+            </button>
           </div>
-          <button className='flex h-full flex-1 items-center rounded-r-md border border-grey-600 bg-grey-700 p-3 text-grey-400'>
-            ＋
+          <button
+            className='h-11 w-[164px] rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
+            onClick={() => setCheckOutOpen(true)}
+          >
+            {t('pay')}
           </button>
         </div>
-        <button
-          className='h-11 w-[164px] rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
-          onClick={() => setCheckOutOpen(true)}
-        >
-          {t('pay')}
-        </button>
-      </div>
+      )}
+
       {checkOutOpen && (
         <>
           <CheckOut onClick={() => setCheckOutOpen(false)} />

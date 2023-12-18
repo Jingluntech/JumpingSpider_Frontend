@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/src/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function Navbar({
   member,
@@ -10,12 +10,10 @@ export default function Navbar({
   setOpenNavbar,
   setOpenLang,
   openLang,
-  activeHash,
-  RedirectURL,
-  onNavClick,
   onMemberClick,
   showLanguage,
 }) {
+  const t = useTranslations('header');
   const pathname = usePathname();
 
   return (
@@ -24,9 +22,8 @@ export default function Navbar({
         {navLinks.map((el) => (
           <Link
             key={el.id}
-            href={`${el.url}${el.hash}`}
-            onClick={(e) => {
-              onNavClick(e, el.hash);
+            href={el.url}
+            onClick={() => {
               setOpenNavbar(false);
             }}
             className='h-fit w-full px-[14px] py-[10px] hover:bg-grey-600'
@@ -34,10 +31,10 @@ export default function Navbar({
             <li
               key={el.id}
               className={`flex h-full w-full items-center gap-1 ${
-                activeHash === el.hash ? 'text-primary-yellow-500' : 'pl-7'
+                pathname === el.url ? 'text-primary-yellow-500' : 'pl-7'
               }`}
             >
-              {activeHash === el.hash && (
+              {pathname === el.url && (
                 <Image
                   src='/chevron-left.svg'
                   alt='chevronleft-icon'
@@ -46,7 +43,7 @@ export default function Navbar({
                 />
               )}
 
-              {el.title}
+              {t(el.title)}
             </li>
           </Link>
         ))}
@@ -89,7 +86,7 @@ export default function Navbar({
         </li>
         {openLang &&
           languages.map((el) => (
-            <Link key={el.id} locale={el.id} href={RedirectURL(el.id)}>
+            <Link key={el.id} href={pathname} locale={el.id}>
               <li
                 className={`flex h-fit w-full cursor-pointer gap-1 py-[10px]  hover:bg-grey-600 ${
                   el.id === locale

@@ -1,6 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
 import { locales, localePrefix } from './navigation';
-import { redirect } from 'next/navigation';
 
 export default async function middleware(request) {
   const isLogin = request.cookies.get('Token');

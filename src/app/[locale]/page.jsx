@@ -2,10 +2,16 @@ import Image from 'next/image';
 import FAQ from '@/src/app/components/cards/FAQ';
 import CustomSubscription from '@/src/app/components/cards/CustomSubscription';
 import Subscription from '@/src/app/components/cards/Subscription';
-import { useTranslations } from 'next-intl';
+import pick from 'lodash.pick';
+import {
+  NextIntlClientProvider,
+  useMessages,
+  useTranslations,
+} from 'next-intl';
 
 export default function Home() {
   const t = useTranslations('homePage');
+  const messages = useMessages();
 
   return (
     <div className='flex h-fit w-full flex-col items-center'>
@@ -51,8 +57,10 @@ export default function Home() {
             </p>
           </div>
           <div className='flex h-fit w-full flex-col items-center gap-3 lg:flex-row-reverse'>
-            {/* <Subscription />
-            <CustomSubscription /> */}
+            <NextIntlClientProvider messages={pick(messages, 'pricePage')}>
+              <Subscription />
+              <CustomSubscription />
+            </NextIntlClientProvider>
           </div>
         </div>
       </div>
