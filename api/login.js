@@ -14,7 +14,7 @@ const fetcher = async (url, { payload }) => {
 
 export const requestLoginAPI = async (payload) => {
   try {
-    const response = await fetcher(`${baseURL}/api/scan/requestLogin`, {
+    const response = await fetcher(`${baseURL}/api/vpn/requestLogin`, {
       payload,
     });
 
@@ -26,7 +26,7 @@ export const requestLoginAPI = async (payload) => {
 
 export const loginAPI = async (payload) => {
   try {
-    const response = await fetcher(`${baseURL}/api/scan/login`, {
+    const response = await fetcher(`${baseURL}/api/vpn/login`, {
       payload,
     });
 
@@ -38,7 +38,7 @@ export const loginAPI = async (payload) => {
 
 export const logoutAPI = async (payload) => {
   try {
-    const response = await fetcher(`${baseURL}/api/scan/logout`, {
+    const response = await fetcher(`${baseURL}/api/vpn/logout`, {
       payload,
     });
 
