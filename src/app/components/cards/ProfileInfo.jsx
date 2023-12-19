@@ -1,8 +1,8 @@
 import { Link } from '@/src/navigation';
 import { useTranslations } from 'next-intl';
 
-export default function MemberInfo({ data }) {
-  const t = useTranslations('memberInfoPage');
+export default function ProfileInfo({ data }) {
+  const t = useTranslations('profilePage');
 
   return (
     <div className='flex h-fit w-full flex-col rounded-md border-2 border-grey-700 bg-grey-800 px-9 py-10'>
@@ -37,7 +37,7 @@ export default function MemberInfo({ data }) {
                     </button>
                   </div>
                 ) : (
-                  <Link href='/member/vpn_registration'>
+                  <Link href='/profile/vpn_registration'>
                     <button className='flex items-center gap-1 font-medium text-primary-yellow-500'>
                       {t('connectInfo')}
                       <svg

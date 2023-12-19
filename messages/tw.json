@@ -27,10 +27,9 @@
     "title": "404 ERROR",
     "content": "很抱歉，您訪問的頁面發生錯誤"
   },
-  "memberHeader": {
-    "info": "會員資料",
-    "device": "裝置管理",
-    "subscription": "訂閱方案"
+  "profileHeader": {
+    "info": "會員中心",
+    "device": "裝置管理"
   },
   "homePage": {
     "sectionOneTitleA": "跳躍到世界每個角落",
@@ -55,9 +54,10 @@
   },
   "pricePage": {
     "plans": "訂閱方案",
+    "description": "開啟冒險之旅，立即享受專屬VPN服務，保護您的網路安全。",
     "business": "企業端",
     "customized": "客製化VPN服務",
-    "description": "Jumping Spider VPN提供企業端全方位客製化服務，安全、穩定統一管理，無差異價格策略，最佳VPN解決方案。",
+    "planDescription": "Jumping Spider VPN提供企業端全方位客製化服務，安全、穩定統一管理，無差異價格策略，最佳VPN解決方案。",
     "contact": "聯繫我們",
     "monthly": "月費訂閱制",
     "plan": "VPN訂閱計畫",
@@ -68,15 +68,17 @@
     "featureFour": "適用於所有用戶",
     "months": "訂閱月數",
     "pay": "付款",
+    "more": "了解更多",
     "subscribedDetails": "VPN訂閱明細",
+    "address": "訂閱錢包地址",
     "purchaseDetails": "購買明細",
     "subscribedMonth": "訂閱月數",
     "subscribedAmount": "VPN單月訂閱金額",
-    "sum": "總金額",
+    "total": "總金額",
     "cancel": "取消",
     "payment": "確定付款",
-    "paid": "付款完成",
-    "reminder": "待確認完成，可至會員中心的OpneVPN連線資料查詢。",
+    "paid": "訂閱方案已成立",
+    "reminder": "交易確認需10到15分鐘，請稍後至會員中心的OpneVPN連線資料查詢。",
     "back": "返回會員中心",
     "failed": "付款失敗。請確認是否虛擬貨幣餘額不足或平台技術問題。"
   },
@@ -94,7 +96,7 @@
     "answerThree": "我們的企業端客製化服務涵蓋多方面，例如根據企業需求設定專屬VPN伺服器、定制安全協議、以及整合企業內部身份驗證系統。請直接聯繫我們的企業客服，我們將提供詳盡的解說，以確保滿足您企業的獨特需求。",
     "answerFour": "目前，我們僅接受虛擬貨幣錢包作為支付方式。我們持續努力擴展支付選項，以提供更多方便的選擇。若有支付方面的問題或建議，請隨時聯繫客服，我們將竭誠協助您。"
   },
-  "memberInfoPage": {
+  "profilePage": {
     "profile": "會員中心",
     "address": "錢包地址",
     "status": "最新VPN訂閱狀態",

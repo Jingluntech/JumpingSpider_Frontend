@@ -1,4 +1,4 @@
-import MemberInfo from '@/src/app/components/cards/MemberInfo';
+import ProfileInfo from '@/src/app/components/cards/ProfileInfo';
 import Pagination from '@/src/app/components/pagination/Pagination';
 import RecordTable from '@/src/app/components/tables/RecordTable';
 import { useTranslations } from 'next-intl';
@@ -19,13 +19,13 @@ const dummyData = [
   },
 ];
 
-export default function MemberInfoPage() {
-  const t = useTranslations('memberInfoPage');
+export default function ProfileInfoPage() {
+  const t = useTranslations('profilePage');
 
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
       <h1 className='mb-4 text-[46px] font-bold'>{t('profile')}</h1>
-      <MemberInfo data={dummyData} />
+      <ProfileInfo data={dummyData} />
       <div className='mt-4 lg:mt-8 lg:flex lg:items-center'>
         <h3 className='text-[28px] font-medium'>{t('record')}</h3>
         <p className='text-base text-grey-400 lg:pt-3'> {t('reminder')}</p>

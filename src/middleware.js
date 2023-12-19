@@ -4,7 +4,7 @@ import { locales, localePrefix } from './navigation';
 export default async function middleware(request) {
   const isLogin = request.cookies.get('Token');
 
-  if (request.url.includes('member') && !isLogin) {
+  if (request.url.includes('profile') && !isLogin) {
     const url = new URL(request.url);
     const redirectTo = url.origin + '/';
     return new Response(null, {

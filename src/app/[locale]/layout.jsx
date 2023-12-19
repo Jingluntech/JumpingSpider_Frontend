@@ -45,7 +45,7 @@ export default function RootLayout({ children, params: { locale } }) {
               <Header locale={locale} />
             </NextIntlClientProvider>
             <main className='mt-[82px] h-fit w-full'>{children}</main>
-            <Footer locale={locale} />
+            <Footer />
           </WalletProvider>
         </Web3Modal>
       </body>

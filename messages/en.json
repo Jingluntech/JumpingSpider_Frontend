@@ -27,10 +27,9 @@
     "title": "404 ERROR",
     "content": "I'm sorry, but there was an error with the page you are trying to access."
   },
-  "memberHeader": {
+  "profileHeader": {
     "info": "Profile",
-    "device": "Device",
-    "subscription": "Subscription"
+    "device": "Device"
   },
   "homePage": {
     "sectionOneTitleA": "Explore the world",
@@ -55,9 +54,10 @@
   },
   "pricePage": {
     "plans": "Subscription Plans",
+    "description": "Start your adventure and enjoy the exclusive VPN service now to protect your online security.",
     "business": "Business Side",
     "customized": "Customized VPN Service",
-    "description": "Jumping Spider VPN provides comprehensive customized services for enterprises, safe and stable. Unified management, undifferentiated price strategy, the best VPN solution.",
+    "planDescription": "Jumping Spider VPN provides comprehensive customized services for enterprises, safe and stable. Unified management, undifferentiated price strategy, the best VPN solution.",
     "contact": "Contact US",
     "monthly": "Monthly Subscription",
     "plan": "VPN Subscription Plans",
@@ -68,16 +68,18 @@
     "featureFour": "Available to all users",
     "months": "Months",
     "pay": "Pay",
+    "more": "More",
     "subscribedDetails": "VPN Subscription Details",
+    "address": "Wallet Address",
     "purchaseDetails": "Purchase Details",
     "subscribedMonth": "Subscription Months",
     "subscribedAmount": "VPN Monthly subscription amount",
-    "sum": "Lump Sum",
+    "total": "Total",
     "cancel": "Cancel",
     "payment": "Payment",
-    "paid": "Payment Completed",
-    "reminder": "After the confirmation is completed, you can go to the OpneVPN connection information in the member center to check.",
-    "back": "Return Profile",
+    "paid": "Sub has been placed",
+    "reminder": "Transaction confirmation takes 10 to 15 minutes. Please check the OpneVPN connection information in the profile later.",
+    "back": "Return to Profile",
     "failed": "Payment Fail. Please confirm whether there is insufficient virtual currency balance or platform technical issues."
   },
   "faqPage": {
@@ -94,8 +96,8 @@
     "answerThree": "Our enterprise-side customized services cover many aspects, such as setting up dedicated VPN servers according to enterprise needs, customizing security protocols, and integrating enterprise internal authentication systems. Please contact our corporate customer service directly and we will provide a detailed explanation to ensure that your business's unique needs are met.",
     "answerFour": "Currently, we only accept virtual currency wallets as a payment method. We continue to work hard to expand our payment options to provide more convenient choices. If you have any payment questions or suggestions, please feel free to contact customer service and we will be happy to assist you."
   },
-  "memberInfoPage": {
-    "profile": "Member Profile",
+  "profilePage": {
+    "profile": "Profile",
     "address": "Wallet Address",
     "status": "Latest VPN Subscription Status",
     "subscribed": "{num} Month Subscription",

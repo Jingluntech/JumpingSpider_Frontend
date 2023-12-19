@@ -79,10 +79,10 @@ const dummyData = [
 
 export default function VPNResgistration() {
   const messages = useMessages();
-  const t = useTranslations('memberInfoPage');
+  const t = useTranslations('profilePage');
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
-      <Link href='/member/info'>
+      <Link href='/profile/info'>
         <button className='flex gap-2 text-grey-400'>
           <Image
             src='/corner-down-left.svg'
@@ -97,7 +97,7 @@ export default function VPNResgistration() {
         <h3 className='text-[28px] font-medium'>{t('connectInfo')}</h3>
         <p>{t('expiredDate')}：2026-01-01</p>
       </div>
-      <NextIntlClientProvider messages={pick(messages, 'memberInfoPage')}>
+      <NextIntlClientProvider messages={pick(messages, 'profilePage')}>
         <ConnectInfo data={dummyData} />
       </NextIntlClientProvider>
     </div>

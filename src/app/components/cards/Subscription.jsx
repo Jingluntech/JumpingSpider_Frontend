@@ -92,7 +92,7 @@ export default function Subscription() {
           className='h-11 w-full rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
           onClick={() => handleMoreClick()}
         >
-          了解更多
+          {t('more')}
         </button>
       ) : (
         <div className='flex w-full flex-wrap items-center gap-5 lg:flex-nowrap'>

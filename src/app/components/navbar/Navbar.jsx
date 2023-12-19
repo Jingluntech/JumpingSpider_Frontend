@@ -3,14 +3,14 @@ import { Link, usePathname } from '@/src/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function Navbar({
-  member,
+  profile,
   locale,
   navLinks,
   languages,
   setOpenNavbar,
   setOpenLang,
   openLang,
-  onMemberClick,
+  onProfileClick,
   showLanguage,
 }) {
   const t = useTranslations('header');
@@ -52,16 +52,16 @@ export default function Navbar({
       <ul className='flex h-fit w-full flex-col'>
         <li
           onClick={() => {
-            onMemberClick();
+            onProfileClick();
             setOpenNavbar(false);
           }}
           className={`flex h-fit w-full cursor-pointer py-[10px] hover:bg-grey-600 ${
-            pathname.includes('member')
+            pathname.includes('profile')
               ? 'pl-[14px] text-primary-yellow-500'
               : 'pl-10'
           }`}
         >
-          {pathname.includes('member') && (
+          {pathname.includes('profile') && (
             <Image
               src='/chevron-left.svg'
               alt='chevronleft-icon'
@@ -69,7 +69,7 @@ export default function Navbar({
               height={24}
             />
           )}
-          {member}
+          {profile}
         </li>
         <li
           onClick={() => setOpenLang(!openLang)}

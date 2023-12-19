@@ -20,7 +20,7 @@ export default function PaymentCompleted() {
         {t('paid')}
       </h3>
       <p className='px-4 text-center text-grey-300'>{t('reminder')}</p>
-      <Link href='/member/info' className='mt-6'>
+      <Link href='/profile/info' className='mt-6'>
         <button className='h-11 w-[194px] rounded-md bg-primary-blue-500'>
           {t('back')}
         </button>

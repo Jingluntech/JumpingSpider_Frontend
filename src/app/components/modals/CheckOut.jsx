@@ -9,7 +9,9 @@ export default function CheckOut({ onClick }) {
         <h4 className='text-2xl font-bold'>{t('subscribedDetails')}</h4>
 
         <div className='flex flex-col gap-1'>
-          <h5 className='font-medium text-primary-yellow-500'>訂閱錢包地址</h5>
+          <h5 className='font-medium text-primary-yellow-500'>
+            {t('address')}
+          </h5>
           <p className='break-all font-medium'>
             0x7566A9A20FA0C1C68FA308E8E40132474AD3DA8
           </p>
@@ -34,7 +36,7 @@ export default function CheckOut({ onClick }) {
         </div>
 
         <div>
-          <h5 className='text-lg font-bold'>{t('sum')}：USDT 678.00</h5>
+          <h5 className='text-lg font-bold'>{t('total')}：USDT 678.00</h5>
         </div>
 
         <div className='mt-6 flex flex-col gap-2 lg:flex-row-reverse'>

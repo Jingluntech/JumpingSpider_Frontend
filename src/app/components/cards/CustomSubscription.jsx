@@ -10,7 +10,7 @@ export default function CustomSubscription() {
         <p className='mb-1 text-sm text-primary-yellow-500'>{t('business')}</p>
         <h1 className='mb-3 text-[28px] font-medium'>{t('customized')}</h1>
         <p className='flex text-base text-grey-300 lg:h-[100px]'>
-          {t('description')}
+          {t('planDescription')}
         </p>
       </div>
 

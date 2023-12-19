@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function ConnectInfo({ data }) {
-  const t = useTranslations('memberInfoPage');
+  const t = useTranslations('profilePage');
   const [isClickedId, setIsClickedId] = useState('');
 
   const handleClickBoard = ({ id, text }) => {

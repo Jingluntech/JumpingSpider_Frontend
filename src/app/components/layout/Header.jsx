@@ -61,11 +61,11 @@ export default function Header({ locale }) {
     },
   ];
 
-  const handleMemberCenterClick = () => {
+  const handleProfileClick = () => {
     if (!isLogin) {
       return setOpenWallet(true);
     }
-    router.push('/member/info');
+    router.push('/profile/info');
   };
 
   const showLanguage = () => {
@@ -138,14 +138,14 @@ export default function Header({ locale }) {
             />
             <button
               className={
-                pathname.includes('member')
+                pathname.includes('profile')
                   ? 'relative flex h-full items-center text-primary-yellow-500'
                   : 'flex h-full items-center text-grey-300'
               }
-              onClick={() => handleMemberCenterClick()}
+              onClick={() => handleProfileClick()}
             >
               {t('profile')}
-              {pathname.includes('member') && (
+              {pathname.includes('profile') && (
                 <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
               )}
             </button>
@@ -180,7 +180,7 @@ export default function Header({ locale }) {
       {openNavbar && (
         <>
           <Navbar
-            member={t('profile')}
+            profile={t('profile')}
             locale={locale}
             navLinks={navLinks}
             languages={languages}
@@ -188,7 +188,7 @@ export default function Header({ locale }) {
             showLanguage={showLanguage}
             openLang={openLang}
             setOpenLang={setOpenLang}
-            onMemberClick={() => handleMemberCenterClick()}
+            onProfileClick={() => handleProfileClick()}
           />
           <ModalBackground onClick={() => setOpenNavbar(false)} />
         </>

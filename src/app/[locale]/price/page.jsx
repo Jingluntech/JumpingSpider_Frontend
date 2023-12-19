@@ -18,9 +18,7 @@ export default function PricePage() {
         <div className='mx-auto flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-3 lg:flex-row lg:justify-between'>
           <div className='flex w-full flex-col gap-4 lg:justify-center lg:pl-[200px]'>
             <h1 className='text-[46px] font-bold'>{t('plans')}</h1>
-            <p className='text-grey-300'>
-              開啟冒險之旅，立即享受專屬VPN服務，保護您的網路安全。
-            </p>
+            <p className='text-grey-300'>{t('description')}</p>
           </div>
           <div className='relative h-[260px] w-full'>
             <Image src='/price/banner.svg' alt='price-banner' fill={true} />
