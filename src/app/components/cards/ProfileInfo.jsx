@@ -12,33 +12,31 @@ export default function ProfileInfo({ data }) {
           className='flex flex-col border-b-2 border-grey-700 px-2 py-6 first:pt-0 last:border-b-0 last:pb-0'
         >
           <div className='relative flex flex-col gap-3'>
-            <div className='flex flex-col gap-1 lg:flex-row lg:justify-between'>
+            <div className='flex flex-col gap-3 lg:flex-row lg:justify-between'>
               <h5 className='font-medium text-grey-300'>{t(el.title)}</h5>
               {el.showButton &&
                 (!el.content ? (
-                  <div>
-                    <button className='flex cursor-not-allowed items-center gap-1 font-medium text-grey-400'>
-                      {t('connectInfo')}
-                      <svg
-                        width='24'
-                        height='24'
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <path
-                          d='M9 18L15 12L9 6'
-                          stroke='#949EAE'
-                          strokeWidth='2'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                  <button className='flex h-fit w-[255px] cursor-not-allowed items-center justify-center gap-1 rounded-md bg-grey-600 px-3 py-[9px] font-medium text-grey-400'>
+                    {t('connectInfo')}
+                    <svg
+                      width='24'
+                      height='24'
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M9 18L15 12L9 6'
+                        stroke='#949EAE'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+                  </button>
                 ) : (
-                  <Link href='/profile/vpn_registration'>
-                    <button className='flex items-center gap-1 font-medium text-primary-yellow-500'>
+                  <Link href='/profile/connect_info'>
+                    <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-yellow-500 px-3 py-[9px] font-medium text-grey-800'>
                       {t('connectInfo')}
                       <svg
                         width='24'
@@ -49,7 +47,7 @@ export default function ProfileInfo({ data }) {
                       >
                         <path
                           d='M9 18L15 12L9 6'
-                          stroke='#DDA923'
+                          stroke='#1B2839'
                           strokeWidth='2'
                           strokeLinecap='round'
                           strokeLinejoin='round'

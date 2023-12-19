@@ -1,7 +1,7 @@
 {
   "header": {
     "home": "首页",
-    "price": "价格",
+    "price": "訂閱方案",
     "faq": "常见问题",
     "tutorial": "OpenVPN教学",
     "profile": "会员中心",
@@ -97,7 +97,7 @@
     "answerFour": "目前，我们仅接受虚拟货币钱包作为支付方式。我们持续努力扩展支付选项，以提供更多方便的选择。若有支付方面的问题或建议，请随时联系客服，我们将竭诚协助您。"
   },
   "profilePage": {
-    "profile": "会员资料",
+    "profile": "会员中心",
     "address": "钱包地址",
     "status": "最新VPN订阅状态",
     "subscribed": "订阅 {num} 个月",

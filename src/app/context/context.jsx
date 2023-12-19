@@ -15,7 +15,7 @@ export default function WalletProvider({ children }) {
     if (!token) {
       return setOpenWallet(!openWallet);
     }
-    router.push('/profile/info');
+    router.push('/price');
   };
 
   return (

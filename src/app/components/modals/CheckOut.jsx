@@ -1,7 +1,8 @@
 import { useTranslations } from 'next-intl';
 
-export default function CheckOut({ onClick }) {
+export default function CheckOut({ onClick, months }) {
   const t = useTranslations('pricePage');
+  const sum = (months * 30).toFixed(2);
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
@@ -25,7 +26,9 @@ export default function CheckOut({ onClick }) {
             <h5 className='font-medium text-grey-300'>
               {t('subscribedMonth')}
             </h5>
-            <p className='font-medium'>000 {t('month')}</p>
+            <p className='font-medium'>
+              {months} {t('month')}
+            </p>
           </div>
           <div className='flex flex-col justify-between gap-1 lg:flex-row lg:gap-10'>
             <h5 className='font-medium text-grey-300'>
@@ -36,7 +39,9 @@ export default function CheckOut({ onClick }) {
         </div>
 
         <div>
-          <h5 className='text-lg font-bold'>{t('total')}：USDT 678.00</h5>
+          <h5 className='text-lg font-bold'>
+            {t('total')}：USDT {sum}
+          </h5>
         </div>
 
         <div className='mt-6 flex flex-col gap-2 lg:flex-row-reverse'>
