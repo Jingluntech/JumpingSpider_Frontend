@@ -123,8 +123,8 @@
     "amount": "Amount",
     "status": "State",
     "orderPlaced": "Order Placed",
-    "confirmed": "Transaction Confirmation",
-    "failed": "Transaction Failed"
+    "confirmed": "Payment Successful",
+    "failed": "Payment Failed"
   },
   "devicePage": {
     "management": "Device Management",

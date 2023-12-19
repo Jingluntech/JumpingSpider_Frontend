@@ -123,8 +123,8 @@
     "amount": "金额",
     "status": "状态",
     "orderPlaced": "订单成立",
-    "confirmed": "交易确认",
-    "failed": "交易失败"
+    "confirmed": "付款成功",
+    "failed": "付款失败"
   },
   "devicePage": {
     "management": "装置管理",

@@ -122,8 +122,8 @@
     "amount": "金額",
     "status": "狀態",
     "orderPlaced": "訂單成立",
-    "confirmed": "交易確認",
-    "failed": "交易失敗"
+    "confirmed": "付款成功",
+    "failed": "付款失敗"
   },
   "devicePage": {
     "management": "裝置管理",
