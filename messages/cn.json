@@ -102,6 +102,8 @@
     "connectInfo": "Open VPN连线资料",
     "expired": "尚未訂閱VPN服務 / 訂閱已到期",
     "expiredDate": "订阅到期日",
+    "monthly": "月费订阅制 - 订阅 {num} 个月",
+    "customized": "企业端方案 - 订阅 {num} 个月",
     "record": "VPN订阅纪录",
     "reminder": "（更新纪录仅保留两年）",
     "back": "返回",
@@ -112,11 +114,15 @@
     "copied": "已複製"
   },
   "recordTable": {
-    "purchaseTime": "购买时间",
-    "expiredDate": "到期日",
-    "content": "内容",
+    "time": "时间",
+    "orderNumber": "订单编号",
+    "content": "內容",
     "contentDetail": "Jumping Spider VPN订阅 - {num}个月",
-    "amount": "金额"
+    "amount": "金额",
+    "status": "状态",
+    "orderPlaced": "订单成立",
+    "confirmed": "交易确认",
+    "failed": "交易失败"
   },
   "devicePage": {
     "management": "装置管理",

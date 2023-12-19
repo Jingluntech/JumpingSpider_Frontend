@@ -60,10 +60,14 @@ export default function MemberInfo({ data }) {
                   </Link>
                 ))}
             </div>
-            <div className='flex flex-col gap-2 whitespace-pre-line break-all'>
+            <div
+              className={`flex flex-col gap-2 ${
+                el.id === '1' ? 'break-all' : 'whitespace-pre-line'
+              }`}
+            >
               {!el.content ? (
                 <p className='font-medium text-secondary-red-500'>
-                  尚未訂閱VPN服務 / 訂閱已到期
+                  {t('expired')}
                 </p>
               ) : (
                 <>

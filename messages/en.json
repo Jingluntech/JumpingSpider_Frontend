@@ -102,6 +102,8 @@
     "connectInfo": "OpenVPN Connecting Info",
     "expired": "Not subscribed to VPN service / Subscription has expired",
     "expiredDate": "Expiry Date",
+    "monthly": "Monthly Subscription - {num} Months ",
+    "customized": "Enterprise Plan - {num} Months",
     "record": "VPN Subscription History",
     "reminder": "(Update records are only kept for two years)",
     "back": "Back",
@@ -112,11 +114,15 @@
     "copied": "Copied"
   },
   "recordTable": {
-    "purchaseTime": "Purchase Time",
-    "expiredDate": "Expiry Date",
+    "time": "Time",
+    "orderNumber": "Order Number",
     "content": "Content",
     "contentDetail": "Jumping Spider VPN Subscription - {num} Months",
-    "amount": "Amount"
+    "amount": "Amount",
+    "status": "State",
+    "orderPlaced": "Order Placed",
+    "confirmed": "Transaction Confirmation",
+    "failed": "Transaction Failed"
   },
   "devicePage": {
     "management": "Device Management",

@@ -95,13 +95,15 @@
     "answerFour": "目前，我們僅接受虛擬貨幣錢包作為支付方式。我們持續努力擴展支付選項，以提供更多方便的選擇。若有支付方面的問題或建議，請隨時聯繫客服，我們將竭誠協助您。"
   },
   "memberInfoPage": {
-    "profile": "會員資料",
+    "profile": "會員中心",
     "address": "錢包地址",
     "status": "最新VPN訂閱狀態",
     "subscribed": "訂閱 {num} 個月",
     "connectInfo": "Open VPN連線資料",
     "expired": "尚未訂閱VPN服務 / 訂閱已到期",
     "expiredDate": "訂閱到期日",
+    "monthly": "月費訂閱制 - 訂閱 {num} 個月",
+    "customized": "企業端方案 - 訂閱 {num} 個月",
     "record": "VPN訂閱紀錄",
     "reminder": "（更新紀錄僅保留兩年）",
     "back": "返回",
@@ -111,11 +113,15 @@
     "copied": "已複製"
   },
   "recordTable": {
-    "purchaseTime": "訂閱時間",
-    "expiredDate": "訂閱到期日",
-    "content": "訂閱內容",
+    "time": "時間",
+    "orderNumber": "訂單編號",
+    "content": "內容",
     "contentDetail": "Jumping Spider VPN訂閱 - {num}個月",
-    "amount": "金額"
+    "amount": "金額",
+    "status": "狀態",
+    "orderPlaced": "訂單成立",
+    "confirmed": "交易確認",
+    "failed": "交易失敗"
   },
   "devicePage": {
     "management": "裝置管理",
