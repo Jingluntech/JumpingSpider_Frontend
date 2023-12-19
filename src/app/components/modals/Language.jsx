@@ -24,11 +24,11 @@ export default function Language({
         className={openLang ? '' : 'rotate-180'}
       />
       {openLang && (
-        <ul className='absolute right-0 top-12 z-50 flex flex-col whitespace-nowrap rounded-md bg-grey-800 shadow-custom'>
+        <ul className='absolute right-0 top-12 z-50 flex w-[232px] flex-col whitespace-nowrap rounded-md bg-grey-800 py-2 shadow-custom'>
           {languages.map((el) => (
             <Link key={el.id} href={pathname} locale={el.id}>
               <li
-                className={`flex w-[154px] cursor-pointer justify-start px-[14px] py-[10px] hover:bg-grey-600 ${
+                className={`flex w-full cursor-pointer justify-start px-[14px] py-[10px] hover:bg-grey-600 ${
                   el.id === locale ? 'font-bold text-primary-yellow-500' : ''
                 }`}
               >
