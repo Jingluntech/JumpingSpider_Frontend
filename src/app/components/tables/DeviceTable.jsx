@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import DeleteDevice from '../modals/DeleteDevice';
-import ModalBackground from '../modals/ModalBackground';
+import DeleteDevice from '@/src/app/components/modals/DeleteDevice';
+import ModalBackground from '@/src/app/components/modals/ModalBackground';
 
 export default function DeviceTable() {
   const t = useTranslations('devicePage');

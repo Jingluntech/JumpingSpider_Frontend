@@ -77,7 +77,7 @@ const dummyData = [
   },
 ];
 
-export default function VPNResgistration({ params: { locale } }) {
+export default function VPNResgistration() {
   const messages = useMessages();
   const t = useTranslations('memberInfoPage');
   return (

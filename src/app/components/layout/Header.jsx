@@ -6,11 +6,10 @@ import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Navbar from '@/src/app/components/navbar/Navbar';
 import Language from '@/src/app/components/modals/Language';
 import { useContext, useEffect, useState } from 'react';
-import { Link, usePathname } from '@/src/navigation';
+import { Link, usePathname, useRouter } from '@/src/navigation';
 import Cookies from 'js-cookie';
 import { logoutAPI } from '@/api/login';
 import { useDisconnect } from 'wagmi';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { WalletContext } from '@/src/app/context/context';
 
@@ -66,7 +65,7 @@ export default function Header({ locale }) {
     if (!isLogin) {
       return setOpenWallet(true);
     }
-    router.push(`/${locale}/member/info`);
+    router.push('/member/info');
   };
 
   const showLanguage = () => {
@@ -79,7 +78,7 @@ export default function Header({ locale }) {
       await logoutAPI();
       Cookies.remove('Token');
       disconnect();
-      router.push(`/${locale}#home`);
+      router.push('/');
     } catch (error) {
       console.log(error);
     }

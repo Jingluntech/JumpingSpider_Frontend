@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import CheckOut from '@/src/app/components/modals/CheckOut';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import { useTranslations } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/src/navigation';
 import Cookies from 'js-cookie';
 import { WalletContext } from '@/src/app/context/context';
 
@@ -21,7 +21,7 @@ export default function Subscription() {
     if (!token) {
       return setOpenWallet(!openWallet);
     }
-    router.push('price');
+    router.push('/price');
   };
 
   return (

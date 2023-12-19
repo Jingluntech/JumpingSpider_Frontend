@@ -1,7 +1,7 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/src/navigation';
 import { createContext, useState } from 'react';
 
 export const WalletContext = createContext({});
@@ -15,7 +15,7 @@ export default function WalletProvider({ children }) {
     if (!token) {
       return setOpenWallet(!openWallet);
     }
-    router.push('member/info');
+    router.push('/member/info');
   };
 
   return (

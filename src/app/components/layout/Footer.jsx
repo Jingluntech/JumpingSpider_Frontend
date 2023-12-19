@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/src/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function Footer({ locale }) {
@@ -9,22 +9,22 @@ export default function Footer({ locale }) {
     {
       id: 'footer-0',
       title: 'home',
-      url: `/${locale}`,
+      url: '/',
     },
     {
       id: 'footer-1',
       title: 'price',
-      url: `/${locale}/price`,
+      url: '/price',
     },
     {
       id: 'footer-2',
       title: 'faq',
-      url: `/${locale}/faq`,
+      url: '/faq',
     },
     {
       id: 'footer-3',
       title: 'tutorial',
-      url: `/${locale}/tutorial`,
+      url: '/tutorial',
       icon: '/external-link.svg',
     },
     {
