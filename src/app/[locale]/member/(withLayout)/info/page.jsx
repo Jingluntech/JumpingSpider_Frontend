@@ -1,8 +1,6 @@
 import MemberInfo from '@/src/app/components/cards/MemberInfo';
 import Pagination from '@/src/app/components/pagination/Pagination';
 import RecordTable from '@/src/app/components/tables/RecordTable';
-import pick from 'lodash.pick';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { useTranslations } from 'next-intl';
 
 const dummyData = [
@@ -15,34 +13,19 @@ const dummyData = [
   {
     id: '2',
     title: 'status',
-    content: '訂閱 12 個月',
+    // content: '月費訂閱制 / 企業端方案\n－ 訂閱 12 個月',
     sub: '（訂閱到期日：2026-01-01）',
     showButton: true,
   },
-  {
-    id: '3',
-    title: 'IP地址',
-    content: '168.1.1.11',
-    showButton: false,
-  },
-  {
-    id: '4',
-    title: '位置',
-    content: 'Taipei , Taiwan',
-    showButton: false,
-  },
 ];
 
-export default function MemberInfoPage({ params: { locale } }) {
-  const messages = useMessages();
+export default function MemberInfoPage() {
   const t = useTranslations('memberInfoPage');
 
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
       <h1 className='mb-4 text-[46px] font-bold'>{t('profile')}</h1>
-      <NextIntlClientProvider messages={pick(messages, 'memberInfoPage')}>
-        <MemberInfo locale={locale} data={dummyData} />
-      </NextIntlClientProvider>
+      <MemberInfo data={dummyData} />
       <div className='mt-4 lg:mt-8 lg:flex lg:items-center'>
         <h3 className='text-[28px] font-medium'>{t('record')}</h3>
         <p className='text-base text-grey-400 lg:pt-3'> {t('reminder')}</p>

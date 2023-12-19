@@ -1,9 +1,8 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/src/navigation';
 import { useTranslations } from 'next-intl';
 
-export default function MemebrNavbar({ locale }) {
+export default function MemebrNavbar() {
   const t = useTranslations('memberHeader');
   const pathname = usePathname();
 
@@ -11,17 +10,12 @@ export default function MemebrNavbar({ locale }) {
     {
       id: '1',
       title: 'info',
-      url: `/${locale}/member/info`,
+      url: '/member/info',
     },
     {
       id: '2',
       title: 'device',
-      url: `/${locale}/member/device`,
-    },
-    {
-      id: '3',
-      title: 'subscription',
-      url: `/${locale}/member/plan`,
+      url: '/member/device',
     },
   ];
 

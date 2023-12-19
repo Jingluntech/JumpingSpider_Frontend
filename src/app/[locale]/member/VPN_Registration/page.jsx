@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import MemberInfo from '@/src/app/components/cards/MemberInfo';
-import Link from 'next/link';
+import ConnectInfo from '@/src/app/components/cards/ConnectInfo';
+import { Link } from '@/src/navigation';
 import pick from 'lodash.pick';
 import {
   NextIntlClientProvider,
@@ -82,7 +82,7 @@ export default function VPNResgistration({ params: { locale } }) {
   const t = useTranslations('memberInfoPage');
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
-      <Link href={`/${locale}/member/info`}>
+      <Link href='/member/info'>
         <button className='flex gap-2 text-grey-400'>
           <Image
             src='/corner-down-left.svg'
@@ -98,7 +98,7 @@ export default function VPNResgistration({ params: { locale } }) {
         <p>{t('expiredDate')}：2026-01-01</p>
       </div>
       <NextIntlClientProvider messages={pick(messages, 'memberInfoPage')}>
-        <MemberInfo data={dummyData} />
+        <ConnectInfo data={dummyData} />
       </NextIntlClientProvider>
     </div>
   );
