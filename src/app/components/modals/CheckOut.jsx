@@ -2,12 +2,12 @@
 
 import { useTranslations } from 'next-intl';
 import ethersClient from '@/utils/eth/ethersClient';
-import Image from 'next/image';
-import { useState } from 'react';
+import { createOrderAPI } from '@/api/order';
 
 export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const t = useTranslations('pricePage');
-  const sum = (months * 30).toFixed(2);
+  const sum = Number((months * 30).toFixed(2));
+
   const {
     ethereumConnect,
     getAddress,
@@ -33,8 +33,15 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
       return;
     }
 
-    const re = await transfer(sum, decimals);
-    console.log(re.hash);
+    const res = await createOrderAPI({
+      address,
+      amount: sum,
+      month: months,
+      txHash: '123',
+    });
+
+    // const re = await transfer(sum, decimals);
+    // console.log(re.hash);
     onClick();
   };
 

@@ -64,12 +64,6 @@ export default function ConnectWallet({ onClick, connect, back }) {
         });
 
         Cookies.set('Token', jwt);
-        const decimals = await getDecimals();
-        const balance = await getBalance(address, decimals);
-        console.log(balance);
-        let re = await transfer(1, decimals);
-        console.log(re);
-        console.log(signCode);
         onClick();
       }
     } catch (error) {
