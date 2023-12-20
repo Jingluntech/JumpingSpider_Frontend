@@ -154,7 +154,7 @@ export default function ethersClient() {
 
   const signMessage = async (message) => {
     try {
-      const signCode = await signer.signMessage('uuid');
+      const signCode = await signer.signMessage(message);
       return signCode;
     } catch (error) {
       console.error('error: ', error);

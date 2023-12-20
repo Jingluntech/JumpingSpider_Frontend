@@ -6,13 +6,24 @@ import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import { useTranslations } from 'next-intl';
 import { usePathname } from '@/src/navigation';
 import { WalletContext } from '@/src/app/context/context';
+import Cookies from 'js-cookie';
 
 export default function Subscription() {
   const pathname = usePathname();
   const t = useTranslations('pricePage');
   const [checkOutOpen, setCheckOutOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [inputValue, setInputValue] = useState(1);
-  const { handleSubscribeClick } = useContext(WalletContext);
+  const { openWallet, setOpenWallet, handleSubscribeClick } =
+    useContext(WalletContext);
+
+  const handleCheckoutOpenClick = () => {
+    const token = Cookies.get('Token');
+    if (!token) {
+      return setOpenWallet(!openWallet);
+    }
+    setCheckOutOpen(true);
+  };
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-primary-blue-500 bg-grey-800 px-10 py-11 lg:flex-1'>
@@ -141,7 +152,7 @@ export default function Subscription() {
           </div>
           <button
             className='h-11 w-[164px] rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
-            onClick={() => setCheckOutOpen(true)}
+            onClick={() => handleCheckoutOpenClick()}
           >
             {t('pay')}
           </button>
@@ -153,9 +164,22 @@ export default function Subscription() {
           <CheckOut
             onClick={() => setCheckOutOpen(false)}
             months={inputValue}
+            setIsAlertOpen={setIsAlertOpen}
           />
           <ModalBackground />
         </>
+      )}
+
+      {isAlertOpen && (
+        <div className='fixed inset-x-0 top-0 z-50 flex h-10 items-center justify-center gap-3 bg-secondary-red-100 font-medium text-secondary-red-500'>
+          <Image
+            src='/alert/alerts_icon_mistake.svg'
+            alt='mistake-icon'
+            width={24}
+            height={24}
+          />
+          {t('failed')}
+        </div>
       )}
     </div>
   );

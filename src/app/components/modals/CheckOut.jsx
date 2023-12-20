@@ -1,8 +1,42 @@
-import { useTranslations } from 'next-intl';
+'use client';
 
-export default function CheckOut({ onClick, months }) {
+import { useTranslations } from 'next-intl';
+import ethersClient from '@/utils/eth/ethersClient';
+import Image from 'next/image';
+import { useState } from 'react';
+
+export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const t = useTranslations('pricePage');
   const sum = (months * 30).toFixed(2);
+  const {
+    ethereumConnect,
+    getAddress,
+    getDecimals,
+    getBalance,
+    signMessage,
+    transfer,
+  } = ethersClient();
+
+  const handleCheckoutClick = async () => {
+    let { provider, signer, contract, contractSigner } =
+      await ethereumConnect();
+    const address = await getAddress();
+    const decimals = await getDecimals();
+    const balance = await getBalance(address, decimals);
+
+    if (sum > balance) {
+      onClick();
+      setIsAlertOpen(true);
+      setTimeout(() => {
+        setIsAlertOpen(false);
+      }, 3000);
+      return;
+    }
+
+    const re = await transfer(sum, decimals);
+    console.log(re.hash);
+    onClick();
+  };
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
@@ -45,7 +79,10 @@ export default function CheckOut({ onClick, months }) {
         </div>
 
         <div className='mt-6 flex flex-col gap-2 lg:flex-row-reverse'>
-          <button className='flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'>
+          <button
+            className='flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
+            onClick={() => handleCheckoutClick()}
+          >
             {t('payment')}
           </button>
           <button

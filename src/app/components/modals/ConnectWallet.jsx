@@ -54,10 +54,8 @@ export default function ConnectWallet({ onClick, connect, back }) {
         let { provider, signer, contract, contractSigner } =
           await ethereumConnect();
 
-        // TODO: fetch UUID API
         const tempAddress = await getAddress();
         const { data: uuid } = await requestLoginAPI({ address: tempAddress });
-        // TODO: fetch JWT API
         const signCode = await signer.signMessage(uuid);
         const { data: jwt } = await loginAPI({
           address: tempAddress,
@@ -66,12 +64,12 @@ export default function ConnectWallet({ onClick, connect, back }) {
         });
 
         Cookies.set('Token', jwt);
-        // const decimals = await getDecimals();
-        // const balance = await getBalance(address, decimals);
-        // console.log(balance);
-        // let re = await transfer(1, decimals);
-        // console.log(re);
-        // console.log(signCode);
+        const decimals = await getDecimals();
+        const balance = await getBalance(address, decimals);
+        console.log(balance);
+        let re = await transfer(1, decimals);
+        console.log(re);
+        console.log(signCode);
         onClick();
       }
     } catch (error) {
