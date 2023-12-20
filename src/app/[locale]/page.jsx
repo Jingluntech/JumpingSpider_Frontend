@@ -40,8 +40,8 @@ export default function Home() {
         </div>
       </div>
       <div className='h-fit w-full bg-grey-900'>
-        <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center gap-8 px-4 py-14'>
-          <div className='flex w-full flex-col items-center justify-center gap-4'>
+        <div className='mx-auto flex h-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center gap-8 px-4 py-14'>
+          <div className='flex flex-col items-center justify-center gap-4'>
             <h1 className='text-center text-[46px] font-bold'>
               {t('sectionTwoTitle')}
             </h1>

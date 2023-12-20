@@ -54,7 +54,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='h-fit w-screen bg-grey-800'>
+    <footer className='h-fit w-full bg-grey-800'>
       <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center px-4 py-14 lg:flex-row lg:justify-between'>
         <ul className='flex flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8'>
           {footerLinks.map((el) => (

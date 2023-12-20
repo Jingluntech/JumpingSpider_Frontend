@@ -89,7 +89,7 @@ export default function Header({ locale }) {
   }, []);
 
   return (
-    <header className='fixed z-30 flex h-20 w-screen min-w-[350px] justify-center border-b border-grey-600 bg-grey-900 px-4'>
+    <header className='fixed z-30 flex h-20 w-full min-w-[350px] justify-center border-b border-grey-600 bg-grey-900 px-4'>
       <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
         <div className='flex h-full w-full items-center gap-4'>
           <div
