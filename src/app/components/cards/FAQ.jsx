@@ -7,7 +7,7 @@ export default function FAQ({ q, a }) {
 
   const getCardOpenClass = (boolean) => {
     const closeStyle =
-      'bg-grey-700 w-full h-fit px-10 py-[27px] rounded-md flex flex-col justify-center items-center cursor-pointer';
+      'bg-grey-700 w-full h-fit px-10 py-[27px] rounded-md flex flex-col justify-center cursor-pointer';
     const openStyle = boolean && 'h-fit transition-[height]';
     return `${closeStyle} ${openStyle}`;
   };

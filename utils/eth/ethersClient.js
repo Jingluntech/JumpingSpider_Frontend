@@ -177,7 +177,7 @@ export default function ethersClient() {
       amount = ethers.parseUnits(temp, decimals);
       const tempAddress = process.env.NEXT_PUBLIC_RECEIVE_ADDRESS;
       const tx = await contractSigner.transfer(tempAddress, amount);
-      await tx.wait();
+      // await tx.wait();
       return tx;
     } catch (error) {
       console.error('transfer Usdc error: ', error);

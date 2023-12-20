@@ -46,7 +46,7 @@ export default function SearchFAQ({ FAQcardData }) {
         </button>
       </form>
       <hr className='w-full border-b border-grey-600' />
-      <div className='flex flex-col gap-5'>
+      <div className='flex w-full flex-col gap-5'>
         {searchedData?.map((el) =>
           el.content === 'answerOne' ? (
             <FAQ

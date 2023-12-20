@@ -8,11 +8,12 @@ import {
   useNetwork,
   useSwitchNetwork,
   useSignMessage,
+  useDisconnect,
 } from 'wagmi';
 
 import ethersClient from '@/utils/eth/ethersClient';
 import Image from 'next/image';
-import { loginAPI, requestLoginAPI } from '@/api/login';
+import { loginAPI, logoutAPI, requestLoginAPI } from '@/api/login';
 import Cookies from 'js-cookie';
 
 export default function ConnectWallet({ onClick, connect, back }) {
@@ -25,6 +26,7 @@ export default function ConnectWallet({ onClick, connect, back }) {
   const { chain } = useNetwork();
   const { pendingChainId, switchNetwork } = useSwitchNetwork();
   const { isLoading } = useSignMessage();
+  const { disconnect } = useDisconnect();
 
   const {
     ethereumConnect,
@@ -72,11 +74,17 @@ export default function ConnectWallet({ onClick, connect, back }) {
     }
   };
 
-  window.ethereum.on('chainChanged', () => {
+  window.ethereum.on('chainChanged', async () => {
+    await logoutAPI();
+    Cookies.remove('Token');
+    disconnect();
     console.log('chainChanged');
   });
 
-  window.ethereum.on('accountsChanged', () => {
+  window.ethereum.on('accountsChanged', async () => {
+    await logoutAPI();
+    Cookies.remove('Token');
+    disconnect();
     console.log('accountsChanged');
   });
 

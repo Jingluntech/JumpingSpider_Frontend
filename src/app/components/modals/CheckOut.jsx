@@ -3,10 +3,14 @@
 import { useTranslations } from 'next-intl';
 import ethersClient from '@/utils/eth/ethersClient';
 import { createOrderAPI } from '@/api/order';
+import { useRouter } from '@/src/navigation';
+import { useState } from 'react';
 
 export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const t = useTranslations('pricePage');
   const sum = Number((months * 30).toFixed(2));
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     ethereumConnect,
@@ -18,6 +22,7 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   } = ethersClient();
 
   const handleCheckoutClick = async () => {
+    setIsLoading(true);
     let { provider, signer, contract, contractSigner } =
       await ethereumConnect();
     const address = await getAddress();
@@ -33,16 +38,18 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
       return;
     }
 
-    const res = await createOrderAPI({
+    const re = await transfer(sum, decimals);
+
+    await createOrderAPI({
       address,
       amount: sum,
       month: months,
-      txHash: '123',
+      txHash: re.hash,
     });
 
-    // const re = await transfer(sum, decimals);
-    // console.log(re.hash);
     onClick();
+    router.push('/payment_completed');
+    setIsLoading(false);
   };
 
   return (
@@ -89,6 +96,7 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
           <button
             className='flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
             onClick={() => handleCheckoutClick()}
+            disabled={isLoading}
           >
             {t('payment')}
           </button>
