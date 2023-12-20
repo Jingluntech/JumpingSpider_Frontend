@@ -103,6 +103,7 @@
     "subscribed": "{num} Month Subscription",
     "connectInfo": "OpenVPN Connecting Info",
     "expired": "Not subscribed to VPN service / Subscription has expired",
+    "subscribedBtn": "Buy Now",
     "expiredDate": "Expiry Date",
     "monthly": "Monthly Subscription - {num} Months ",
     "customized": "Enterprise Plan - {num} Months",

@@ -104,6 +104,7 @@
     "connectInfo": "Open VPN连线资料",
     "expired": "尚未訂閱VPN服務 / 訂閱已到期",
     "expiredDate": "订阅到期日",
+    "subscribedBtn": "立即订阅",
     "monthly": "月费订阅制 - 订阅 {num} 个月",
     "customized": "企业端方案 - 订阅 {num} 个月",
     "record": "VPN订阅纪录",

@@ -103,6 +103,7 @@
     "subscribed": "訂閱 {num} 個月",
     "connectInfo": "Open VPN連線資料",
     "expired": "尚未訂閱VPN服務 / 訂閱已到期",
+    "subscribedBtn": "立即訂閱",
     "expiredDate": "訂閱到期日",
     "monthly": "月費訂閱制 - 訂閱 {num} 個月",
     "customized": "企業端方案 - 訂閱 {num} 個月",
