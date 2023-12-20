@@ -7,7 +7,7 @@ export default function FAQ({ q, a }) {
 
   const getCardOpenClass = (boolean) => {
     const closeStyle =
-      'bg-grey-700 w-full h-[86px] px-10 py-[27px] rounded-md flex flex-col justify-center cursor-pointer';
+      'bg-grey-700 w-full h-fit px-10 py-[27px] rounded-md flex flex-col justify-center items-center cursor-pointer';
     const openStyle = boolean && 'h-fit transition-[height]';
     return `${closeStyle} ${openStyle}`;
   };
@@ -19,7 +19,7 @@ export default function FAQ({ q, a }) {
     >
       <div
         className={`flex items-center justify-between gap-2 ${
-          openCard ? 'mb-4' : 'mt-4'
+          openCard ? 'mb-4' : ''
         }`}
       >
         <h5 className='text-lg font-bold'>{q}</h5>
@@ -31,13 +31,7 @@ export default function FAQ({ q, a }) {
           className={`flex-shrink-0 ${openCard ? '' : 'rotate-180'}`}
         />
       </div>
-      <p
-        className={`text-justify text-grey-300 ${
-          openCard ? '' : 'mt-4 overflow-hidden'
-        }`}
-      >
-        {a}
-      </p>
+      <p className={`text-grey-300 ${openCard ? 'mt-4' : 'hidden'}`}>{a}</p>
     </div>
   );
 }
