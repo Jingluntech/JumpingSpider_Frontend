@@ -30,7 +30,7 @@ export default function Subscription() {
       <div className='flex flex-col gap-3 lg:mb-8 lg:flex-row-reverse lg:justify-between'>
         <div className='relative h-[156px] w-[174px]'>
           <Image
-            src='/home/monthly_vpn.png'
+            src='/home/monthly_vpn.svg'
             alt='monthly-vpn-img'
             fill={true}
           />

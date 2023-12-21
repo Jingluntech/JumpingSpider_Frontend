@@ -19,7 +19,7 @@ export default function CustomSubscription() {
       <div className='flex h-fit w-full flex-col gap-3 rounded-md border bg-grey-700 px-5 py-6 lg:flex-row-reverse lg:justify-between lg:px-6 lg:py-8'>
         <div className='relative h-[148px] w-[158px] lg:flex-shrink-0'>
           <Image
-            src='/home/Business_vpn.png'
+            src='/home/Business_vpn.svg'
             alt='business-vpn-img'
             fill='true'
           />

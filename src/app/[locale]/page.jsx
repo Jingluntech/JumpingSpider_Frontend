@@ -19,7 +19,7 @@ export default function Home() {
         <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center px-4 lg:flex-row-reverse'>
           <div className='relative mt-[35px] h-[306px] w-[297px] flex-shrink-0 px-6 lg:h-[610px] lg:w-[598px] lg:flex-1 lg:py-[69px]'>
             <Image
-              src='/home/homepage_image.png'
+              src='/home/homepage_image.svg'
               alt='homepage-image'
               fill={true}
             />
@@ -62,7 +62,7 @@ export default function Home() {
       <div className='h-fit w-full bg-gradient-to-b from-[#0E1727] to-[#08396F]'>
         <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center gap-[30px] px-4 lg:flex-row-reverse lg:py-[30px]'>
           <div className='relative h-[343px] w-[343px] lg:h-[500px] lg:w-[500px] lg:flex-1'>
-            <Image src='/home/vpn03_image.png' alt='vpn-image3' fill={true} />
+            <Image src='/home/vpn03_image.svg' alt='vpn-image3' fill={true} />
           </div>
           <div className='mb-[60px] flex flex-col gap-4 lg:flex-1'>
             <h1 className='text-center text-[46px] font-bold lg:text-left'>
@@ -79,7 +79,7 @@ export default function Home() {
       <div className='h-fit w-full bg-grey-900'>
         <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center px-4 py-[60px] lg:flex-row lg:gap-[108px] lg:py-[93px]'>
           <div className='relative h-[272px] w-[343px] lg:h-[354px] lg:w-[500px] lg:flex-1'>
-            <Image src='/home/vpn04_image.png' alt='vpn-image4' fill={true} />
+            <Image src='/home/vpn04_image.svg' alt='vpn-image4' fill={true} />
           </div>
           <div className='flex flex-col gap-4 lg:flex-1 lg:pl-14'>
             <h1 className='text-center text-[46px] font-bold lg:text-left'>
