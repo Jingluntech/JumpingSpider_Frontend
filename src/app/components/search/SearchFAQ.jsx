@@ -6,7 +6,32 @@ import { useEffect, useState } from 'react';
 
 export default function SearchFAQ({ FAQcardData }) {
   const t = useTranslations('faqPage');
-  const [searchedData, setSearchedData] = useState(FAQcardData);
+
+  const translatedData = FAQcardData.map((el) => {
+    if (el.id === 'faq-1') {
+      const answerOne = t.rich(el.content, {
+        tutorial: (chunks) => (
+          <a className='text-primary-yellow-500 underline' href='/tutorial'>
+            {chunks}
+          </a>
+        ),
+      });
+      return {
+        ...el,
+        title: t(el.title),
+        content: answerOne[0] + answerOne[1].props.children + answerOne[2],
+      };
+    } else {
+      return {
+        ...el,
+        title: t(el.title),
+        content: t(el.content),
+      };
+    }
+  });
+
+  const [searchedData, setSearchedData] = useState(translatedData);
+
   const [searchedKeyword, setSearchedKeyword] = useState('');
 
   const handleSearchInputChange = (value) => {
@@ -17,15 +42,15 @@ export default function SearchFAQ({ FAQcardData }) {
     e.preventDefault();
     const searchedArr = searchedData.filter(
       (el) =>
-        t(el.title).toLowerCase().includes(searchedKeyword.toLowerCase()) ||
-        t(el.content).toLowerCase().includes(searchedKeyword.toLowerCase())
+        el.title.toLowerCase().includes(searchedKeyword.toLowerCase()) ||
+        el.content.toLowerCase().includes(searchedKeyword.toLowerCase())
     );
     setSearchedData(searchedArr);
   };
 
   useEffect(() => {
     if (!searchedKeyword || !searchedKeyword.trim()) {
-      setSearchedData(FAQcardData);
+      setSearchedData(translatedData);
     }
   }, [searchedKeyword]);
 
@@ -47,26 +72,9 @@ export default function SearchFAQ({ FAQcardData }) {
       </form>
       <hr className='w-full border-b border-grey-600' />
       <div className='flex w-full flex-col gap-5'>
-        {searchedData?.map((el) =>
-          el.content === 'answerOne' ? (
-            <FAQ
-              q={t(el.title)}
-              a={t.rich(el.content, {
-                tutorial: (chunks) => (
-                  <a
-                    className='text-primary-yellow-500 underline'
-                    href='/tutorial'
-                  >
-                    {chunks}
-                  </a>
-                ),
-              })}
-              key={el.id}
-            />
-          ) : (
-            <FAQ q={t(el.title)} a={t(el.content)} key={el.id} />
-          )
-        )}
+        {searchedData?.map((el) => (
+          <FAQ q={el.title} a={el.content} key={el.id} />
+        ))}
       </div>
     </div>
   );

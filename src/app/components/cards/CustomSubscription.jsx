@@ -16,7 +16,7 @@ export default function CustomSubscription() {
 
       <hr className='border-t-[2px] border-grey-600' />
 
-      <div className='flex h-fit w-full flex-col gap-3 rounded-md border bg-grey-700 px-5 py-6 lg:flex-row-reverse lg:justify-between lg:px-6 lg:py-8'>
+      <div className='flex h-fit w-full flex-col gap-3 rounded-md bg-grey-700 px-5 py-6 lg:flex-row-reverse lg:justify-between lg:px-6 lg:py-8'>
         <div className='relative h-[148px] w-[158px] lg:flex-shrink-0'>
           <Image
             src='/home/Business_vpn.svg'

@@ -44,7 +44,7 @@ export default function RootLayout({ children, params: { locale } }) {
             <NextIntlClientProvider messages={pick(messages, 'header')}>
               <Header locale={locale} />
             </NextIntlClientProvider>
-            <main className='mt-[82px] h-fit w-full'>{children}</main>
+            <main className='mt-[80px] h-fit w-full'>{children}</main>
             <Footer />
           </WalletProvider>
         </Web3Modal>
