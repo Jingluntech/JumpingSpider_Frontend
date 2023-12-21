@@ -34,6 +34,8 @@ export default function Home() {
               {t('sectionOneContentA')}
               <br />
               {t('sectionOneContentB')}
+              <br />
+              {t('sectionOneContentC')}
             </p>
             <SubscribeBtn button={t('sectionOneButton')} />
           </div>

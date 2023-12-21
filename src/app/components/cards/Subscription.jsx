@@ -124,7 +124,7 @@ export default function Subscription() {
               <input
                 type='number'
                 disabled
-                className='h-full w-full border-y border-grey-600 bg-grey-900 text-center align-middle'
+                className='h-full w-full border-y border-grey-600 bg-grey-900 text-center align-middle text-grey-100'
                 value={inputValue}
               />
             </div>

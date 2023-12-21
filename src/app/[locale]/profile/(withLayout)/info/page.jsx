@@ -28,7 +28,9 @@ export default function ProfileInfoPage() {
       <ProfileInfo data={dummyData} />
       <div className='mt-4 lg:mt-8 lg:flex lg:items-center'>
         <h3 className='text-[28px] font-medium'>{t('record')}</h3>
-        <p className='text-base text-grey-400 lg:pt-3'> {t('reminder')}</p>
+        <p className='text-base text-grey-400 lg:ml-3 lg:pt-3'>
+          {t('reminder')}
+        </p>
       </div>
       <RecordTable />
       <Pagination />

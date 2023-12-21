@@ -79,7 +79,7 @@ export default function ProfileInfo({ data }) {
             <div className='flex flex-col gap-3'>
               <h5 className='font-medium text-grey-300'>{t(el.title)}</h5>
               {!el.content ? (
-                <div className='flex flex-col gap-4 lg:flex-row lg:justify-between'>
+                <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
                   <div
                     className={`flex flex-col gap-2 ${
                       el.id === '1' ? 'break-all' : 'whitespace-pre-line'
@@ -92,50 +92,22 @@ export default function ProfileInfo({ data }) {
                   {el.showButton && handleStatus(2, t)}
                 </div>
               ) : (
-                <div className='flex flex-col gap-4 lg:flex-row lg:justify-between'>
+                <div className='flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between'>
                   <div
-                    className={`flex flex-col gap-3 ${
+                    className={`flex flex-col justify-center gap-3 ${
                       el.id === '1' ? 'break-all' : 'whitespace-pre-line'
                     }`}
                   >
                     <p>{el.content}</p>
-                    <p className='text-sm font-medium text-grey-400'>
-                      {el.sub}
-                    </p>
-                  </div>
-                  {el.showButton && handleStatus(0, t)}
-                </div>
-              )}
-
-              {/* {el.showButton &&
-                (!el.content ? (
-                  <div className='flex flex-col gap-3 lg:flex-row lg:justify-between'>
-                    <div
-                      className={`flex flex-col gap-2 ${
-                        el.id === '1' ? 'break-all' : 'whitespace-pre-line'
-                      }`}
-                    >
-                      <p className='font-medium text-secondary-red-500'>
-                        {t('expired')}
-                      </p>
-                    </div>
-                    {handleStatus(2, t)}
-                  </div>
-                ) : (
-                  <div className='flex flex-col gap-3 lg:flex-row lg:justify-between'>
-                    <div
-                      className={`flex flex-col gap-2 ${
-                        el.id === '1' ? 'break-all' : 'whitespace-pre-line'
-                      }`}
-                    >
-                      <p>{el.content}</p>
+                    {el.sub && (
                       <p className='text-sm font-medium text-grey-400'>
                         {el.sub}
                       </p>
-                    </div>
-                    {handleStatus(1, t)}
+                    )}
                   </div>
-                ))} */}
+                  {el.showButton && handleStatus(1, t)}
+                </div>
+              )}
             </div>
           </div>
         </div>
