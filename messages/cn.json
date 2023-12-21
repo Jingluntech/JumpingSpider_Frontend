@@ -1,7 +1,7 @@
 {
   "header": {
     "home": "首页",
-    "price": "訂閱方案",
+    "price": "订阅方案",
     "faq": "常见问题",
     "tutorial": "OpenVPN教学",
     "profile": "会员中心",
@@ -15,7 +15,7 @@
   },
   "footer": {
     "home": "首页",
-    "price": "价格",
+    "price": "订阅方案",
     "faq": "常见问题",
     "tutorial": "OpenVPN教学",
     "TOS": "服务条款",
@@ -54,7 +54,7 @@
     "sectionFiveContent": "立即订阅Jumping Spider VPN，打造你的专属安全通道，体验全新的网路自由。"
   },
   "pricePage": {
-    "plans": "訂閱方案",
+    "plans": "订阅方案",
     "description": "开启冒险之旅，立即享受专属VPN服务，保护您的网路安全。",
     "business": "企业端",
     "customized": "客制化VPN服务",
