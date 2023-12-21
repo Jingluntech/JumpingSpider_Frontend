@@ -64,7 +64,7 @@ export default function SearchFAQ({ FAQcardData }) {
           onChange={(e) => handleSearchInputChange(e.target.value)}
         />
         <button
-          className='flex h-full w-[124px] items-center justify-center rounded bg-primary-blue-500 px-[18px] py-3 font-medium'
+          className='flex h-full w-[124px] items-center justify-center rounded bg-primary-blue-500 px-[18px] py-3 font-medium hover:bg-grey-100 hover:text-grey-800'
           onClick={(e) => handleSearchClick(e)}
         >
           {t('search')}

@@ -1,6 +1,5 @@
 import { Link } from '@/src/navigation';
 import { useTranslations } from 'next-intl';
-import SubscribeBtn from '@/src/app/components/button/SubscribeBtn';
 
 const handleStatus = (statusCode, t) => {
   switch (statusCode) {
@@ -30,7 +29,7 @@ const handleStatus = (statusCode, t) => {
     case 1: {
       return (
         <Link href='/profile/connect_info'>
-          <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-yellow-500 px-3 py-[9px] font-medium text-grey-800'>
+          <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-yellow-500 px-3 py-[9px] font-medium text-grey-800 hover:bg-grey-100 hover:text-grey-800'>
             {t('connectInfo')}
             <svg
               width='24'
@@ -55,7 +54,7 @@ const handleStatus = (statusCode, t) => {
     case 2: {
       return (
         <Link href='/price'>
-          <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-blue-500 px-3 py-[9px] font-medium text-grey-100'>
+          <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-blue-500 px-3 py-[9px] font-medium text-grey-100 hover:bg-grey-100 hover:text-grey-800'>
             {t('subscribedBtn')}
           </button>
         </Link>

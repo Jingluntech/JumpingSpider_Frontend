@@ -26,11 +26,14 @@ export default function CustomSubscription() {
         </div>
         <div className='flex flex-col gap-2'>
           <h5 className='text-lg font-bold'>{t('contact')}</h5>
-          <div className='flex items-center gap-2 underline'>
+          <div className='flex items-end gap-2 underline'>
             <Image src='/mail.svg' alt='mail-icon' width={20} height={20} />
-            <p className='break-all text-sm font-medium lg:text-base'>
+            <a
+              href='mailto:support@spiderweb.club'
+              className='break-all text-sm font-medium lg:text-base'
+            >
               support@spiderweb.club
-            </p>
+            </a>
           </div>
         </div>
       </div>

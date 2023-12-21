@@ -1,12 +1,10 @@
 'use client';
 import Image from 'next/image';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import CheckOut from '@/src/app/components/modals/CheckOut';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import { useTranslations } from 'next-intl';
-import { usePathname } from '@/src/navigation';
-import { WalletContext } from '@/src/app/context/context';
-import Cookies from 'js-cookie';
+import { usePathname, Link } from '@/src/navigation';
 
 export default function Subscription() {
   const pathname = usePathname();
@@ -14,16 +12,6 @@ export default function Subscription() {
   const [checkOutOpen, setCheckOutOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [inputValue, setInputValue] = useState(1);
-  const { openWallet, setOpenWallet, handleSubscribeClick } =
-    useContext(WalletContext);
-
-  const handleCheckoutOpenClick = () => {
-    const token = Cookies.get('Token');
-    if (!token) {
-      return setOpenWallet(!openWallet);
-    }
-    setCheckOutOpen(true);
-  };
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-primary-blue-500 bg-grey-800 px-10 py-11 lg:flex-1'>
@@ -89,12 +77,11 @@ export default function Subscription() {
         </li>
       </ul>
       {!pathname.includes('price') ? (
-        <button
-          className='h-11 w-full rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
-          onClick={() => handleSubscribeClick()}
-        >
-          {t('more')}
-        </button>
+        <Link href='/price'>
+          <button className='h-11 w-full rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'>
+            {t('more')}
+          </button>
+        </Link>
       ) : (
         <div className='flex w-full flex-wrap items-center gap-5 lg:flex-nowrap'>
           <div className='text-sm text-grey-300'>{t('months')}</div>
