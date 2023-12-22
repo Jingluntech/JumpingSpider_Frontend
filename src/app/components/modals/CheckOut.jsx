@@ -8,7 +8,12 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 
-export default function CheckOut({ onClick, months, setIsAlertOpen }) {
+export default function CheckOut({
+  onClick,
+  months,
+  setIsAlertOpen,
+  walletAddress,
+}) {
   const t = useTranslations('pricePage');
   const token = Cookies.get('Token');
   const sum = Number((months * 30).toFixed(2));
@@ -27,7 +32,6 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const handleCheckoutClick = async () => {
     let { provider, signer, contract, contractSigner } =
       await ethereumConnect();
-    const address = await getAddress();
     const decimals = await getDecimals();
     const balance = await getBalance(address, decimals);
 
@@ -46,7 +50,7 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
     await createOrderAPI({
       token,
       payload: {
-        address,
+        address: walletAddress, //TODO:確認是否要地址
         amount: sum,
         month: months,
         txHash: re.hash,
@@ -67,9 +71,7 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
           <h5 className='font-medium text-primary-yellow-500'>
             {t('address')}
           </h5>
-          <p className='break-all font-medium'>
-            0x7566A9A20FA0C1C68FA308E8E40132474AD3DA8
-          </p>
+          <p className='break-all font-medium'>{walletAddress}</p>
         </div>
 
         <div className='flex flex-col gap-3 border-y-2 border-grey-700 py-4'>

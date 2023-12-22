@@ -1,12 +1,14 @@
 'use client';
 import Image from 'next/image';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import CheckOut from '@/src/app/components/modals/CheckOut';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/src/navigation';
 import Cookies from 'js-cookie';
 import { WalletContext } from '@/src/app/context/context';
+import { getOrdersAPI } from '@/api/order';
+import ethersClient from '@/utils/eth/ethersClient';
 
 export default function Subscription() {
   const isLogin = Cookies.get('Token');
@@ -16,13 +18,37 @@ export default function Subscription() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [inputValue, setInputValue] = useState(1);
   const { openWallet, setOpenWallet } = useContext(WalletContext);
+  const [walletAddress, setWalletAddress] = useState('');
 
-  const handlePayClick = () => {
+  const { ethereumConnect, getAddress } = ethersClient();
+
+  const handlePayClick = async () => {
     if (!isLogin) {
       return setOpenWallet(!openWallet);
     }
+
+    const { errorCode } = await getOrdersAPI({
+      token: isLogin,
+    });
+
+    if (errorCode === 1010 || errorCode === 1011) {
+      Cookies.remove('Token');
+      setOpenWallet(!openWallet);
+      return;
+    }
+
     setCheckOutOpen(!checkOutOpen);
   };
+
+  useEffect(() => {
+    const getAddressAsync = async () => {
+      let { provider, signer, contract, contractSigner } =
+        await ethereumConnect();
+      const address = await getAddress();
+      setWalletAddress(address);
+    };
+    getAddressAsync();
+  }, []);
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-primary-blue-500 bg-grey-800 px-10 py-11 lg:flex-1'>
@@ -165,6 +191,7 @@ export default function Subscription() {
             onClick={() => setCheckOutOpen(false)}
             months={inputValue}
             setIsAlertOpen={setIsAlertOpen}
+            walletAddress={walletAddress}
           />
           <ModalBackground />
         </>
