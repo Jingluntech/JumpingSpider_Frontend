@@ -31,12 +31,12 @@ const handleStatus = (statusCode, t) => {
 
 export default function RecordTable({ data }) {
   const t = useTranslations('recordTable');
-  const orderList = data.orderList;
+  const orderList = data?.orderList;
 
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>
       <table className='w-full lg:hidden'>
-        {orderList.map((el) => (
+        {orderList?.map((el) => (
           <tbody
             key={el.orderNumber}
             className='border-b border-grey-600 last:border-none'
@@ -201,7 +201,7 @@ export default function RecordTable({ data }) {
           </tr>
         </thead>
         <tbody>
-          {orderList.map((el) => (
+          {orderList?.map((el) => (
             <tr key={el.orderNumber} className='h-20 border-b border-grey-500'>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
                 {el.createTime}

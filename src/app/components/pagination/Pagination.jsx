@@ -9,8 +9,8 @@ export default function Pagination({ data }) {
   const router = useRouter();
   const pathname = usePathname();
   const [currentPageData, setCurrentPageData] = useState({
-    currentPage: data.currentPage,
-    totalPage: data.totalPage,
+    currentPage: data?.currentPage,
+    totalPage: data?.totalPage,
   });
 
   const onClick = (n) => {

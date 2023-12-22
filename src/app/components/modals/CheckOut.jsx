@@ -6,6 +6,7 @@ import { createOrderAPI } from '@/api/order';
 import { useRouter } from '@/src/navigation';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
+import Image from 'next/image';
 
 export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const t = useTranslations('pricePage');
@@ -24,7 +25,6 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   } = ethersClient();
 
   const handleCheckoutClick = async () => {
-    setIsLoading(true);
     let { provider, signer, contract, contractSigner } =
       await ethereumConnect();
     const address = await getAddress();
@@ -40,6 +40,7 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
       return;
     }
 
+    setIsLoading(true);
     const re = await transfer(sum, decimals);
 
     await createOrderAPI({
@@ -52,14 +53,14 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
       },
     });
 
+    setIsLoading(false);
     onClick();
     router.push('/payment_completed');
-    setIsLoading(false);
   };
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
-      <div className='flex h-fit w-full max-w-fit flex-col gap-4 rounded-md bg-grey-900 p-6'>
+      <div className='relative flex h-fit w-full max-w-fit flex-col gap-4 rounded-md bg-grey-900 p-6'>
         <h4 className='text-2xl font-bold'>{t('subscribedDetails')}</h4>
 
         <div className='flex flex-col gap-1'>
@@ -101,7 +102,6 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
           <button
             className='flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
             onClick={() => handleCheckoutClick()}
-            disabled={isLoading}
           >
             {t('payment')}
           </button>
@@ -112,6 +112,17 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
             {t('cancel')}
           </button>
         </div>
+        {isLoading && (
+          <div className='absolute inset-x-0 inset-y-0 z-50 flex h-full w-full items-center justify-center rounded-md bg-grey-300 opacity-50'>
+            <Image
+              src='/ellipse.svg'
+              alt='spinner-icon'
+              width={84}
+              height={84}
+              className='animate-spin'
+            />
+          </div>
+        )}
       </div>
     </div>
   );

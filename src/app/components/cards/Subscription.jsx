@@ -25,7 +25,9 @@ export default function Subscription() {
         </div>
         <div className='h-fit'>
           <p className='mb-1 text-sm text-primary-yellow-500'>{t('monthly')}</p>
-          <h1 className='text-[28px] font-medium'>{t('plan')}</h1>
+          <h1 className='text-[28px] font-medium lg:whitespace-nowrap'>
+            {t('plan')}
+          </h1>
           <p className='mt-3 flex h-16 items-center font-inter text-base text-grey-300'>
             USDT
             <span className='mx-2 font-inter text-[46px] font-bold text-grey-100'>

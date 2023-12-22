@@ -8,8 +8,10 @@ export default function CustomSubscription() {
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-grey-500 bg-grey-800 px-10 py-11 lg:flex-1 lg:gap-8'>
       <div>
         <p className='mb-1 text-sm text-primary-yellow-500'>{t('business')}</p>
-        <h1 className='mb-3 text-[28px] font-medium'>{t('customized')}</h1>
-        <p className='flex text-base text-grey-300 lg:h-[100px]'>
+        <h1 className='mb-3 text-[28px] font-medium lg:whitespace-nowrap'>
+          {t('customized')}
+        </h1>
+        <p className='mb-3 flex text-base text-grey-300 lg:h-[88px]'>
           {t('planDescription')}
         </p>
       </div>
