@@ -1,11 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useRouter, usePathname } from '@/src/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default function Pagination() {
+export default function Pagination({ data }) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const [currentPageData, setCurrentPageData] = useState({
-    currentPage: 2,
-    totalPage: 10,
+    currentPage: data.currentPage,
+    totalPage: data.totalPage,
   });
 
   const onClick = (n) => {
@@ -14,6 +19,12 @@ export default function Pagination() {
       currentPage: prev.currentPage + n,
     }));
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', currentPageData.currentPage);
+    router.push(pathname + '?' + params.toString());
+  }, [currentPageData.currentPage]);
 
   return (
     <div className='mt-1 flex h-fit w-full items-center justify-end gap-3 px-10 py-3'>

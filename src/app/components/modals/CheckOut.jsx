@@ -5,9 +5,11 @@ import ethersClient from '@/utils/eth/ethersClient';
 import { createOrderAPI } from '@/api/order';
 import { useRouter } from '@/src/navigation';
 import { useState } from 'react';
+import Cookies from 'js-cookie';
 
 export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const t = useTranslations('pricePage');
+  const token = Cookies.get('Token');
   const sum = Number((months * 30).toFixed(2));
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -41,10 +43,13 @@ export default function CheckOut({ onClick, months, setIsAlertOpen }) {
     const re = await transfer(sum, decimals);
 
     await createOrderAPI({
-      address,
-      amount: sum,
-      month: months,
-      txHash: re.hash,
+      token,
+      payload: {
+        address,
+        amount: sum,
+        month: months,
+        txHash: re.hash,
+      },
     });
 
     onClick();

@@ -139,7 +139,7 @@ export default function Subscription() {
           </div>
           <button
             className='h-11 w-[164px] rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
-            onClick={() => handleCheckoutOpenClick()}
+            onClick={() => setCheckOutOpen(!checkOutOpen)}
           >
             {t('pay')}
           </button>

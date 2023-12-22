@@ -1,7 +1,9 @@
+import { getOrdersAPI } from '@/api/order';
 import ProfileInfo from '@/src/app/components/cards/ProfileInfo';
 import Pagination from '@/src/app/components/pagination/Pagination';
 import RecordTable from '@/src/app/components/tables/RecordTable';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { cookies } from 'next/headers';
 
 const dummyData = [
   {
@@ -19,8 +21,17 @@ const dummyData = [
   },
 ];
 
-export default function ProfileInfoPage() {
-  const t = useTranslations('profilePage');
+export default async function ProfileInfoPage({ searchParams: { page } }) {
+  const t = await getTranslations('profilePage');
+  const cookieStore = cookies();
+  const token = cookieStore.get('Token').value;
+
+  const { data } = await getOrdersAPI({
+    token,
+    payload: {
+      page,
+    },
+  });
 
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
@@ -32,8 +43,8 @@ export default function ProfileInfoPage() {
           {t('reminder')}
         </p>
       </div>
-      <RecordTable />
-      <Pagination />
+      <RecordTable data={data} />
+      <Pagination data={data} />
     </div>
   );
 }
