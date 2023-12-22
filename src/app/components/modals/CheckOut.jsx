@@ -16,7 +16,7 @@ export default function CheckOut({
 }) {
   const t = useTranslations('pricePage');
   const token = Cookies.get('Token');
-  const sum = Number((months * 30).toFixed(2));
+  const sum = (months * 30).toFixed(2);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,36 +30,42 @@ export default function CheckOut({
   } = ethersClient();
 
   const handleCheckoutClick = async () => {
-    let { provider, signer, contract, contractSigner } =
-      await ethereumConnect();
-    const decimals = await getDecimals();
-    const balance = await getBalance(walletAddress, decimals);
+    try {
+      let { provider, signer, contract, contractSigner } =
+        await ethereumConnect();
+      const decimals = await getDecimals();
+      const balance = await getBalance(walletAddress, decimals);
 
-    if (sum > balance) {
+      if (sum > balance) {
+        onClick();
+        setIsAlertOpen(true);
+        setTimeout(() => {
+          setIsAlertOpen(false);
+        }, 3000);
+        return;
+      }
+
+      setIsLoading(true);
+      const re = await transfer(sum, decimals);
+
+      await createOrderAPI({
+        token,
+        payload: {
+          address: walletAddress, //TODO:確認是否要地址
+          amount: Number(sum),
+          month: months,
+          txHash: re.hash,
+        },
+      });
+
+      setIsLoading(false);
       onClick();
-      setIsAlertOpen(true);
-      setTimeout(() => {
-        setIsAlertOpen(false);
-      }, 3000);
-      return;
+      router.push('/payment_completed');
+    } catch (error) {
+      setIsLoading(false);
+      onClick();
+      console.log(error);
     }
-
-    setIsLoading(true);
-    const re = await transfer(sum, decimals);
-
-    await createOrderAPI({
-      token,
-      payload: {
-        address: walletAddress, //TODO:確認是否要地址
-        amount: sum,
-        month: months,
-        txHash: re.hash,
-      },
-    });
-
-    setIsLoading(false);
-    onClick();
-    router.push('/payment_completed');
   };
 
   return (
