@@ -33,7 +33,7 @@ export default function CheckOut({
     let { provider, signer, contract, contractSigner } =
       await ethereumConnect();
     const decimals = await getDecimals();
-    const balance = await getBalance(address, decimals);
+    const balance = await getBalance(walletAddress, decimals);
 
     if (sum > balance) {
       onClick();
