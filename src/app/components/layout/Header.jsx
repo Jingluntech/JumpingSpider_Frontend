@@ -12,6 +12,7 @@ import { logoutAPI } from '@/api/login';
 import { useDisconnect } from 'wagmi';
 import { useTranslations } from 'next-intl';
 import { WalletContext } from '@/src/app/context/context';
+import { getOrdersAPI } from '@/api/order';
 
 export default function Header({ locale }) {
   const t = useTranslations('header');
@@ -87,6 +88,21 @@ export default function Header({ locale }) {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (pathname.includes('profile')) {
+      const getOrdersAsync = async () => {
+        const { errorCode } = await getOrdersAPI({
+          token: Cookies.get('Token'),
+        });
+        if (errorCode === 1011 || errorCode === 1010) {
+          Cookies.remove('Token');
+          router.push('/');
+        }
+      };
+      getOrdersAsync();
+    }
+  }, [pathname]);
 
   return (
     <header className='fixed z-30 flex h-20 w-full min-w-[350px] justify-center border-b border-grey-600 bg-grey-900 px-4'>

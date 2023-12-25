@@ -39,7 +39,7 @@ export default async function ProfileInfoPage({ searchParams: { page } }) {
       <ProfileInfo data={profileData} />
       {data?.orderList?.length > 0 && (
         <>
-          <div className=' lg:flex lg:items-center'>
+          <div className='mt-[56px] lg:flex lg:items-center'>
             <h3 className='text-[28px] font-medium'>{t('record')}</h3>
             <p className='text-base text-grey-400 lg:ml-3 lg:pt-3'>
               {t('reminder')}
