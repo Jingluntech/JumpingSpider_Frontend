@@ -30,8 +30,7 @@ export default function SearchFAQ({ FAQcardData }) {
     }
   });
 
-  const [searchedData, setSearchedData] = useState(translatedData);
-
+  const [searchedData, setSearchedData] = useState(FAQcardData);
   const [searchedKeyword, setSearchedKeyword] = useState('');
 
   const handleSearchInputChange = (value) => {
@@ -40,17 +39,21 @@ export default function SearchFAQ({ FAQcardData }) {
 
   const handleSearchClick = (e) => {
     e.preventDefault();
-    const searchedArr = searchedData.filter(
+    const indexArr = translatedData.filter(
       (el) =>
         el.title.toLowerCase().includes(searchedKeyword.toLowerCase()) ||
         el.content.toLowerCase().includes(searchedKeyword.toLowerCase())
+    );
+
+    const searchedArr = searchedData.filter((el) =>
+      indexArr.some((data) => data.id === el.id)
     );
     setSearchedData(searchedArr);
   };
 
   useEffect(() => {
     if (!searchedKeyword || !searchedKeyword.trim()) {
-      setSearchedData(translatedData);
+      setSearchedData(FAQcardData);
     }
   }, [searchedKeyword]);
 
@@ -72,9 +75,27 @@ export default function SearchFAQ({ FAQcardData }) {
       </form>
       <hr className='w-full border-b border-grey-600' />
       <div className='flex w-full flex-col gap-5'>
-        {searchedData?.map((el) => (
-          <FAQ q={el.title} a={el.content} key={el.id} />
-        ))}
+        {searchedData?.map((el) => {
+          if (el.id === 'faq-1') {
+            return (
+              <FAQ
+                q={t(el.title)}
+                a={t.rich(el.content, {
+                  tutorial: (chunks) => (
+                    <a
+                      className='text-primary-yellow-500 underline'
+                      href='/tutorial'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                })}
+                key={el.id}
+              />
+            );
+          }
+          return <FAQ q={t(el.title)} a={t(el.content)} key={el.id} />;
+        })}
       </div>
     </div>
   );
