@@ -6,7 +6,7 @@ import { createOrderAPI } from '@/api/order';
 import { useRouter } from '@/src/navigation';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 export default function CheckOut({
   onClick,
@@ -31,6 +31,7 @@ export default function CheckOut({
 
   const handleCheckoutClick = async () => {
     try {
+      setIsLoading(true);
       let { provider, signer, contract, contractSigner } =
         await ethereumConnect();
       const decimals = await getDecimals();
@@ -45,13 +46,11 @@ export default function CheckOut({
         return;
       }
 
-      setIsLoading(true);
       const re = await transfer(sum, decimals);
 
       await createOrderAPI({
         token,
         payload: {
-          address: walletAddress, //TODO:確認是否要地址
           amount: Number(sum),
           month: months,
           txHash: re.hash,
@@ -110,6 +109,7 @@ export default function CheckOut({
           <button
             className='flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
             onClick={() => handleCheckoutClick()}
+            disabled={isLoading}
           >
             {t('payment')}
           </button>
@@ -120,7 +120,7 @@ export default function CheckOut({
             {t('cancel')}
           </button>
         </div>
-        {isLoading && (
+        {/* {isLoading && (
           <div className='absolute inset-x-0 inset-y-0 z-50 flex h-full w-full items-center justify-center rounded-md bg-grey-300 opacity-50'>
             <Image
               src='/ellipse.svg'
@@ -130,7 +130,7 @@ export default function CheckOut({
               className='animate-spin'
             />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
