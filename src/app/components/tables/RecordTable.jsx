@@ -66,7 +66,10 @@ export default function RecordTable({ data }) {
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
                 {t('amount')}
               </th>
-              <td className='w-1/2 p-3'>USDT {el.amount}</td>
+              <td className='w-1/2 p-3'>
+                {el.coinType}
+                {el.amount}
+              </td>
             </tr>
             <tr className='min-h-11 h-11 text-left'>
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>

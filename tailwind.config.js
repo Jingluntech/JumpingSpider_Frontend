@@ -65,10 +65,11 @@ module.exports = {
         inter: ['var(--font-inter)', 'sans-serif'],
       },
       height: {
-        'screen-minus': 'calc(100vh - 222px)',
+        'screen-minus': 'calc(100vh - 284px)',
+        'member-screen-minus': 'calc(100vh - 352px)',
       },
       minHeight: {
-        'member-screen-minus': 'calc(100vh - 290px)',
+        'member-screen-minus': 'calc(100vh - 352px)',
       },
       boxShadow: {
         custom: '0 8px 8px 0 rgba(0, 0, 0, 0.35)',
