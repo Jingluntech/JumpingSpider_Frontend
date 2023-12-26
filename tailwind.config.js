@@ -69,6 +69,7 @@ module.exports = {
         'member-screen-minus': 'calc(100vh - 352px)',
       },
       minHeight: {
+        'screen-minus': 'calc(100vh - 284px)',
         'member-screen-minus': 'calc(100vh - 352px)',
       },
       boxShadow: {

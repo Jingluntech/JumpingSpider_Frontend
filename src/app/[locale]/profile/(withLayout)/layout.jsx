@@ -12,7 +12,7 @@ export default function ProfileLayout({ children, params: { locale } }) {
           <ProfileNavbar locale={locale} />
         </NextIntlClientProvider>
       </header>
-      <div className='h-fit pt-[68px]'>{children}</div>
+      <div className='min-h-screen-minus h-fit pt-[68px]'>{children}</div>
     </>
   );
 }

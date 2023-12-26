@@ -4,10 +4,12 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import DeleteDevice from '@/src/app/components/modals/DeleteDevice';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
+import Image from 'next/image';
 
 export default function DeviceTable() {
   const t = useTranslations('devicePage');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const handleDeleteClick = () => {
     setOpenDeleteModal(!openDeleteModal);
@@ -123,9 +125,24 @@ export default function DeviceTable() {
       </table>
       {openDeleteModal && (
         <>
-          <DeleteDevice onClick={() => handleDeleteClick(!openDeleteModal)} />
+          <DeleteDevice
+            onClick={() => handleDeleteClick(!openDeleteModal)}
+            isAlertOpen={isAlertOpen}
+            setIsAlertOpen={setIsAlertOpen}
+          />
           <ModalBackground />
         </>
+      )}
+      {isAlertOpen && (
+        <div className='fixed inset-x-0 top-0 z-50 flex h-10 items-center justify-center gap-3 bg-secondary-green-100 font-medium text-secondary-green-text'>
+          <Image
+            src='/alert/alerts_icon_success.svg'
+            alt='success-icon'
+            width={24}
+            height={24}
+          />
+          {t('deleted')}
+        </div>
       )}
     </div>
   );

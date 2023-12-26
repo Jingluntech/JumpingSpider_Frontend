@@ -1,8 +1,16 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-export default function DeleteDevice({ onClick }) {
+export default function DeleteDevice({ onClick, setIsAlertOpen }) {
   const t = useTranslations('devicePage');
+
+  const handleConfirmDeleteClick = () => {
+    onClick();
+    setIsAlertOpen(true);
+    setTimeout(() => {
+      setIsAlertOpen(false);
+    }, 3000);
+  };
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
@@ -29,7 +37,10 @@ export default function DeleteDevice({ onClick }) {
           >
             {t('cancel')}
           </button>
-          <button className='flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'>
+          <button
+            className='flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
+            onClick={() => handleConfirmDeleteClick()}
+          >
             {t('confirm')}
           </button>
         </footer>
