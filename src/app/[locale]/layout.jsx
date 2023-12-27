@@ -29,11 +29,7 @@ export const metadata = {
   },
 };
 
-// Can be imported from a shared config
-const locales = ['en', 'tw', 'cn'];
-
 export default function RootLayout({ children, params: { locale } }) {
-  if (!locales.includes(locale)) notFound();
   const messages = useMessages();
 
   return (
