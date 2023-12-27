@@ -2,7 +2,6 @@ import { Inter, Noto_Sans_TC } from 'next/font/google';
 import './globals.css';
 import Header from '@/src/app/components/layout/Header';
 import Footer from '@/src/app/components/layout/Footer';
-import { notFound } from 'next/navigation';
 import pick from 'lodash.pick';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Web3Modal } from '@/src/app/components/Web3Modal';

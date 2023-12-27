@@ -6,7 +6,7 @@ export default function PaymentCompleted() {
   const t = useTranslations('pricePage');
 
   return (
-    <div className='mx-auto flex h-screen-minus w-full min-w-[350px] max-w-[1216px] flex-col items-center gap-4 px-4 pt-10'>
+    <div className='mx-auto flex h-fit min-h-screen-minus w-full min-w-[350px] max-w-[1216px] flex-col items-center gap-4 px-4 pb-[117px] pt-[56px]'>
       <div className='relative h-[204px] w-[204px]'>
         <Image src='/paid.svg' alt='payment-completed-img' fill={true} />
       </div>

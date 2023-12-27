@@ -1,7 +1,4 @@
 import { getOrdersAPI } from '@/api/order';
-// import ProfileInfo from '@/src/app/components/cards/ProfileInfo';
-// import Pagination from '@/src/app/components/pagination/Pagination';
-// import RecordTable from '@/src/app/components/tables/RecordTable';
 import { getTranslations } from 'next-intl/server';
 import { cookies } from 'next/headers';
 import dynamic from 'next/dynamic';
