@@ -1,5 +1,3 @@
-import CustomSubscription from '@/src/app/components/cards/CustomSubscription';
-import Subscription from '@/src/app/components/cards/Subscription';
 import pick from 'lodash.pick';
 import {
   NextIntlClientProvider,
@@ -7,6 +5,14 @@ import {
   useTranslations,
 } from 'next-intl';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+const CustomSubscription = dynamic(
+  () => import('@/src/app/components/cards/CustomSubscription')
+);
+const Subscription = dynamic(
+  () => import('@/src/app/components/cards/Subscription')
+);
 
 export default function PricePage() {
   const messages = useMessages();

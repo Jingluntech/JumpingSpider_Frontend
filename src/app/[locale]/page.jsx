@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import CustomSubscription from '@/src/app/components/cards/CustomSubscription';
-import Subscription from '@/src/app/components/cards/Subscription';
 import pick from 'lodash.pick';
 import {
   NextIntlClientProvider,
@@ -8,6 +6,14 @@ import {
   useTranslations,
 } from 'next-intl';
 import SubscribeBtn from '@/src/app/components/button/SubscribeBtn';
+import dynamic from 'next/dynamic';
+
+const CustomSubscription = dynamic(
+  () => import('@/src/app/components/cards/CustomSubscription')
+);
+const Subscription = dynamic(
+  () => import('@/src/app/components/cards/Subscription')
+);
 
 export default function Home() {
   const t = useTranslations('homePage');

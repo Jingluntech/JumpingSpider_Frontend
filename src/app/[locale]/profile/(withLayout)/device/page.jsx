@@ -1,11 +1,17 @@
-import Pagination from '@/src/app/components/pagination/Pagination';
-import DeviceTable from '@/src/app/components/tables/DeviceTable';
 import pick from 'lodash.pick';
 import {
   NextIntlClientProvider,
   useMessages,
   useTranslations,
 } from 'next-intl';
+import dynamic from 'next/dynamic';
+
+const DeviceTable = dynamic(
+  () => import('@/src/app/components/tables/DeviceTable')
+);
+const Pagination = dynamic(
+  () => import('@/src/app/components/pagination/Pagination')
+);
 
 export default function DevicePage() {
   const messages = useMessages();
