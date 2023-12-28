@@ -130,13 +130,14 @@
   "devicePage": {
     "management": "裝置管理",
     "name": "裝置名稱",
-    "time": "連線時間",
+    "definedName": "別名",
     "operate": "操作",
     "delete": "刪除",
     "deleteDevice": "刪除裝置",
     "reminder": "確定是否要執行刪除動作，刪除將無法復原。",
     "cancel": "取消",
     "confirm": "確定",
-    "deleted": "裝置已刪除完成"
+    "deleted": "裝置已刪除完成",
+    "edit": "編輯別名名稱"
   }
 }

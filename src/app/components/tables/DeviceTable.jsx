@@ -5,14 +5,20 @@ import { useState } from 'react';
 import DeleteDevice from '@/src/app/components/modals/DeleteDevice';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Image from 'next/image';
+import EditDevice from '@/src/app/components/modals/EditDevice';
 
 export default function DeviceTable() {
   const t = useTranslations('devicePage');
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const handleDeleteClick = () => {
     setOpenDeleteModal(!openDeleteModal);
+  };
+
+  const handleEditClick = () => {
+    setOpenEditModal(!openEditModal);
   };
 
   return (
@@ -20,10 +26,6 @@ export default function DeviceTable() {
       <table className='w-full lg:hidden'>
         <tbody className='border-b border-grey-600'>
           <tr className='min-h-11 h-11 text-left'>
-            <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>#</th>
-            <td className='w-1/2 p-3'>1</td>
-          </tr>
-          <tr className='min-h-11 h-11 text-left'>
             <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
               {t('name')}
             </th>
@@ -31,38 +33,33 @@ export default function DeviceTable() {
           </tr>
           <tr className='min-h-11 h-11 text-left'>
             <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
-              {t('time')}
+              {t('definedName')}
             </th>
-            <td className='w-1/2 p-3'>2023-06-01 21:00</td>
-          </tr>
-          <tr className='min-h-11 h-11 text-left'>
-            <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
-              {t('operate')}
-            </th>
-            <td
-              className='w-1/2 cursor-pointer p-3 text-primary-yellow-500 hover:text-grey-100'
-              onClick={() => handleDeleteClick()}
-            >
-              {t('delete')}
+            <td className='w-1/2 p-3'>
+              <div className='flex items-center gap-2'>
+                123
+                <span
+                  className='edit cursor-pointer'
+                  onClick={() => handleEditClick()}
+                >
+                  <svg
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M11 4.00001H4C3.46957 4.00001 2.96086 4.21073 2.58579 4.5858C2.21071 4.96087 2 5.46958 2 6.00001V20C2 20.5304 2.21071 21.0392 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0392 20 20.5304 20 20V13M18.5 2.50001C18.8978 2.10219 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10219 21.5 2.50001C21.8978 2.89784 22.1213 3.4374 22.1213 4.00001C22.1213 4.56262 21.8978 5.10219 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z'
+                      stroke='#656E80'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </span>
+              </div>
             </td>
-          </tr>
-        </tbody>
-        <tbody className='border-b border-grey-600'>
-          <tr className='min-h-11 h-11 text-left'>
-            <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>#</th>
-            <td className='w-1/2 p-3'>1</td>
-          </tr>
-          <tr className='min-h-11 h-11 text-left'>
-            <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
-              {t('name')}
-            </th>
-            <td className='w-1/2 p-3'>11CB00413</td>
-          </tr>
-          <tr className='min-h-11 h-11 text-left'>
-            <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
-              {t('time')}
-            </th>
-            <td className='w-1/2 p-3'>2023-06-01 21:00</td>
           </tr>
           <tr className='min-h-11 h-11 text-left'>
             <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
@@ -80,14 +77,11 @@ export default function DeviceTable() {
       <table className='hidden w-full lg:table'>
         <thead className='bg-grey-800'>
           <tr className='h-11 border-b border-grey-700'>
-            <th className='w-1/12 px-6 py-3 text-left text-sm font-medium text-grey-300'>
-              #
-            </th>
-            <th className='w-4/12 px-6 py-3 text-left text-sm font-medium text-grey-300'>
+            <th className='w-5/12 px-6 py-3 text-left text-sm font-medium text-grey-300'>
               {t('name')}
             </th>
             <th className='w-5/12 px-6 py-3 text-left text-sm font-medium text-grey-300'>
-              {t('time')}
+              {t('definedName')}
             </th>
             <th className='w-2/12 px-6 py-3 text-left text-sm font-medium text-grey-300'>
               {t('operate')}
@@ -96,23 +90,31 @@ export default function DeviceTable() {
         </thead>
         <tbody>
           <tr className='h-20 border-b border-grey-500'>
-            <td className='w-1/12 px-6 py-3 text-left text-sm'>1</td>
-            <td className='w-4/12 px-6 py-3 text-left text-sm'>11CB00413</td>
+            <td className='w-5/12 px-6 py-3 text-left text-sm'>11CB00413</td>
             <td className='w-5/12 px-6 py-3 text-left text-sm'>
-              2023-06-01 21:00
-            </td>
-            <td
-              className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'
-              onClick={() => handleDeleteClick()}
-            >
-              {t('delete')}
-            </td>
-          </tr>
-          <tr className='h-20 border-b border-grey-500'>
-            <td className='w-1/12 px-6 py-3 text-left text-sm'>1</td>
-            <td className='w-4/12 px-6 py-3 text-left text-sm'>11CB00413</td>
-            <td className='w-5/12 px-6 py-3 text-left text-sm'>
-              2023-06-01 21:00
+              <div className='flex items-center gap-2'>
+                123
+                <span
+                  className='edit cursor-pointer'
+                  onClick={() => handleEditClick()}
+                >
+                  <svg
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M11 4.00001H4C3.46957 4.00001 2.96086 4.21073 2.58579 4.5858C2.21071 4.96087 2 5.46958 2 6.00001V20C2 20.5304 2.21071 21.0392 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0392 20 20.5304 20 20V13M18.5 2.50001C18.8978 2.10219 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10219 21.5 2.50001C21.8978 2.89784 22.1213 3.4374 22.1213 4.00001C22.1213 4.56262 21.8978 5.10219 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z'
+                      stroke='#656E80'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </span>
+              </div>
             </td>
             <td
               className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'
@@ -126,10 +128,16 @@ export default function DeviceTable() {
       {openDeleteModal && (
         <>
           <DeleteDevice
-            onClick={() => handleDeleteClick(!openDeleteModal)}
+            onClick={() => handleDeleteClick()}
             isAlertOpen={isAlertOpen}
             setIsAlertOpen={setIsAlertOpen}
           />
+          <ModalBackground />
+        </>
+      )}
+      {openEditModal && (
+        <>
+          <EditDevice onClick={() => handleEditClick()} />
           <ModalBackground />
         </>
       )}

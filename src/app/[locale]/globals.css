@@ -27,7 +27,8 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.copy:hover > svg > path {
+.copy:hover > svg > path,
+.edit:hover > svg > path {
   @apply stroke-grey-300;
 }
 

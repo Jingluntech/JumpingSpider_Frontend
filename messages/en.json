@@ -131,13 +131,14 @@
   "devicePage": {
     "management": "Device Management",
     "name": "Device name",
-    "time": "Connection Time",
+    "definedName": "User-Defined Name",
     "operate": "Operate",
     "delete": "Delete",
     "deleteDevice": "Delete Device",
     "reminder": "Determine whether to perform the deletion action. Deletion will not be undone.",
     "cancel": "Cancel",
     "confirm": "OK",
-    "deleted": "Device has been deleted"
+    "deleted": "Device has been deleted",
+    "edit": "Edit User-Defined Name"
   }
 }
