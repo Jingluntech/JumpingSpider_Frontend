@@ -12,8 +12,15 @@ export default function Language({
 
   return (
     <div
+      role='button'
+      tabindex='0'
       className='relative flex cursor-pointer items-center gap-1 text-grey-300'
       onClick={() => setOpenLang(!openLang)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          setOpenLang(!openLang);
+        }
+      }}
     >
       {showLanguage()}
       <Image
@@ -24,9 +31,24 @@ export default function Language({
         className={openLang ? '' : 'rotate-180'}
       />
       {openLang && (
-        <ul className='absolute right-0 top-12 z-50 flex w-[232px] flex-col whitespace-nowrap rounded-md bg-grey-800 py-2 shadow-custom'>
+        <ul
+          aria-label='language menu'
+          role='menu'
+          className='absolute right-0 top-12 z-50 flex w-[232px] flex-col whitespace-nowrap rounded-md bg-grey-800 py-2 shadow-custom'
+        >
           {languages.map((el) => (
-            <Link key={el.id} href={pathname} locale={el.id}>
+            <Link
+              role='menuitem'
+              tabindex='0'
+              key={el.id}
+              href={pathname}
+              locale={el.id}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.currentTarget.click();
+                }
+              }}
+            >
               <li
                 className={`flex w-full cursor-pointer justify-start px-[14px] py-[10px] hover:bg-grey-600 ${
                   el.id === locale ? 'font-bold text-primary-yellow-500' : ''

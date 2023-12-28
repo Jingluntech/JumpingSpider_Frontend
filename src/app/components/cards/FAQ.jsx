@@ -14,8 +14,14 @@ export default function FAQ({ q, a }) {
 
   return (
     <div
+      tabindex='0'
       className={getCardOpenClass(openCard)}
       onClick={() => setOpenCard(!openCard)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          setOpenCard(!openCard);
+        }
+      }}
     >
       <div
         className={`flex items-center justify-between gap-2 ${
