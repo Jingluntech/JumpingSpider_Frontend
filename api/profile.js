@@ -20,6 +20,19 @@ const fetcher = async (url, { token, payload }) => {
   return response.json();
 };
 
+export const getUserInfoAPI = async ({ token, payload }) => {
+  try {
+    const response = await fetcher(`${baseURL}/api/vpn/getUserInfo`, {
+      token,
+      payload,
+    });
+
+    return response;
+  } catch (error) {
+    console.log('[Failed to user info]: ', error);
+  }
+};
+
 export const getDevicesAPI = async ({ token, payload }) => {
   try {
     const response = await fetcher(`${baseURL}/api/vpn/getUserDevice`, {

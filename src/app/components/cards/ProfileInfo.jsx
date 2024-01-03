@@ -67,9 +67,79 @@ const handleStatus = (statusCode, t) => {
 export default function ProfileInfo({ data }) {
   const t = useTranslations('profilePage');
 
+  const showSubscriptionDetail = () => {
+    if (!data.expireDate) {
+      return (
+        <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
+          <div className='flex flex-col gap-2 whitespace-pre-line'>
+            <p className='font-medium text-secondary-red-500'>{t('expired')}</p>
+          </div>
+          {handleStatus(2, t)}
+        </div>
+      );
+    }
+
+    const now = new Date();
+    const expired = new Date(data.expireDate);
+    const nowTimestamp = now.getTime();
+    const expiredTimestamp = expired.getTime();
+
+    if (expiredTimestamp < nowTimestamp) {
+      return (
+        <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
+          <div className='flex flex-col gap-2 whitespace-pre-line'>
+            <p className='font-medium text-secondary-red-500'>{t('expired')}</p>
+          </div>
+          {handleStatus(2, t)}
+        </div>
+      );
+    } else {
+      if (data.lastPrepaidPlan === 0) {
+        return (
+          <div className='flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between'>
+            <div className='flex flex-col gap-2 whitespace-pre-line'>
+              <p>{t('monthly', { num: data.lastPrepaidMonth })}</p>
+              <p className='text-sm font-medium text-grey-400'>
+                {t('expiredDate')}：{data.expireDate}
+              </p>
+            </div>
+            {handleStatus(1, t)}
+          </div>
+        );
+      }
+
+      if (data.lastPrepaidPlan === 1) {
+        return (
+          <div className='flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between'>
+            <div className='flex flex-col gap-2 whitespace-pre-line'>
+              <p>{t('customized', { num: data.lastPrepaidMonth })}</p>
+              <p className='text-sm font-medium text-grey-400'>
+                {t('expiredDate')}：{data.expireDate}
+              </p>
+            </div>
+            {handleStatus(1, t)}
+          </div>
+        );
+      }
+    }
+  };
+
+  const profileData = [
+    {
+      id: '1',
+      title: 'address',
+      content: data.address,
+    },
+    {
+      id: '2',
+      title: 'status',
+      content: showSubscriptionDetail(),
+    },
+  ];
+
   return (
     <div className='flex h-fit w-full flex-col rounded-md border-2 border-grey-700 bg-grey-800 px-9 py-10'>
-      {data.map((el) => (
+      {profileData.map((el) => (
         <div
           key={el.id}
           className='flex flex-col border-b-2 border-grey-700 px-2 py-6 first:pt-0 last:border-b-0 last:pb-0'
@@ -77,36 +147,12 @@ export default function ProfileInfo({ data }) {
           <div className='relative flex flex-col gap-3'>
             <div className='flex flex-col gap-3'>
               <h5 className='font-medium text-grey-300'>{t(el.title)}</h5>
-              {!el.content ? (
-                <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
-                  <div
-                    className={`flex flex-col gap-2 ${
-                      el.id === '1' ? 'break-all' : 'whitespace-pre-line'
-                    }`}
-                  >
-                    <p className='font-medium text-secondary-red-500'>
-                      {t('expired')}
-                    </p>
-                  </div>
-                  {el.showButton && handleStatus(2, t)}
-                </div>
-              ) : (
-                <div className='flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between'>
-                  <div
-                    className={`flex flex-col justify-center gap-3 ${
-                      el.id === '1' ? 'break-all' : 'whitespace-pre-line'
-                    }`}
-                  >
-                    <p>{el.content}</p>
-                    {el.sub && (
-                      <p className='text-sm font-medium text-grey-400'>
-                        {el.sub}
-                      </p>
-                    )}
-                  </div>
-                  {el.showButton && handleStatus(1, t)}
+              {el.id === '1' && (
+                <div className='flex flex-col justify-center gap-3 break-all'>
+                  <p>{el.content}</p>
                 </div>
               )}
+              {el.id === '2' && el.content}
             </div>
           </div>
         </div>

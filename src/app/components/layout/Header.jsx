@@ -12,7 +12,7 @@ import { logoutAPI } from '@/api/login';
 import { useDisconnect } from 'wagmi';
 import { useTranslations } from 'next-intl';
 import { WalletContext } from '@/src/app/context/context';
-import { getOrdersAPI } from '@/api/order';
+import { getUserInfoAPI } from '@/api/profile';
 
 export default function Header({ locale }) {
   const t = useTranslations('header');
@@ -91,8 +91,8 @@ export default function Header({ locale }) {
 
   useEffect(() => {
     if (pathname.includes('profile')) {
-      const getOrdersAsync = async () => {
-        const { errorCode } = await getOrdersAPI({
+      const getUserInfoAPIAsync = async () => {
+        const { errorCode } = await getUserInfoAPI({
           token: Cookies.get('Token'),
         });
         if (errorCode === 1011 || errorCode === 1010) {
@@ -100,7 +100,7 @@ export default function Header({ locale }) {
           router.push('/');
         }
       };
-      getOrdersAsync();
+      getUserInfoAPIAsync();
     }
   }, [pathname]);
 

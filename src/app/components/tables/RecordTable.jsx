@@ -31,7 +31,7 @@ const handleStatus = (statusCode, t) => {
 
 export default function RecordTable({ data }) {
   const t = useTranslations('recordTable');
-  const orderList = data?.list;
+  const orderList = data?.orders.list;
 
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>

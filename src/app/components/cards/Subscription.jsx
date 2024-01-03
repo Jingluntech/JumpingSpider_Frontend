@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/src/navigation';
 import Cookies from 'js-cookie';
 import { WalletContext } from '@/src/app/context/context';
-import { getOrdersAPI } from '@/api/order';
+import { getUserInfoAPI } from '@/api/profile';
 import ethersClient from '@/utils/eth/ethersClient';
 
 export default function Subscription() {
@@ -27,7 +27,7 @@ export default function Subscription() {
       return setOpenWallet(!openWallet);
     }
 
-    const { errorCode } = await getOrdersAPI({
+    const { errorCode } = await getUserInfoAPI({
       token: isLogin,
     });
 

@@ -32,16 +32,3 @@ export const createOrderAPI = async ({ token, payload }) => {
     console.log('[Failed to create order]: ', error);
   }
 };
-
-export const getOrdersAPI = async ({ token, payload }) => {
-  try {
-    const response = await fetcher(`${baseURL}/api/vpn/queryVpnOrder`, {
-      token,
-      payload,
-    });
-
-    return response;
-  } catch (error) {
-    console.log('[Failed to get orders]: ', error);
-  }
-};
