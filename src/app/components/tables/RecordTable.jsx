@@ -68,7 +68,9 @@ export default function RecordTable({ data }) {
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
                 {t('amount')}
               </th>
-              <td className='w-1/2 p-3'>USDT {el.prepaidMonth * 30}</td>
+              <td className='w-1/2 p-3'>
+                {el.coinType} {el.amount}
+              </td>
             </tr>
             <tr className='min-h-11 h-11 text-left'>
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
@@ -115,7 +117,7 @@ export default function RecordTable({ data }) {
                   t('customized', { num: el.prepaidMonth })}
               </td>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
-                USDT {el.prepaidMonth * 30}
+                {el.coinType} {el.amount}
               </td>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
                 {handleStatus(el.status, t)}

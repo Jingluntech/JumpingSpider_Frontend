@@ -3,26 +3,36 @@ import { useTranslations } from 'next-intl';
 
 const handleStatus = (statusCode, t) => {
   switch (statusCode) {
+    // case 0: {
+    //   return (
+    //     <button className='flex h-fit w-[255px] cursor-not-allowed items-center justify-center gap-1 rounded-md bg-grey-600 px-3 py-[9px] font-medium text-grey-400'>
+    //       {t('connectInfo')}
+    //       <svg
+    //         width='24'
+    //         height='24'
+    //         viewBox='0 0 24 24'
+    //         fill='none'
+    //         xmlns='http://www.w3.org/2000/svg'
+    //       >
+    //         <path
+    //           d='M9 18L15 12L9 6'
+    //           stroke='#949EAE'
+    //           strokeWidth='2'
+    //           strokeLinecap='round'
+    //           strokeLinejoin='round'
+    //         />
+    //       </svg>
+    //     </button>
+    //   );
+    //   break;
+    // }
     case 0: {
       return (
-        <button className='flex h-fit w-[255px] cursor-not-allowed items-center justify-center gap-1 rounded-md bg-grey-600 px-3 py-[9px] font-medium text-grey-400'>
-          {t('connectInfo')}
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M9 18L15 12L9 6'
-              stroke='#949EAE'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </button>
+        <Link href='/price'>
+          <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-blue-500 px-3 py-[9px] font-medium text-grey-100 hover:bg-grey-100 hover:text-grey-800'>
+            {t('subscribedBtn')}
+          </button>
+        </Link>
       );
       break;
     }
@@ -51,16 +61,6 @@ const handleStatus = (statusCode, t) => {
       );
       break;
     }
-    case 2: {
-      return (
-        <Link href='/price'>
-          <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-blue-500 px-3 py-[9px] font-medium text-grey-100 hover:bg-grey-100 hover:text-grey-800'>
-            {t('subscribedBtn')}
-          </button>
-        </Link>
-      );
-      break;
-    }
   }
 };
 
@@ -74,23 +74,7 @@ export default function ProfileInfo({ data }) {
           <div className='flex flex-col gap-2 whitespace-pre-line'>
             <p className='font-medium text-secondary-red-500'>{t('expired')}</p>
           </div>
-          {handleStatus(2, t)}
-        </div>
-      );
-    }
-
-    const now = new Date();
-    const expired = new Date(data.expireDate);
-    const nowTimestamp = now.getTime();
-    const expiredTimestamp = expired.getTime();
-
-    if (expiredTimestamp < nowTimestamp) {
-      return (
-        <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
-          <div className='flex flex-col gap-2 whitespace-pre-line'>
-            <p className='font-medium text-secondary-red-500'>{t('expired')}</p>
-          </div>
-          {handleStatus(2, t)}
+          {handleStatus(0, t)}
         </div>
       );
     } else {
