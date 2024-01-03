@@ -27,7 +27,7 @@ export default function DeviceTable({ data }) {
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>
       <table className='w-full lg:hidden'>
-        {data?.length > 0 &&
+        {data?.length > 0 ? (
           data.map((el) => (
             <tbody className='border-b border-grey-600' key={el.deviceId}>
               <tr className='min-h-11 h-11 text-left'>
@@ -78,7 +78,24 @@ export default function DeviceTable({ data }) {
                 </td>
               </tr>
             </tbody>
-          ))}
+          ))
+        ) : (
+          <tbody>
+            <tr>
+              <td>
+                <p className='flex flex-col items-center justify-center gap-6 text-[28px] font-medium text-grey-100'>
+                  <Image
+                    src='/empty-box.svg'
+                    alt='empty-data'
+                    width={168}
+                    height={215}
+                  />
+                  目前尚無資料
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        )}
       </table>
       <table className='hidden w-full lg:table'>
         <thead className='bg-grey-800'>
@@ -95,7 +112,7 @@ export default function DeviceTable({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data?.length > 0 &&
+          {data?.length > 0 ? (
             data.map((el) => (
               <tr className='h-20 border-b border-grey-500' key={el.deviceId}>
                 <td className='w-5/12 px-6 py-3 text-left text-sm'>
@@ -133,7 +150,22 @@ export default function DeviceTable({ data }) {
                   {t('delete')}
                 </td>
               </tr>
-            ))}
+            ))
+          ) : (
+            <tr className='h-[300px]'>
+              <td colSpan={3}>
+                <p className='flex flex-col items-center justify-center text-[28px] font-medium'>
+                  <Image
+                    src='/empty-box.svg'
+                    alt='empty-data'
+                    width={168}
+                    height={215}
+                  />
+                  目前尚無資料
+                </p>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
       {openDeleteModal && (

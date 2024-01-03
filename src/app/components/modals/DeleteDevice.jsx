@@ -1,10 +1,24 @@
+import { deleteDeviceAPI } from '@/api/profile';
+import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-export default function DeleteDevice({ onClick, setIsAlertOpen }) {
+export default function DeleteDevice({
+  onClick,
+  setIsAlertOpen,
+  selectedDeviceId,
+}) {
+  const token = Cookies.get('Token');
   const t = useTranslations('devicePage');
 
-  const handleConfirmDeleteClick = () => {
+  const handleConfirmDeleteClick = async () => {
+    await deleteDeviceAPI({
+      token,
+      payload: {
+        deviceId: selectedDeviceId,
+      },
+    });
+
     onClick();
     setIsAlertOpen(true);
     setTimeout(() => {
