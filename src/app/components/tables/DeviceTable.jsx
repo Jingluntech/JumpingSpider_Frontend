@@ -12,19 +12,22 @@ export default function DeviceTable({ data }) {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [selectedDeviceId, setSelectedDeviceId] = useState('');
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (id) => {
     setOpenDeleteModal(!openDeleteModal);
+    setSelectedDeviceId(id);
   };
 
-  const handleEditClick = () => {
+  const handleEditClick = (id) => {
     setOpenEditModal(!openEditModal);
+    setSelectedDeviceId(id);
   };
 
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>
       <table className='w-full lg:hidden'>
-        {data.length > 0 &&
+        {data?.length > 0 &&
           data.map((el) => (
             <tbody className='border-b border-grey-600' key={el.deviceId}>
               <tr className='min-h-11 h-11 text-left'>
@@ -38,8 +41,8 @@ export default function DeviceTable({ data }) {
                   {t('definedName')}
                 </th>
                 <td className='w-1/2 p-3'>
-                  <div className='flex items-center gap-2'>
-                    {el.nickName}
+                  <div className='flex items-center gap-2 text-grey-100'>
+                    {!el.nickName ? '-' : el.nickName}
                     <span
                       className='edit cursor-pointer'
                       onClick={() => handleEditClick()}
@@ -100,10 +103,10 @@ export default function DeviceTable({ data }) {
                 </td>
                 <td className='w-5/12 px-6 py-3 text-left text-sm'>
                   <div className='flex items-center gap-2'>
-                    {el.nickName}
+                    {!el.nickName ? '-' : el.nickName}
                     <span
                       className='edit cursor-pointer'
-                      onClick={() => handleEditClick()}
+                      onClick={() => handleEditClick(el.deviceId)}
                     >
                       <svg
                         width='20'
@@ -125,7 +128,7 @@ export default function DeviceTable({ data }) {
                 </td>
                 <td
                   className='w-2/12 cursor-pointer px-6 py-3 text-left text-sm text-primary-yellow-500 hover:text-grey-100'
-                  onClick={() => handleDeleteClick()}
+                  onClick={() => handleDeleteClick(el.deviceId)}
                 >
                   {t('delete')}
                 </td>
@@ -139,13 +142,17 @@ export default function DeviceTable({ data }) {
             onClick={() => handleDeleteClick()}
             isAlertOpen={isAlertOpen}
             setIsAlertOpen={setIsAlertOpen}
+            selectedDeviceId={selectedDeviceId}
           />
           <ModalBackground />
         </>
       )}
       {openEditModal && (
         <>
-          <EditDevice onClick={() => handleEditClick()} />
+          <EditDevice
+            onClick={() => handleEditClick()}
+            selectedDeviceId={selectedDeviceId}
+          />
           <ModalBackground />
         </>
       )}
