@@ -140,6 +140,7 @@
     "cancel": "Cancel",
     "confirm": "OK",
     "deleted": "Device has been deleted",
-    "edit": "Edit User-Defined Name"
+    "edit": "Edit User-Defined Name",
+    "noData": "No Data Currently"
   }
 }

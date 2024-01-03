@@ -90,7 +90,7 @@ export default function DeviceTable({ data }) {
                     width={168}
                     height={215}
                   />
-                  目前尚無資料
+                  {t('noData')}
                 </p>
               </td>
             </tr>
@@ -161,7 +161,7 @@ export default function DeviceTable({ data }) {
                     width={168}
                     height={215}
                   />
-                  目前尚無資料
+                  {t('noData')}
                 </p>
               </td>
             </tr>

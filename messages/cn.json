@@ -140,7 +140,7 @@
     "cancel": "取消",
     "confirm": "确定",
     "deleted": "装置已刪除完成",
-    "edit": "编辑别名名称"
-  },
-  "monthly": ""
+    "edit": "编辑别名名称",
+    "noData": "目前尚无资料"
+  }
 }

@@ -39,7 +39,7 @@ export default function DeleteDevice({
 
         <main className='flex flex-col gap-2'>
           <h5 className='break-all text-2xl font-bold'>
-            {t('deleteDevice')}：XXXX
+            {t('deleteDevice')}：{selectedDeviceId}
           </h5>
           <p className='break-all font-medium'>{t('reminder')}</p>
         </main>
