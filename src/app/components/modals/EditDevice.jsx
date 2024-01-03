@@ -1,13 +1,14 @@
 import { modifyDeviceAPI } from '@/api/profile';
 import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
-import { redirect } from '@/src/navigation';
+import { useRouter } from '@/src/navigation';
 import { useState } from 'react';
 
 export default function EditDevice({ onClick, selectedDeviceId }) {
   const token = Cookies.get('Token');
   const t = useTranslations('devicePage');
   const [inputValue, setInputValue] = useState('');
+  const router = useRouter();
 
   const handleEditClick = async () => {
     await modifyDeviceAPI({
@@ -18,6 +19,7 @@ export default function EditDevice({ onClick, selectedDeviceId }) {
       },
     });
     onClick();
+    router.refresh();
   };
 
   return (
