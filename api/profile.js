@@ -45,3 +45,16 @@ export const getDevicesAPI = async ({ token, payload }) => {
     console.log('[Failed to get devices]: ', error);
   }
 };
+
+export const getVpnInfoAPI = async ({ token, payload }) => {
+  try {
+    const response = await fetcher(`${baseURL}/api/vpn/getUserVpnInfo`, {
+      token,
+      payload,
+    });
+
+    return response;
+  } catch (error) {
+    console.log('[Failed to get VPN info]: ', error);
+  }
+};
