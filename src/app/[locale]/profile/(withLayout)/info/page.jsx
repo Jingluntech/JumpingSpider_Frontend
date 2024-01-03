@@ -45,7 +45,7 @@ export default async function ProfileInfoPage({ searchParams: { page } }) {
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
       <h1 className='mb-4 text-[46px] font-bold'>{t('profile')}</h1>
       <ProfileInfo data={profileData} />
-      {data?.orderList?.length > 0 && (
+      {data?.list?.length > 0 && (
         <>
           <div className='mt-[56px] lg:flex lg:items-center'>
             <h3 className='text-[28px] font-medium'>{t('record')}</h3>

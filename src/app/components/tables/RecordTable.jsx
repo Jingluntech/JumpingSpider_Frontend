@@ -31,7 +31,7 @@ const handleStatus = (statusCode, t) => {
 
 export default function RecordTable({ data }) {
   const t = useTranslations('recordTable');
-  const orderList = data?.orderList;
+  const orderList = data?.list;
 
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>
@@ -46,7 +46,7 @@ export default function RecordTable({ data }) {
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
                 {t('time')}
               </th>
-              <td className='w-1/2 p-3'>{el.createTime}</td>
+              <td className='w-1/2 p-3'>{el.subscriptionTime}</td>
             </tr>
             <tr className='min-h-11 h-11 text-left'>
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
@@ -59,17 +59,16 @@ export default function RecordTable({ data }) {
                 {t('content')}
               </th>
               <td className='w-1/2 p-3'>
-                {t('contentDetail', { num: el.month })}
+                {el.prepaidPlan === 0 && t('monthly', { num: el.prepaidMonth })}
+                {el.prepaidPlan === 1 &&
+                  t('customized', { num: el.prepaidMonth })}
               </td>
             </tr>
             <tr className='min-h-11 h-11 text-left'>
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
                 {t('amount')}
               </th>
-              <td className='w-1/2 p-3'>
-                {el.coinType}
-                {el.amount}
-              </td>
+              <td className='w-1/2 p-3'>USDT {el.prepaidMonth * 30}</td>
             </tr>
             <tr className='min-h-11 h-11 text-left'>
               <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
@@ -105,16 +104,18 @@ export default function RecordTable({ data }) {
           {orderList?.map((el) => (
             <tr key={el.orderNumber} className='h-20 border-b border-grey-500'>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
-                {el.createTime}
+                {el.subscriptionTime}
               </td>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
                 {el.orderNumber}
               </td>
               <td className='w-1/3 px-6 py-3 text-left text-sm'>
-                {t('contentDetail', { num: el.month })}
+                {el.prepaidPlan === 0 && t('monthly', { num: el.prepaidMonth })}
+                {el.prepaidPlan === 1 &&
+                  t('customized', { num: el.prepaidMonth })}
               </td>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
-                USDT {el.amount}
+                USDT {el.prepaidMonth * 30}
               </td>
               <td className='w-1/6 px-6 py-3 text-left text-sm'>
                 {handleStatus(el.status, t)}

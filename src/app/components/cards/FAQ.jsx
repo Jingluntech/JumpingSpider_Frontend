@@ -14,7 +14,7 @@ export default function FAQ({ q, a }) {
 
   return (
     <div
-      tabindex='0'
+      tabIndex='0'
       className={getCardOpenClass(openCard)}
       onClick={() => setOpenCard(!openCard)}
       onKeyDown={(e) => {

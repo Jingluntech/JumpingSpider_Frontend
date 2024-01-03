@@ -24,7 +24,12 @@ export default function Home() {
       <div className='h-fit w-full bg-gradient-to-b from-[#08396F] to-[#0E1727]'>
         <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] flex-col items-center justify-center px-4 lg:flex-row-reverse'>
           <div className='relative mt-[35px] h-[306px] w-[297px] flex-shrink-0 px-6 lg:h-[610px] lg:w-[598px] lg:flex-1 lg:py-[69px]'>
-            <Image src='/home/homepage.svg' alt='homepage-image' fill={true} />
+            <Image
+              src='/home/homepage.svg'
+              alt='homepage-image'
+              fill={true}
+              priority={true}
+            />
           </div>
           <div className='flex flex-col items-center gap-5 lg:flex-1 lg:items-start lg:pr-12'>
             <h1 className='text-center text-[46px] font-bold lg:text-left'>

@@ -13,7 +13,7 @@ export default function Language({
   return (
     <div
       role='button'
-      tabindex='0'
+      tabIndex='0'
       className='relative flex cursor-pointer items-center gap-1 text-grey-300'
       onClick={() => setOpenLang(!openLang)}
       onKeyDown={(e) => {
@@ -39,7 +39,7 @@ export default function Language({
           {languages.map((el) => (
             <Link
               role='menuitem'
-              tabindex='0'
+              tabIndex='0'
               key={el.id}
               href={pathname}
               locale={el.id}
