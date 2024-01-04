@@ -70,7 +70,7 @@ export default function Subscription() {
             <span className='mx-2 font-inter text-[46px] font-bold text-grey-100'>
               30.00
             </span>
-            {t('month')}
+            {t('perMonth')}
           </p>
         </div>
       </div>

@@ -87,15 +87,13 @@ export default function CheckOut({
             <h5 className='font-medium text-grey-300'>
               {t('subscribedMonth')}
             </h5>
-            <p className='font-medium'>
-              {months} {t('month')}
-            </p>
+            <p className='font-medium'>{t('month', { num: months })}</p>
           </div>
           <div className='flex flex-col justify-between gap-1 lg:flex-row lg:gap-10'>
             <h5 className='font-medium text-grey-300'>
               {t('subscribedAmount')}
             </h5>
-            <p className='font-medium'>USDT 30.00 {t('month')}</p>
+            <p className='font-medium'>USDT 30.00 {t('perMonth')}</p>
           </div>
         </div>
 
