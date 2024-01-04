@@ -112,7 +112,7 @@ export default function ProfileInfo({ data }) {
     {
       id: '1',
       title: 'address',
-      content: data.address,
+      content: data?.address,
     },
     {
       id: '2',

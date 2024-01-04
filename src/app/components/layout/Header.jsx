@@ -43,7 +43,7 @@ export default function Header({ locale }) {
     {
       id: '4',
       title: 'tutorial',
-      url: '/tutorial',
+      url: '/OpenVPN教學總覽.pdf',
     },
   ];
 
@@ -124,7 +124,46 @@ export default function Header({ locale }) {
           </div>
           <nav className='hidden h-full w-fit lg:flex'>
             <ul className='flex h-full items-center gap-10'>
-              {navLinks.map((el) => (
+              {navLinks.map((el) => {
+                return el.id === '4' ? (
+                  <a
+                    key={el.id}
+                    href={el.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='relative h-full'
+                  >
+                    <li
+                      className={
+                        pathname === el.url
+                          ? 'flex h-full items-center text-primary-yellow-500'
+                          : 'flex h-full items-center text-grey-300'
+                      }
+                    >
+                      {t(el.title)}
+                      {pathname === el.url && (
+                        <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+                      )}
+                    </li>
+                  </a>
+                ) : (
+                  <Link key={el.id} href={el.url} className='relative h-full'>
+                    <li
+                      className={
+                        pathname === el.url
+                          ? 'flex h-full items-center text-primary-yellow-500'
+                          : 'flex h-full items-center text-grey-300'
+                      }
+                    >
+                      {t(el.title)}
+                      {pathname === el.url && (
+                        <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
+                      )}
+                    </li>
+                  </Link>
+                );
+              })}
+              {/* {navLinks.map((el) => (
                 <Link key={el.id} href={el.url} className='relative h-full'>
                   <li
                     className={
@@ -139,7 +178,7 @@ export default function Header({ locale }) {
                     )}
                   </li>
                 </Link>
-              ))}
+              ))} */}
             </ul>
           </nav>
         </div>
