@@ -146,11 +146,11 @@ export default function Subscription() {
                 />
               </svg>
             </button>
-            <div className='flex-2'>
+            <div className='flex-2 border-y border-grey-600 bg-grey-900 align-middle text-grey-100'>
               <input
                 type='number'
                 disabled
-                className='h-full w-full border-y border-grey-600 bg-grey-900 text-center align-middle text-grey-100'
+                className='h-full w-full bg-transparent text-center'
                 value={inputValue}
               />
             </div>

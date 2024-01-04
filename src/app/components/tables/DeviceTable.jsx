@@ -45,7 +45,7 @@ export default function DeviceTable({ data }) {
                     {!el.nickName ? '-' : el.nickName}
                     <span
                       className='edit cursor-pointer'
-                      onClick={() => handleEditClick()}
+                      onClick={() => handleEditClick(el.deviceId)}
                     >
                       <svg
                         width='20'
@@ -72,7 +72,7 @@ export default function DeviceTable({ data }) {
                 </th>
                 <td
                   className='w-1/2 cursor-pointer p-3 text-primary-yellow-500 hover:text-grey-100'
-                  onClick={() => handleDeleteClick()}
+                  onClick={() => handleDeleteClick(el.deviceId)}
                 >
                   {t('delete')}
                 </td>

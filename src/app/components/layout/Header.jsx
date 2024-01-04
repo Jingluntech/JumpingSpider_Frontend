@@ -138,7 +138,9 @@ export default function Header({ locale }) {
             />
           </div>
           <div className='relative h-20 w-[100px] flex-shrink-0 lg:mr-14'>
-            <Image src='/Logo.svg' alt='logo' fill={true} priority={true} />
+            <Link href='/'>
+              <Image src='/Logo.svg' alt='logo' fill={true} priority={true} />
+            </Link>
           </div>
           <nav className='hidden h-full w-fit lg:flex'>
             <ul className='flex h-full items-center gap-10'>
@@ -181,22 +183,6 @@ export default function Header({ locale }) {
                   </Link>
                 );
               })}
-              {/* {navLinks.map((el) => (
-                <Link key={el.id} href={el.url} className='relative h-full'>
-                  <li
-                    className={
-                      pathname === el.url
-                        ? 'flex h-full items-center text-primary-yellow-500'
-                        : 'flex h-full items-center text-grey-300'
-                    }
-                  >
-                    {t(el.title)}
-                    {pathname === el.url && (
-                      <div className='absolute inset-x-0 bottom-0 h-1 w-full rounded-3xl bg-primary-yellow-500'></div>
-                    )}
-                  </li>
-                </Link>
-              ))} */}
             </ul>
           </nav>
         </div>

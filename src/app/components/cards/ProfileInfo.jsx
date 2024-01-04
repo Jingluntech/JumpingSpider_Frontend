@@ -3,29 +3,6 @@ import { useTranslations } from 'next-intl';
 
 const handleStatus = (statusCode, t) => {
   switch (statusCode) {
-    // case 0: {
-    //   return (
-    //     <button className='flex h-fit w-[255px] cursor-not-allowed items-center justify-center gap-1 rounded-md bg-grey-600 px-3 py-[9px] font-medium text-grey-400'>
-    //       {t('connectInfo')}
-    //       <svg
-    //         width='24'
-    //         height='24'
-    //         viewBox='0 0 24 24'
-    //         fill='none'
-    //         xmlns='http://www.w3.org/2000/svg'
-    //       >
-    //         <path
-    //           d='M9 18L15 12L9 6'
-    //           stroke='#949EAE'
-    //           strokeWidth='2'
-    //           strokeLinecap='round'
-    //           strokeLinejoin='round'
-    //         />
-    //       </svg>
-    //     </button>
-    //   );
-    //   break;
-    // }
     case 0: {
       return (
         <Link href='/price'>
@@ -68,7 +45,7 @@ export default function ProfileInfo({ data }) {
   const t = useTranslations('profilePage');
 
   const showSubscriptionDetail = () => {
-    if (!data.expireDate) {
+    if (!data || !data.expireDate) {
       return (
         <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
           <div className='flex flex-col gap-2 whitespace-pre-line'>
