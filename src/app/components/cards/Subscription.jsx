@@ -150,7 +150,7 @@ export default function Subscription() {
               <input
                 type='number'
                 disabled
-                className='h-full w-full bg-transparent text-center'
+                className='h-full w-full bg-transparent text-center text-grey-100'
                 value={inputValue}
               />
             </div>
@@ -198,7 +198,7 @@ export default function Subscription() {
       )}
 
       {isAlertOpen && (
-        <div className='fixed inset-x-0 top-0 z-50 flex h-10 items-center justify-center gap-3 bg-secondary-red-100 font-medium text-secondary-red-500'>
+        <div className='fixed inset-x-0 top-0 z-50 flex h-fit items-center justify-center gap-3 bg-secondary-red-100 p-4 font-medium text-secondary-red-500'>
           <Image
             src='/alert/alerts_icon_mistake.svg'
             alt='mistake-icon'

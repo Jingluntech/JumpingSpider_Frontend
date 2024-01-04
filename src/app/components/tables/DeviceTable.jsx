@@ -189,7 +189,7 @@ export default function DeviceTable({ data }) {
         </>
       )}
       {isAlertOpen && (
-        <div className='fixed inset-x-0 top-0 z-50 flex h-10 items-center justify-center gap-3 bg-secondary-green-100 font-medium text-secondary-green-text'>
+        <div className='fixed inset-x-0 top-0 z-50 flex h-fit items-center justify-center gap-3 bg-secondary-green-100 p-4 font-medium text-secondary-green-text'>
           <Image
             src='/alert/alerts_icon_success.svg'
             alt='success-icon'
