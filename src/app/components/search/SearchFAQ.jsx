@@ -11,7 +11,12 @@ export default function SearchFAQ({ FAQcardData }) {
     if (el.id === 'faq-1') {
       const answerOne = t.rich(el.content, {
         tutorial: (chunks) => (
-          <a className='text-primary-yellow-500 underline' href='/tutorial'>
+          <a
+            className='text-primary-yellow-500 underline'
+            href='/OpenVPN教學總覽.pdf'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             {chunks}
           </a>
         ),
@@ -84,7 +89,9 @@ export default function SearchFAQ({ FAQcardData }) {
                   tutorial: (chunks) => (
                     <a
                       className='text-primary-yellow-500 underline'
-                      href='/tutorial'
+                      href='/OpenVPN教學總覽.pdf'
+                      target='_blank'
+                      rel='noopener noreferrer'
                     >
                       {chunks}
                     </a>

@@ -19,34 +19,64 @@ export default function Navbar({
   return (
     <nav className='fixed inset-y-0 left-0 z-50 flex w-3/5 min-w-[220px] flex-col items-center bg-grey-900'>
       <ul className='mt-14 flex h-fit w-full flex-col'>
-        {navLinks.map((el) => (
-          <Link
-            key={el.id}
-            href={el.url}
-            onClick={() => {
-              setOpenNavbar(false);
-            }}
-            className='h-fit w-full px-[14px] py-[10px] hover:bg-grey-600'
-          >
-            <li
+        {navLinks.map((el) => {
+          return el.id === '4' ? (
+            <a
               key={el.id}
-              className={`flex h-full w-full items-center gap-1 ${
-                pathname === el.url ? 'text-primary-yellow-500' : 'pl-7'
-              }`}
+              href={el.url}
+              target='_blank'
+              rel='noopener noreferrer'
+              onClick={() => {
+                setOpenNavbar(false);
+              }}
+              className='h-fit w-full px-[14px] py-[10px] hover:bg-grey-600'
             >
-              {pathname === el.url && (
-                <Image
-                  src='/chevron-left.svg'
-                  alt='chevronleft-icon'
-                  width={24}
-                  height={24}
-                />
-              )}
+              <li
+                className={`flex h-full w-full items-center gap-1 ${
+                  pathname === el.url ? 'text-primary-yellow-500' : 'pl-7'
+                }`}
+              >
+                {pathname === el.url && (
+                  <Image
+                    src='/chevron-left.svg'
+                    alt='chevronleft-icon'
+                    width={24}
+                    height={24}
+                  />
+                )}
 
-              {t(el.title)}
-            </li>
-          </Link>
-        ))}
+                {t(el.title)}
+              </li>
+            </a>
+          ) : (
+            <Link
+              key={el.id}
+              href={el.url}
+              onClick={() => {
+                setOpenNavbar(false);
+              }}
+              className='h-fit w-full px-[14px] py-[10px] hover:bg-grey-600'
+            >
+              <li
+                key={el.id}
+                className={`flex h-full w-full items-center gap-1 ${
+                  pathname === el.url ? 'text-primary-yellow-500' : 'pl-7'
+                }`}
+              >
+                {pathname === el.url && (
+                  <Image
+                    src='/chevron-left.svg'
+                    alt='chevronleft-icon'
+                    width={24}
+                    height={24}
+                  />
+                )}
+
+                {t(el.title)}
+              </li>
+            </Link>
+          );
+        })}
       </ul>
       <hr className='my-4 w-11/12 border-t-2 border-grey-700' />
       <ul className='flex h-fit w-full flex-col'>

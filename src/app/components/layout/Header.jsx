@@ -85,6 +85,24 @@ export default function Header({ locale }) {
     }
   };
 
+  if (typeof window !== 'undefined') {
+    window.ethereum.on('chainChanged', async () => {
+      await logoutAPI();
+      Cookies.remove('Token');
+      disconnect();
+      router.push('/');
+      console.log('chainChanged');
+    });
+
+    window.ethereum.on('accountsChanged', async () => {
+      await logoutAPI();
+      Cookies.remove('Token');
+      disconnect();
+      router.push('/');
+      console.log('accountsChanged');
+    });
+  }
+
   useEffect(() => {
     setIsClient(true);
   }, []);

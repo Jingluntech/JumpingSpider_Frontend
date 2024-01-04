@@ -74,20 +74,6 @@ export default function ConnectWallet({ onClick, connect, back }) {
     }
   };
 
-  window.ethereum.on('chainChanged', async () => {
-    await logoutAPI();
-    Cookies.remove('Token');
-    disconnect();
-    console.log('chainChanged');
-  });
-
-  window.ethereum.on('accountsChanged', async () => {
-    await logoutAPI();
-    Cookies.remove('Token');
-    disconnect();
-    console.log('accountsChanged');
-  });
-
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
       <div className='flex h-fit w-full max-w-[516px] flex-col gap-[14px] rounded-md bg-grey-900 p-6'>
