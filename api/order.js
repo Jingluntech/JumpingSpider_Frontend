@@ -22,7 +22,7 @@ const fetcher = async (url, { token, payload }) => {
 
 export const createOrderAPI = async ({ token, payload }) => {
   try {
-    const response = await fetcher(`${baseURL}/api/vpn/createOrder`, {
+    const response = await fetcher(`${baseURL}api/vpn/createOrder`, {
       token,
       payload,
     });

@@ -22,7 +22,7 @@ const fetcher = async (url, { token, payload }) => {
 
 export const getUserInfoAPI = async ({ token, payload }) => {
   try {
-    const response = await fetcher(`${baseURL}/api/vpn/getUserInfo`, {
+    const response = await fetcher(`${baseURL}api/vpn/getUserInfo`, {
       token,
       payload,
     });
@@ -35,7 +35,7 @@ export const getUserInfoAPI = async ({ token, payload }) => {
 
 export const getDevicesAPI = async ({ token, payload }) => {
   try {
-    const response = await fetcher(`${baseURL}/api/vpn/getUserDevice`, {
+    const response = await fetcher(`${baseURL}api/vpn/getUserDevice`, {
       token,
       payload,
     });
@@ -48,7 +48,7 @@ export const getDevicesAPI = async ({ token, payload }) => {
 
 export const getVpnInfoAPI = async ({ token, payload }) => {
   try {
-    const response = await fetcher(`${baseURL}/api/vpn/getUserVpnInfo`, {
+    const response = await fetcher(`${baseURL}api/vpn/getUserVpnInfo`, {
       token,
       payload,
     });
@@ -61,7 +61,7 @@ export const getVpnInfoAPI = async ({ token, payload }) => {
 
 export const modifyDeviceAPI = async ({ token, payload }) => {
   try {
-    const response = await fetcher(`${baseURL}/api/vpn/modifyUserDevice`, {
+    const response = await fetcher(`${baseURL}api/vpn/modifyUserDevice`, {
       token,
       payload,
     });
@@ -74,7 +74,7 @@ export const modifyDeviceAPI = async ({ token, payload }) => {
 
 export const deleteDeviceAPI = async ({ token, payload }) => {
   try {
-    const response = await fetcher(`${baseURL}/api/vpn/deleteUserDevice`, {
+    const response = await fetcher(`${baseURL}api/vpn/deleteUserDevice`, {
       token,
       payload,
     });

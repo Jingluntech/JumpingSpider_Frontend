@@ -85,24 +85,6 @@ export default function Header({ locale }) {
     }
   };
 
-  if (typeof window !== 'undefined') {
-    window.ethereum.on('chainChanged', async () => {
-      await logoutAPI();
-      Cookies.remove('Token');
-      disconnect();
-      router.push('/');
-      console.log('chainChanged');
-    });
-
-    window.ethereum.on('accountsChanged', async () => {
-      await logoutAPI();
-      Cookies.remove('Token');
-      disconnect();
-      router.push('/');
-      console.log('accountsChanged');
-    });
-  }
-
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -121,6 +103,41 @@ export default function Header({ locale }) {
       getUserInfoAPIAsync();
     }
   }, [pathname]);
+
+  useEffect(() => {
+    // 檢查 window 物件是否存在
+    if (typeof window !== 'undefined') {
+      // 定義監聽器的回調函數
+      const handleChainChanged = async () => {
+        await logoutAPI();
+        Cookies.remove('Token');
+        disconnect();
+        router.push('/');
+        console.log('chainChanged');
+      };
+
+      const handleAccountsChanged = async () => {
+        await logoutAPI();
+        Cookies.remove('Token');
+        disconnect();
+        router.push('/');
+        console.log('accountsChanged');
+      };
+
+      // 添加監聽器
+      window.ethereum.on('chainChanged', handleChainChanged);
+      window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+      // 返回函數：當組件卸載時移除監聽器
+      return () => {
+        window.ethereum.removeListener('chainChanged', handleChainChanged);
+        window.ethereum.removeListener(
+          'accountsChanged',
+          handleAccountsChanged
+        );
+      };
+    }
+  }, []);
 
   return (
     <header className='fixed z-30 flex h-20 w-full min-w-[350px] justify-center border-b border-grey-600 bg-grey-900 px-4'>
