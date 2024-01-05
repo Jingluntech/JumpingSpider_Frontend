@@ -30,7 +30,7 @@ export default function DeleteDevice({
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>
-      <div className='flex h-fit w-full max-w-fit flex-col gap-4 rounded-md bg-grey-900 p-6'>
+      <div className='flex h-fit w-fit max-w-[388px] flex-col gap-4 rounded-md bg-grey-900 p-6'>
         <header className='relative h-12 w-12'>
           <Image
             src='/alert/alerts_icon_warn.svg'
