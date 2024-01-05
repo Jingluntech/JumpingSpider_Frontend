@@ -6,7 +6,6 @@ import { createOrderAPI } from '@/api/order';
 import { useRouter } from '@/src/navigation';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-// import Image from 'next/image';
 
 export default function CheckOut({
   onClick,
@@ -37,7 +36,7 @@ export default function CheckOut({
       const decimals = await getDecimals();
       const balance = await getBalance(walletAddress, decimals);
 
-      if (sum > balance) {
+      if (Number(sum) > Number(balance)) {
         onClick();
         setIsAlertOpen(true);
         setTimeout(() => {
@@ -118,17 +117,6 @@ export default function CheckOut({
             {t('cancel')}
           </button>
         </div>
-        {/* {isLoading && (
-          <div className='absolute inset-x-0 inset-y-0 z-50 flex h-full w-full items-center justify-center rounded-md bg-grey-300 opacity-50'>
-            <Image
-              src='/ellipse.svg'
-              alt='spinner-icon'
-              width={84}
-              height={84}
-              className='animate-spin'
-            />
-          </div>
-        )} */}
       </div>
     </div>
   );
