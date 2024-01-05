@@ -92,10 +92,13 @@ export default function Header({ locale }) {
   useEffect(() => {
     if (pathname.includes('profile')) {
       const getUserInfoAPIAsync = async () => {
-        const { errorCode } = await getUserInfoAPI({
+        const res = await getUserInfoAPI({
           token: Cookies.get('Token'),
         });
-        if (errorCode === 1011 || errorCode === 1010) {
+        if (
+          (res && res.errorCode === 1011) ||
+          (res && res.errorCode === 1010)
+        ) {
           Cookies.remove('Token');
           router.push('/');
         }

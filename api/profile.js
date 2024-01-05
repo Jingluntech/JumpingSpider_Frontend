@@ -15,6 +15,7 @@ const fetcher = async (url, { token, payload }) => {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({ ...payload }),
+    cache: 'no-store',
   });
 
   return response.json();
