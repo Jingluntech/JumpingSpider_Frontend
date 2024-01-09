@@ -4,20 +4,16 @@ import { useTranslations } from 'next-intl';
 import ethersClient from '@/utils/eth/ethersClient';
 import { createOrderAPI } from '@/api/order';
 import { useRouter } from '@/src/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
-export default function CheckOut({
-  onClick,
-  months,
-  setIsAlertOpen,
-  walletAddress,
-}) {
+export default function CheckOut({ onClick, months, setIsAlertOpen }) {
   const t = useTranslations('pricePage');
   const token = Cookies.get('Token');
   const sum = (months * 30).toFixed(2);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [walletAddress, setWalletAddress] = useState('');
 
   const {
     ethereumConnect,
@@ -65,6 +61,16 @@ export default function CheckOut({
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const getAddressAsync = async () => {
+      let { provider, signer, contract, contractSigner } =
+        await ethereumConnect();
+      const address = await getAddress();
+      setWalletAddress(address);
+    };
+    getAddressAsync();
+  }, []);
 
   return (
     <div className='fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 justify-center px-4'>

@@ -15,8 +15,13 @@ import ethersClient from '@/utils/eth/ethersClient';
 import Image from 'next/image';
 import { loginAPI, logoutAPI, requestLoginAPI } from '@/api/login';
 import Cookies from 'js-cookie';
+import { usePathname, useRouter } from '@/src/navigation';
+import { useContext } from 'react';
+import { WalletContext } from '@/src/app/context/context';
 
 export default function ConnectWallet({ onClick, connect, back }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
   const { data, isError } = useBalance({
@@ -27,7 +32,6 @@ export default function ConnectWallet({ onClick, connect, back }) {
   const { pendingChainId, switchNetwork } = useSwitchNetwork();
   const { isLoading } = useSignMessage();
   const { disconnect } = useDisconnect();
-
   const {
     ethereumConnect,
     getAddress,
@@ -36,6 +40,9 @@ export default function ConnectWallet({ onClick, connect, back }) {
     signMessage,
     transfer,
   } = ethersClient();
+
+  const { openWallet, checkOutOpen, setCheckOutOpen } =
+    useContext(WalletContext);
 
   const walletConnectHandler = async (walletType) => {
     try {
@@ -67,6 +74,12 @@ export default function ConnectWallet({ onClick, connect, back }) {
 
         Cookies.set('Token', jwt);
         onClick();
+        if (pathname === '/' && openWallet.from === 'home') {
+          router.push('/price');
+        }
+        if (pathname === '/price' && openWallet.from === 'pay') {
+          setCheckOutOpen(!checkOutOpen);
+        }
       }
     } catch (error) {
       console.log('error', error);

@@ -27,9 +27,6 @@ export default function Header({ locale }) {
   const isLogin = Boolean(Cookies.get('Token'));
   const { disconnect } = useDisconnect();
 
-  console.log(navbarRef);
-  console.log(langRef);
-
   const navLinks = [
     {
       id: '1',
@@ -70,7 +67,10 @@ export default function Header({ locale }) {
 
   const handleProfileClick = () => {
     if (!isLogin) {
-      return setOpenWallet(true);
+      return setOpenWallet((prev) => ({
+        ...prev,
+        isOpen: true,
+      }));
     }
     router.push('/profile/info');
   };
@@ -264,17 +264,28 @@ export default function Header({ locale }) {
           ) : (
             <button
               className='h-fit w-fit rounded-md bg-primary-blue-500 px-5 py-[11px] hover:bg-grey-100 hover:text-grey-800'
-              onClick={() => setOpenWallet(true)}
+              onClick={() =>
+                setOpenWallet((prev) => ({
+                  ...prev,
+                  isOpen: true,
+                  from: 'header',
+                }))
+              }
             >
               {t('connect')}
             </button>
           )}
         </div>
       </div>
-      {openWallet && (
+      {openWallet.isOpen && (
         <>
           <ConnectWallet
-            onClick={() => setOpenWallet(false)}
+            onClick={() =>
+              setOpenWallet((prev) => ({
+                ...prev,
+                isOpen: false,
+              }))
+            }
             connect={t('connect')}
             back={t('back')}
           />

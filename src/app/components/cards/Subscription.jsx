@@ -14,17 +14,26 @@ export default function Subscription() {
   const isLogin = Cookies.get('Token');
   const pathname = usePathname();
   const t = useTranslations('pricePage');
-  const [checkOutOpen, setCheckOutOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [inputValue, setInputValue] = useState(1);
-  const { openWallet, setOpenWallet } = useContext(WalletContext);
-  const [walletAddress, setWalletAddress] = useState('');
+  const {
+    openWallet,
+    setOpenWallet,
+    checkOutOpen,
+    setCheckOutOpen,
+    payButton,
+  } = useContext(WalletContext);
+  // const [walletAddress, setWalletAddress] = useState('');
 
   const { ethereumConnect, getAddress } = ethersClient();
 
   const handlePayClick = async () => {
     if (!isLogin) {
-      return setOpenWallet(!openWallet);
+      return setOpenWallet((prev) => ({
+        ...prev,
+        isOpen: true,
+        from: 'pay',
+      }));
     }
 
     const { errorCode } = await getUserInfoAPI({
@@ -33,22 +42,15 @@ export default function Subscription() {
 
     if (errorCode === 1010 || errorCode === 1011) {
       Cookies.remove('Token');
-      setOpenWallet(!openWallet);
+      setOpenWallet((prev) => ({
+        ...prev,
+        isOpen: false,
+      }));
       return;
     }
 
     setCheckOutOpen(!checkOutOpen);
   };
-
-  useEffect(() => {
-    const getAddressAsync = async () => {
-      let { provider, signer, contract, contractSigner } =
-        await ethereumConnect();
-      const address = await getAddress();
-      setWalletAddress(address);
-    };
-    getAddressAsync();
-  }, []);
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-primary-blue-500 bg-grey-800 px-10 py-11 lg:flex-1 lg:gap-8'>
@@ -178,6 +180,7 @@ export default function Subscription() {
               </button>
             </div>
             <button
+              ref={payButton}
               className='h-11 w-[164px] rounded-md bg-primary-blue-500 hover:bg-grey-100 hover:text-grey-800'
               onClick={() => handlePayClick()}
             >
@@ -193,7 +196,6 @@ export default function Subscription() {
             onClick={() => setCheckOutOpen(false)}
             months={inputValue}
             setIsAlertOpen={setIsAlertOpen}
-            walletAddress={walletAddress}
           />
           <ModalBackground />
         </>

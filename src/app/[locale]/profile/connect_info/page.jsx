@@ -19,7 +19,7 @@ export default async function ConnectInfoPage() {
 
   return (
     <div className='mx-auto mb-[27px] flex h-fit w-full min-w-[350px] max-w-[1216px] flex-col gap-6 px-4 py-[56px]'>
-      <Link href='/profile/info'>
+      <Link href='/profile/info' className='w-fit'>
         <button className='flex gap-2 text-grey-400'>
           <Image
             src='/corner-down-left.svg'
