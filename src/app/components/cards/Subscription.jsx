@@ -52,7 +52,7 @@ export default function Subscription() {
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-primary-blue-500 bg-grey-800 px-10 py-11 lg:flex-1 lg:gap-8'>
-      <div className='flex h-1/2 flex-col gap-3 lg:flex-row-reverse lg:justify-between'>
+      <div className='flex h-fit flex-col gap-3 lg:flex-row-reverse lg:justify-between'>
         <div className='relative h-[156px] w-[174px]'>
           <Image
             src='/home/monthly_vpn.svg'
@@ -60,7 +60,7 @@ export default function Subscription() {
             fill={true}
           />
         </div>
-        <div className='h-fit'>
+        <div className='mb-1 h-full'>
           <p className='mb-1 text-sm text-primary-yellow-500'>{t('monthly')}</p>
           <h1 className='text-[28px] font-medium lg:whitespace-nowrap'>
             {t('plan')}
@@ -77,8 +77,8 @@ export default function Subscription() {
 
       <hr className='border-t-[2px] border-grey-600' />
 
-      <div className='flex h-1/2 flex-col'>
-        <ul className='flex flex-col gap-4 lg:mb-5'>
+      <div className='flex h-fit flex-col gap-4 lg:h-[212px] lg:gap-0'>
+        <ul className='mb-[22px] flex flex-col gap-4'>
           <li className='flex gap-3 text-base font-medium text-grey-300'>
             <Image
               src='/alert/alerts_icon_success.svg'

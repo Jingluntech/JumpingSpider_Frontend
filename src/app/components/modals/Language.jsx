@@ -7,11 +7,13 @@ export default function Language({
   setOpenLang,
   locale,
   showLanguage,
+  langRef,
 }) {
   const pathname = usePathname();
 
   return (
     <div
+      ref={langRef}
       role='button'
       tabIndex='0'
       className='relative flex cursor-pointer items-center gap-1 text-grey-300'

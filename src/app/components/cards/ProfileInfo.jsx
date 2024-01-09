@@ -5,7 +5,7 @@ const handleStatus = (statusCode, t) => {
   switch (statusCode) {
     case 0: {
       return (
-        <Link href='/price'>
+        <Link href='/price' className='w-fit'>
           <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-blue-500 px-3 py-[9px] font-medium text-grey-100 hover:bg-grey-100 hover:text-grey-800'>
             {t('subscribedBtn')}
           </button>
@@ -15,7 +15,7 @@ const handleStatus = (statusCode, t) => {
     }
     case 1: {
       return (
-        <Link href='/profile/connect_info'>
+        <Link href='/profile/connect_info' className='w-fit'>
           <button className='flex h-fit w-[255px] items-center justify-center gap-1 rounded-md bg-primary-yellow-500 px-3 py-[9px] font-medium text-grey-800 hover:bg-grey-100 hover:text-grey-800'>
             {t('connectInfo')}
             <svg

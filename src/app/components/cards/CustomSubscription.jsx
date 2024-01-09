@@ -6,7 +6,7 @@ export default function CustomSubscription() {
 
   return (
     <div className='flex h-fit w-full max-w-[602px] flex-col gap-5 rounded-md border-[3px] border-grey-500 bg-grey-800 px-10 py-11 lg:flex-1 lg:gap-8'>
-      <div className='flex h-1/2 flex-col'>
+      <div className='flex h-1/2 flex-col lg:h-[156px]'>
         <p className='mb-1 text-sm text-primary-yellow-500'>{t('business')}</p>
         <h1 className='text-[28px] font-medium lg:whitespace-nowrap'>
           {t('customized')}

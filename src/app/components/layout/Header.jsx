@@ -5,7 +5,7 @@ import ConnectWallet from '@/src/app/components/modals/ConnectWallet';
 import ModalBackground from '@/src/app/components/modals/ModalBackground';
 import Navbar from '@/src/app/components/navbar/Navbar';
 import Language from '@/src/app/components/modals/Language';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Link, usePathname, useRouter } from '@/src/navigation';
 import Cookies from 'js-cookie';
 import { logoutAPI } from '@/api/login';
@@ -22,6 +22,7 @@ export default function Header({ locale }) {
   const [isClient, setIsClient] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
+  const langRef = useRef(null);
   const isLogin = Boolean(Cookies.get('Token'));
   const { disconnect } = useDisconnect();
   const navLinks = [
@@ -142,6 +143,20 @@ export default function Header({ locale }) {
     }
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (langRef.current && !langRef.current.contains(e.target)) {
+        setOpenLang(false);
+      }
+    };
+    // 監聽整個畫面
+    document.addEventListener('click', handleClickOutside);
+    // 移除監聽
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className='fixed z-30 flex h-20 w-full min-w-[350px] justify-center border-b border-grey-600 bg-grey-900 px-4'>
       <div className='mx-auto flex h-full w-full min-w-[350px] max-w-[1216px] items-center justify-between'>
@@ -214,6 +229,7 @@ export default function Header({ locale }) {
               setOpenLang={setOpenLang}
               locale={locale}
               showLanguage={showLanguage}
+              langRef={langRef}
             />
             <button
               className={
