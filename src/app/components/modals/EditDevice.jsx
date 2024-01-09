@@ -7,7 +7,7 @@ import { useState } from 'react';
 export default function EditDevice({ onClick, selectedDeviceId, data }) {
   const token = Cookies.get('Token');
   const t = useTranslations('devicePage');
-  const defaultName = data.find(
+  const defaultName = data?.list.find(
     (el) => el.deviceId === selectedDeviceId
   ).nickName;
   const [inputValue, setInputValue] = useState(defaultName);

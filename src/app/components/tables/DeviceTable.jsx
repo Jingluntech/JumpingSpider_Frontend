@@ -27,8 +27,8 @@ export default function DeviceTable({ data }) {
   return (
     <div className='h-fit w-full overflow-hidden rounded-lg'>
       <table className='w-full lg:hidden'>
-        {data?.length > 0 ? (
-          data.map((el) => (
+        {data?.list.length > 0 ? (
+          data.list.map((el) => (
             <tbody className='border-b border-grey-600' key={el.deviceId}>
               <tr className='min-h-11 h-11 text-left'>
                 <th className='w-1/2 p-3 text-sm font-medium text-grey-300'>
@@ -112,8 +112,8 @@ export default function DeviceTable({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data?.length > 0 ? (
-            data.map((el) => (
+          {data?.list.length > 0 ? (
+            data.list.map((el) => (
               <tr className='h-20 border-b border-grey-500' key={el.deviceId}>
                 <td className='w-5/12 px-6 py-3 text-left text-sm'>
                   {el.deviceId}

@@ -28,7 +28,7 @@ export default async function DevicePage() {
       <NextIntlClientProvider messages={pick(messages, 'devicePage')}>
         <DeviceTable data={data} />
       </NextIntlClientProvider>
-      <Pagination />
+      <Pagination data={data} />
     </div>
   );
 }
