@@ -74,13 +74,13 @@ export default function ConnectWallet({ onClick, connect, back }) {
 
         Cookies.set('Token', jwt);
         onClick();
-        if (pathname === '/' && openWallet.from === 'home') {
+        if (openWallet.from === 'home') {
           router.push('/price');
         }
         if (openWallet.from === 'profile') {
           router.push('/profile/info');
         }
-        if (pathname === '/price' && openWallet.from === 'pay') {
+        if (openWallet.from === 'pay') {
           setCheckOutOpen(!checkOutOpen);
         }
       }
