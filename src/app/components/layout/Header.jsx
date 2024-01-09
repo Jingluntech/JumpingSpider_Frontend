@@ -155,7 +155,7 @@ export default function Header({ locale }) {
         );
       };
     }
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
