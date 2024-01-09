@@ -12,12 +12,16 @@ export default function Navbar({
   openLang,
   onProfileClick,
   showLanguage,
+  navbarRef,
 }) {
   const t = useTranslations('header');
   const pathname = usePathname();
 
   return (
-    <nav className='fixed inset-y-0 left-0 z-50 flex w-3/5 min-w-[220px] flex-col items-center bg-grey-900'>
+    <nav
+      ref={navbarRef}
+      className='fixed inset-y-0 left-0 z-50 flex w-3/5 min-w-[220px] flex-col items-center bg-grey-900'
+    >
       <ul className='mt-14 flex h-fit w-full flex-col'>
         {navLinks.map((el) => {
           return el.id === '4' ? (

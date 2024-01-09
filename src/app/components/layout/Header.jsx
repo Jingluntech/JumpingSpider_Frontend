@@ -22,9 +22,14 @@ export default function Header({ locale }) {
   const [isClient, setIsClient] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLang, setOpenLang] = useState(false);
+  const navbarRef = useRef(null);
   const langRef = useRef(null);
   const isLogin = Boolean(Cookies.get('Token'));
   const { disconnect } = useDisconnect();
+
+  console.log(navbarRef);
+  console.log(langRef);
+
   const navLinks = [
     {
       id: '1',
@@ -145,7 +150,11 @@ export default function Header({ locale }) {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (langRef.current && !langRef.current.contains(e.target)) {
+      if (
+        langRef.current &&
+        !langRef.current.contains(e.target) &&
+        !navbarRef.current
+      ) {
         setOpenLang(false);
       }
     };
@@ -284,6 +293,7 @@ export default function Header({ locale }) {
             openLang={openLang}
             setOpenLang={setOpenLang}
             onProfileClick={() => handleProfileClick()}
+            navbarRef={navbarRef}
           />
           <ModalBackground onClick={() => setOpenNavbar(false)} />
         </>
