@@ -14,7 +14,6 @@ export default function WalletProvider({ children }) {
     from: 'home',
   });
   const [checkOutOpen, setCheckOutOpen] = useState(false);
-  console.log(openWallet);
 
   const handleSubscribeClick = () => {
     if (!token) {

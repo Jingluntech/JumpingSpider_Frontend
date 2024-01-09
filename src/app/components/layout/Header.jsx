@@ -70,6 +70,7 @@ export default function Header({ locale }) {
       return setOpenWallet((prev) => ({
         ...prev,
         isOpen: true,
+        from: 'profile',
       }));
     }
     router.push('/profile/info');
@@ -121,7 +122,11 @@ export default function Header({ locale }) {
         await logoutAPI();
         Cookies.remove('Token');
         disconnect();
-        router.push('/');
+
+        if (pathname.includes('profile')) {
+          router.push('/');
+        }
+
         console.log('chainChanged');
       };
 
@@ -129,7 +134,11 @@ export default function Header({ locale }) {
         await logoutAPI();
         Cookies.remove('Token');
         disconnect();
-        router.push('/');
+
+        if (pathname.includes('profile')) {
+          router.push('/');
+        }
+
         console.log('accountsChanged');
       };
 
