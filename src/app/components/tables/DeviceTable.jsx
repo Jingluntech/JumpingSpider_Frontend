@@ -184,6 +184,7 @@ export default function DeviceTable({ data }) {
           <EditDevice
             onClick={() => handleEditClick()}
             selectedDeviceId={selectedDeviceId}
+            data={data}
           />
           <ModalBackground />
         </>

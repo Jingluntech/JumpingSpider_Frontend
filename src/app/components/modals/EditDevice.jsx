@@ -4,10 +4,13 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/src/navigation';
 import { useState } from 'react';
 
-export default function EditDevice({ onClick, selectedDeviceId }) {
+export default function EditDevice({ onClick, selectedDeviceId, data }) {
   const token = Cookies.get('Token');
   const t = useTranslations('devicePage');
-  const [inputValue, setInputValue] = useState('');
+  const defaultName = data.find(
+    (el) => el.deviceId === selectedDeviceId
+  ).nickName;
+  const [inputValue, setInputValue] = useState(defaultName);
   const router = useRouter();
 
   const handleEditClick = async () => {
